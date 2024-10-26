@@ -15,11 +15,11 @@
 	<form method="post" action="login" name="flogin" style="width: 500px">
 		<div class="mb-3">
 		  <label class="form-label">Username</label>
-		  <input type="text" class="form-control" name="username" placeholder="username">
+		  <input type="text" class="form-control" name="username" placeholder="username" value="user1">
 		</div>
 		<div class="mb-3">
 			<label  class="form-label">Password</label>
-			<input type="password" name="password" class="form-control"	>
+			<input type="password" name="password" class="form-control"	value="1">
 		</div>
 		<input type="submit" value="login" class="btn btn-primary" style="width: 100%">
 	</form>
