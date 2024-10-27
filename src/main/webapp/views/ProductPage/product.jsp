@@ -33,7 +33,7 @@
                         <a class="nav-link active" aria-current="page" href="home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Giỏ hàng</a>
+                        <a class="nav-link" href="">Giỏ hàng</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Theo giỏi đơn hàng</a>
@@ -55,28 +55,29 @@
                 <h4 class="text-primary">${item.gia} VND</h4>
                 <form class="mt-5" id="productForm" method="post">
                     <h5>Chọn size:</h5>
-                    <input type="radio" class="btn-check" name="size-option" id="size-s" value="s" autocomplete="off"
+                    <input type="radio" class="btn-check" name="size-option" id="size-s" value="S" autocomplete="off"
                         checked>
                     <label class="btn btn-outline-secondary fs-5 text" for="size-s">S</label>
 
-                    <input type="radio" class="btn-check" name="size-option" id="size-m" value="m" autocomplete="off">
+                    <input type="radio" class="btn-check" name="size-option" id="size-m" value="M" autocomplete="off">
                     <label class="btn btn-outline-secondary fs-5 text" for="size-m">M</label>
 
-                    <input type="radio" class="btn-check" name="size-option" id="size-l" value="l" autocomplete="off">
+                    <input type="radio" class="btn-check" name="size-option" id="size-l" value="L" autocomplete="off">
                     <label class="btn btn-outline-secondary fs-5 text" for="size-l">L</label>
 
-                    <input type="radio" class="btn-check" name="size-option" id="size-xl" value="xl" autocomplete="off">
+                    <input type="radio" class="btn-check" name="size-option" id="size-xl" value="XL" autocomplete="off">
                     <label class="btn btn-outline-secondary fs-5 text" for="size-xl">XL</label>
                     <h5 class="mt-5">Số lượng:</h5>
                     <div class="d-flex border border-3 rounded-pill" style="width: 150px;">
                         <button type="button" onclick="decrease()"
                             class="btn btn-light border border-0 rounded-start-pill">-</button>
-                        <input type="text" id="quantity" value="1" class="form-control text-center border border-0"
+                        <input type="text" name="quantity" id="quantity" value="1" class="form-control text-center border border-0"
                             readonly>
                         <button type="button" onclick="increase()"
                             class="btn btn-light border border-0 rounded-end-circle">+</button>
                     </div>
                     <input type="hidden" value="${item.id}" name="id">
+                    <input type="hidden" value="post" name="_method">
                     <div class="d-flex flex-column gap-3 mt-5">
                         <input type="submit" class="btn btn-primary" onclick="setAction('buy')" value="Mua ngay">
                         <input type="submit" class="btn btn-outline-primary" onclick="setAction('add-to-cart')"
@@ -103,9 +104,9 @@
         function setAction(actionType) {
             var form = document.getElementById('productForm');
             if (actionType === 'buy') {
-                form.action = '/mua-ngay';
+                form.action = '';
             } else if (actionType === 'add-to-cart') {
-                form.action = '/them-vao-gio-hang';
+                form.action = '/WebBanAo/cart';
             }
         }
         function decrease() {

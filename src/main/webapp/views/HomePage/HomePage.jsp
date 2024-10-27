@@ -30,7 +30,7 @@
             <a class="nav-link active" aria-current="page" href="home">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Giỏ hàng</a>
+            <a class="nav-link" href="/WebBanAo/cart">Giỏ hàng</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Theo giỏi đơn hàng</a>
@@ -58,8 +58,9 @@
 		    		<input type="hidden" name="id" value=">${item.id}">
 		    		<input type="submit" class="btn btn-primary" value="Mua ngay">
 		    	</form>
-		    	<form action="" class="mt-3">
-		    		<input type="hidden" name="id" value=">${item.id}">
+		    	<form action="/WebBanAo/cart" class="mt-3" method="post">
+		    		<input type="hidden" name="id" value="${item.id}">
+		    		<input type="hidden" value="post" name="_method">
 		    		<input type="submit" class="btn btn-warning" value="Thêm vào giỏ hàng">
 		    	</form>
 		    </div>
