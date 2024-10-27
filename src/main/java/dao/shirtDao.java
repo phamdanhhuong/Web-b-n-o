@@ -81,4 +81,22 @@ public class shirtDao {
 		}
 		return false;
 	}
+	
+	public static shirt LayItemTheoID(int id) {
+		Connection db = connectDB.DB();
+		try {
+			shirt item = null;
+			String query = "select * from shirt where id="+id;
+			Statement state = db.createStatement();
+			ResultSet rs =state.executeQuery(query);
+			if(rs.next()) {
+				item = new shirt(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6));
+			}
+			db.close();
+			return item;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
 }

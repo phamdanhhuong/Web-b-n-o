@@ -30,7 +30,10 @@
             <a class="nav-link active" aria-current="page" href="home">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Cart</a>
+            <a class="nav-link" href="#">Giỏ hàng</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Theo giỏi đơn hàng</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/WebBanAo">Logout</a>
@@ -43,23 +46,24 @@
 	<div class="container d-flex flex-wrap gap-3 p-3">
       <c:forEach var="item" items="${list}">
       	<div class="card" style="width: 18rem;">
-          <img src="${item.link}"
-              class="card-img-top">
-          <div class="card-body">
-              <p class="card-text">${item.loai}</p>
-              <h5 class="card-title">${item.ten}</h5>
-              <h5 class="card-title text-info">${item.gia} VND</h5>
-              <div>
-              	<form action="">
-              		<input type="hidden" name="id" value=">${item.id}">
-              		<input type="submit" class="btn btn-primary" value="Mua ngay">
-              	</form>
-              	<form action="" class="mt-3">
-              		<input type="hidden" name="id" value=">${item.id}">
-              		<input type="submit" class="btn btn-warning" value="Thêm vào giỏ hàng">
-              	</form>
-              </div>
-          </div>
+		<a href="/WebBanAo/product?id=${item.id}">
+			<img src="${item.link}" class="card-img-top">
+		</a>
+		<div class="card-body">
+		    <p class="card-text">${item.loai}</p>
+		    <h5 class="card-title">${item.ten}</h5>
+		    <h5 class="card-title text-info">${item.gia} VND</h5>
+		    <div>
+		    	<form action="">
+		    		<input type="hidden" name="id" value=">${item.id}">
+		    		<input type="submit" class="btn btn-primary" value="Mua ngay">
+		    	</form>
+		    	<form action="" class="mt-3">
+		    		<input type="hidden" name="id" value=">${item.id}">
+		    		<input type="submit" class="btn btn-warning" value="Thêm vào giỏ hàng">
+		    	</form>
+		    </div>
+		</div>
 	    </div>
       </c:forEach>
 	</div>
