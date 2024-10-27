@@ -67,8 +67,9 @@
 					</button>
 			      </td>
 			      <td>
-			      	<form action="">
-	              		<input type="hidden" name="id" value=">${item.id}">
+			      	<form action="/WebBanAo/admin" method="post">
+	              		<input type="hidden" name="id" value="${item.id}">
+	              		<input type="hidden" name="_method" value="delete">
 	              		<input type="submit" class="btn btn-danger" value="Xóa">
 	              	</form>
 			      </td>
@@ -89,7 +90,7 @@
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	      <div class="modal-body">
-	        <form>
+	        <form action="/WebBanAo/admin" method="post">
 				<div class="mb-3">
 				  <label for="edit-id" class="form-label">Mã sản phẩm</label>
 				  <input type="text" name="id" class="form-control" id="edit-id" readonly>
@@ -114,6 +115,7 @@
 				  <label for="edit-mota" class="form-label">Mô tả</label>
 				  <textarea name="mota" class="form-control" id="edit-mota"></textarea>
 				</div>
+				<input type="hidden" name="_method" value="put">
 				<input type="submit" class="btn btn-primary" value="Save changes">
 			</form>
 	      </div>
@@ -133,7 +135,7 @@
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	      <div class="modal-body">
-			<form>
+			<form action="/WebBanAo/admin" method="post">
 				<div class="mb-3">
 				  <label class="form-label">Tên sản phẩm</label>
 				  <input type="text" name="ten" class="form-control" >
@@ -154,6 +156,7 @@
 				  <label class="form-label">Mô tả</label>
 				  <textarea name="mota" class="form-control" ></textarea>
 				</div>
+				<input type="hidden" name="_method" value="post">
 				<input type="submit" class="btn btn-primary" value="Save">
 			</form>
 	      </div>

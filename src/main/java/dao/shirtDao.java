@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -26,5 +27,58 @@ public class shirtDao {
 			// TODO: handle exception
 		}
 		return null;
+	}
+	
+	public static boolean AddShirt(shirt item) {
+		String sql = "{call sp_InsertShirt(?, ?, ?, ?, ?)}";
+		Connection db = connectDB.DB();
+		try {
+			CallableStatement statement = db.prepareCall(sql);
+			statement.setString(1, item.getTen());
+            statement.setString(2, item.getLink());
+            statement.setString(3, item.getMota());
+            statement.setInt(4, item.getGia());
+            statement.setString(5, item.getLoai());
+            statement.execute();
+            db.close();
+            return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return false;
+	}
+	
+	public static boolean UpdateShirt(shirt item) {
+		String sql = "{call sp_UpdateShirt(?, ?, ?, ?, ?, ?)}";
+		Connection db = connectDB.DB();
+		try {
+			CallableStatement statement = db.prepareCall(sql);
+			statement.setInt(1, item.getId());
+            statement.setString(2, item.getTen());
+            statement.setString(3, item.getLink());
+            statement.setString(4, item.getMota());
+            statement.setInt(5, item.getGia());
+            statement.setString(6, item.getLoai());
+            statement.execute();
+            db.close();
+            return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return false;
+	}
+	public static boolean DeleteShirt(int id) {
+		String sql = "{call sp_DeleteShirt(?)}";
+		Connection db = connectDB.DB();
+		try {
+			CallableStatement statement = db.prepareCall(sql);
+			statement.setInt(1, id);
+            statement.execute();
+            db.close();
+            return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return false;
 	}
 }
