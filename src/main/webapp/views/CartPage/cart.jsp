@@ -46,49 +46,52 @@
     <div class="d-flex flex-wrap gap-3 p-3 mt-5 row justify-content-center">
 	    <div class="d-flex justify-content-around">
 	        <div style="width: 50%; min-height: 1000px;" class="col-6">
-	            <div class="d-flex justify-content-between align-items-end">
-	                <span class="fs-4 text fw-bold">Giỏ hàng:</span>
-	                <span class="fs-5 text">Số sản phẩm: ${quantity}</span>
-	            </div>
-	            <c:forEach var="item" items="${list}">
-	            	<div class="d-flex mt-5">
-		                <img style="width: auto; height: 200px;"
-		                    src="${item.shirt.link}">
-		                <div>
-		                    <p class="text fw-medium fs-5">${item.shirt.ten}</p>                   
-		                    <form action="/WebBanAo/cart" method="post">
-		                    	<p class="text fw-medium fs-6">
-									<select class="form-select" id="combo-box" name="size-option" style="width: 150px">
-									    <option value="S" ${item.cart.size == 'S' ? 'selected' : ''}>S</option>
-									    <option value="M" ${item.cart.size == 'M' ? 'selected' : ''}>M</option>
-									    <option value="L" ${item.cart.size == 'L' ? 'selected' : ''}>L</option>
-									    <option value="XL" ${item.cart.size == 'XL' ? 'selected' : ''}>XL</option>
-									</select>
-		                    	</p>
-		                        <h5 class="mt-3">Số lượng:</h5>
-		                        <div class="d-flex gap-5">
-		                        	<div class="d-flex border border-4 rounded-pill" style="width: 150px;">
+			    <div class="d-flex justify-content-between align-items-end border-bottom pb-3 mb-4">
+			        <span class="fs-4 fw-bold">Giỏ hàng:</span>
+			        <span class="fs-5">Số sản phẩm: ${quantity}</span>
+			    </div>
+			
+			    <c:forEach var="item" items="${list}">
+			        <div class="cart-item d-flex mt-4 p-3 border rounded shadow-sm">
+			            <img src="${item.shirt.link}" class="img-fluid" style="width: auto; height: 200px;">
+			            <div class="ms-3 flex-grow-1">
+			                <p class="fw-medium fs-5">${item.shirt.ten}</p>                   
+			                <form action="/WebBanAo/cart" method="post">
+			                    <div class="d-flex flex-column">
+			                        <select class="form-select mb-3" id="combo-box" name="size-option" style="width: 150px;">
+			                            <option value="S" ${item.cart.size == 'S' ? 'selected' : ''}>S</option>
+			                            <option value="M" ${item.cart.size == 'M' ? 'selected' : ''}>M</option>
+			                            <option value="L" ${item.cart.size == 'L' ? 'selected' : ''}>L</option>
+			                            <option value="XL" ${item.cart.size == 'XL' ? 'selected' : ''}>XL</option>
+			                        </select>
+			                        
+			                        <label for="quantity${item.cart.id}" class="mt-3 fw-bold">Số lượng:</label>
+			                        <div class="quantity-selector d-flex align-items-center border rounded-pill mt-1 mb-3" style="width: 150px;">
 			                            <button type="button" onclick="decrease(${item.cart.id})"
-			                                class="btn btn-light border border-0 rounded-start-pill">-</button>
-			                            <input type="text" id="quantity${item.cart.id}" name="quantity" value="${item.cart.quantity}" class="form-control text-center border border-0"
-			                                readonly>
+			                                    class="btn btn-light border-0 rounded-start-pill">-</button>
+			                            <input type="text" id="quantity${item.cart.id}" name="quantity" value="${item.cart.quantity}"
+			                                   class="form-control text-center border-0" readonly>
 			                            <button type="button" onclick="increase(${item.cart.id})"
-			                                class="btn btn-light border border-0 rounded-end-circle">+</button>
+			                                    class="btn btn-light border-0 rounded-end-pill">+</button>
 			                        </div>
+			                        
 			                        <input type="hidden" name="_method" value="put">
 			                        <input type="hidden" name="idCart" value="${item.cart.id}">
-			                        <input type="submit" class="btn btn-primary mt-3 align-self-end" value="Save">
-		                        </div>
-		                    </form>
-		                </div>
-		                <form class="mx-5" action="/WebBanAo/cart" method="post">
-		                    <input type="hidden" name="_method" value="delete">
-		                    <input type="hidden" name="idCart" value="${item.cart.id}">
-		                    <input type="submit" class="text fs-5 fw-bold btn btn-warning align-self-start" value="Xóa">
-		                </form>
-		            </div>
-	            </c:forEach>
-	        </div>
+			                        <input type="submit" class="btn btn-primary mt-2 save-btn" value="Save">
+			                    </div>
+			                </form>
+			            </div>
+			
+			            <form class="delete-form" action="/WebBanAo/cart" method="post">
+			                <input type="hidden" name="_method" value="delete">
+			                <input type="hidden" name="idCart" value="${item.cart.id}">
+			                <input type="submit" class="btn btn-warning text-white fw-bold delete-btn" value="Xóa">
+			            </form>
+			        </div>
+			    </c:forEach>
+			</div>
+
+
 	        <div style="width: 35%; min-height: 1000px;" class="my-4 col-4">
 	                <div class="card p-4">
 	                  <h5>Thông tin đơn hàng</h5>

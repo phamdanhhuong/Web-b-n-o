@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="views/HomePage/HomePage.css" type="text/css" rel="stylesheet">
+<link href="./views/HomePage/HomePage.css" type="text/css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -65,48 +65,56 @@
     </div>
 
     <div class="container d-flex gap-3 p-3">
-        <div class="col-4">
-          <div class="filter">
-              <h2>Bộ lọc</h2>
-              <div class="category">
+        <div class="col-3">
+          <div class="filter p-3 bg-light border rounded">
+            <h2 class="text-center mb-4">Bộ lọc</h2>
+        
+            <div class="category mb-4">
                 <h5>Danh mục sản phẩm</h5>
-                <ul>
-                  <li><a href="#">Sản phẩm mới</a></li>
-                  <li><a href="#">Sale</a></li>
-                  <li><a href="#">Áo nam</a></li>
-                  <li><a href="#">Quần nam</a></li>
-                  <li><a href="#">Bộ sưu tập</a></li>
-                  <li><a href="#">Hệ thống cửa hàng</a></li>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="filter-link">Sản phẩm mới</a></li>
+                    <li><a href="#" class="filter-link">Sale</a></li>
+                    <li><a href="#" class="filter-link">Áo nam</a></li>
+                    <li><a href="#" class="filter-link">Quần nam</a></li>
+                    <li><a href="#" class="filter-link">Bộ sưu tập</a></li>
+                    <li><a href="#" class="filter-link">Hệ thống cửa hàng</a></li>
                 </ul>
-              </div>
-              <div class="price-range">
+            </div>
+        
+            <div class="price-range mb-4">
                 <h5>Khoảng giá</h5>
                 <input type="range" min="0" max="3000000" value="1500000" step="10000" class="form-range">
-                <div class="price-label">
-                  <span>0đ</span> - <span>3,000,000đ</span>
+                <div class="price-label mt-2 d-flex justify-content-between">
+                    <span>0đ</span> 
+                    <span>3,000,000đ</span>
                 </div>
-              </div>
-              <div class="color">
+            </div>
+        
+            <div class="color mb-4">
                 <h5>Màu sắc</h5>
                 <!-- Add color options as needed -->
-              </div>
-              <div class="size">
-                <h5>Size</h5>
-                <div class="btn-group" role="group">
-                  <button type="button" class="btn btn-outline-secondary">S</button>
-                  <button type="button" class="btn btn-outline-secondary">M</button>
-                  <button type="button" class="btn btn-outline-secondary">L</button>
-                  <button type="button" class="btn btn-outline-secondary">XL</button>
-                  <button type="button" class="btn btn-outline-secondary">XXL</button>
-                  <button type="button" class="btn btn-outline-secondary">36</button>
-                  <button type="button" class="btn btn-outline-secondary">37</button>
-                  <button type="button" class="btn btn-outline-secondary">38</button>
-                  <button type="button" class="btn btn-outline-secondary">39</button>
+                <div class="color-options d-flex gap-2 mt-2">
+                    <span class="color-circle" style="background-color: #000;"></span>
+                    <span class="color-circle" style="background-color: #ff0000;"></span>
+                    <span class="color-circle" style="background-color: #00ff00;"></span>
+                    <span class="color-circle" style="background-color: #0000ff;"></span>
                 </div>
-              </div>
+            </div>
+        
+            <div class="size">
+                <h5>Size</h5>
+                <div class="btn-group mt-2" role="group">
+                    <button type="button" class="btn btn-outline-secondary">S</button>
+                    <button type="button" class="btn btn-outline-secondary">M</button>
+                    <button type="button" class="btn btn-outline-secondary">L</button>
+                    <button type="button" class="btn btn-outline-secondary">XL</button>
+                    <button type="button" class="btn btn-outline-secondary">XXL</button>
+                </div>
             </div>
         </div>
-        <div class="col-8">
+        
+        </div>
+        <div class="col-9">
           <div class="row">
             <div class="col-12" style="height: 3vh;">
               <div class="dropdown">
@@ -128,29 +136,29 @@
             </div>
           </div>   
           <div class="col-12" style="height: 75vh; overflow-y: auto;">
-            <div class="container d-flex flex-wrap gap-3 p-3">
+            <div class="container d-flex flex-wrap gap-3 p-3 justify-content-center">
               <c:forEach var="item" items="${list}">
-                <div class="card" style="width: 18rem;">
-                    <a href="/WebBanAo/product?id=${item.id}">
-                        <img src="${item.link}" class="card-img-top">
-                    </a>
-                    <div class="card-body">
-                        <p class="card-text">${item.loai}</p>
-                        <h5 class="card-title">${item.ten}</h5>
-                        <h5 class="card-title text-info">${item.gia} VND</h5>
-                        <div>
-                            <form action="">
-                                <input type="hidden" name="id" value="${item.id}">
-                                <input type="submit" class="btn btn-primary" value="Mua ngay">
-                            </form>
-                            <form action="/WebBanAo/cart" class="mt-3" method="post">
-                                <input type="hidden" name="id" value="${item.id}">
-                                <input type="hidden" value="post" name="_method">
-                                <input type="submit" class="btn btn-warning" value="Thêm vào giỏ hàng">
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                  <div class="card hover-effect" style="width: 18rem;">
+                      <a href="/WebBanAo/product?id=${item.id}">
+                          <img src="${item.link}" class="card-img-top">
+                      </a>
+                      <div class="card-body text-center">
+                          <p class="card-text text-muted">${item.loai}</p>
+                          <h5 class="card-title">${item.ten}</h5>
+                          <h5 class="card-title text-info">${item.gia} VND</h5>
+                          <div class="d-flex flex-column gap-2 mt-3">
+                              <form action="">
+                                  <input type="hidden" name="id" value="${item.id}">
+                                  <input type="submit" class="btn btn-primary w-100" value="Mua ngay">
+                              </form>
+                              <form action="/WebBanAo/cart" method="post">
+                                  <input type="hidden" name="id" value="${item.id}">
+                                  <input type="hidden" value="post" name="_method">
+                                  <input type="submit" class="btn btn-warning w-100" value="Thêm vào giỏ hàng">
+                              </form>
+                          </div>
+                      </div>
+                  </div>
               </c:forEach>
             </div>
           </div>
