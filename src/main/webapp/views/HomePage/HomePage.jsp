@@ -36,7 +36,7 @@
                 <a class="nav-link" href="/WebBanAo/cart">Giỏ hàng</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Theo giỏi đơn hàng</a>
+                <a class="nav-link" href="/WebBanAo/theodoi">Theo dõi đơn hàng</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/WebBanAo">Logout</a>

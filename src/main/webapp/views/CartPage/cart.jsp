@@ -33,7 +33,7 @@
                         <a class="nav-link active" aria-current="page" href="home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Theo giỏi đơn hàng</a>
+                        <a class="nav-link" href="/WebBanAo/theodoi">Theo dõi đơn hàng</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/WebBanAo">Logout</a>
@@ -93,42 +93,56 @@
 
 
 	        <div style="width: 35%; min-height: 1000px;" class="my-4 col-4">
+	        	<form action="/WebBanAo/hoadon" method="post">
 	                <div class="card p-4">
-	                  <h5>Thông tin đơn hàng</h5>
-	                  <div class="mb-3">
-	                    <p>Tạm tính: <span class="float-end">0₫</span></p>
-	                    <p>Giảm giá: <span class="float-end">0₫</span></p>
-	                    <p class="total-text">Tổng cộng: <span class="float-end">0₫</span></p>
-	                  </div>
-	            
-	                  <h6>🚚 Ước tính thời gian giao hàng</h6>
-	                  <div class="row mb-3">
-	                    <div class="col">
-	                      <select class="form-select" aria-label="Chọn tỉnh/thành phố">
-	                        <option selected>Chọn tỉnh/thành phố</option>
-	                        <option value="1">Hà Nội</option>
-	                        <option value="2">TP. Hồ Chí Minh</option>
-	                        <!-- Thêm các tỉnh/thành phố khác -->
-	                      </select>
-	                    </div>
-	                    <div class="col">
-	                      <select class="form-select" aria-label="Chọn Quận/huyện">
-	                        <option selected>Chọn Quận/huyện</option>
-	                        <!-- Thêm các quận/huyện khác -->
-	                      </select>
-	                    </div>
-	                  </div>
-	            
-	                  <a href="#" class="text-primary">Mã Giảm Giá</a>
-	            
-	                  <h6 class="mt-3">Ghi chú đơn hàng</h6>
-	                  <textarea class="form-control mb-3" placeholder="Ghi chú"></textarea>
-	                  <input type="text" class="form-control mb-3" placeholder="Nhập mã khuyến mãi (nếu có)">
-	            
-	                  <button class="btn btn-primary w-100 mb-2">THANH TOÁN NGAY</button>
-	                  <a href="#" class="text-decoration-none text-secondary d-block text-center">⟵ Tiếp tục mua hàng</a>
+		                  <h5>Thông tin đơn hàng</h5>
+		                  <div class="mb-3">
+		                    <p>Tạm tính: <span class="float-end">${tamtinh}₫</span></p>
+		                    <p>Giảm giá: <span class="float-end">0₫</span></p>
+		                    <p class="total-text">Tổng cộng: <span class="float-end">${tamtinh}₫</span></p>
+		                  </div>
+		            
+		                  <h6>🚚 Ước tính thời gian giao hàng</h6>
+		                  <div class="row mb-3">
+		                    <div class="col">
+		                      <select class="form-select" name="thanhpho" id="thanhpho" aria-label="Chọn tỉnh/thành phố" onchange="updateDistricts()">
+		                        <option selected>Chọn tỉnh/thành phố</option>
+		                        <option value="Hà Nội">Hà Nội</option>
+		                        <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+		                        <!-- Thêm các tỉnh/thành phố khác -->
+		                      </select>
+		                    </div>
+		                    <div class="col">
+		                      <select class="form-select" name="quan" id="quan" aria-label="Chọn Quận/huyện">
+		                        <option selected>Chọn Quận/huyện</option>
+		                      </select>
+		                    </div>
+		                  </div>
+		                  <div class="row mb-3">
+		                  	<div class="col">
+		                      <input type="text" class="form-control" placeholder="Địa chỉ cụ thể" name="diachicuthe">
+		                    </div>	            	  	
+		            	  </div>
+		                  <h6>Phương thức thanh toán</h6>
+		            	  <div class="row mb-3">
+		            	  	<div class="col">
+		                      <select class="form-select" name="phuongthuc">
+		                        <option selected value="Tiền mặt">Tiền mặt</option>
+		                        <option value="Thẻ tín dụng">Thẻ tín dụng</option>		                      
+		                      </select>
+		                    </div>
+		            	  </div>
+		                  <a href="#" class="text-primary">Mã Giảm Giá</a>
+		            
+		                  <h6 class="mt-3">Ghi chú đơn hàng</h6>
+		                  <textarea class="form-control mb-3" placeholder="Ghi chú"></textarea>
+		                  <input type="text" class="form-control mb-3" placeholder="Nhập mã khuyến mãi (nếu có)">
+		            
+		                  <input type="submit" class="btn btn-primary w-100 mb-2" value="THANH TOÁN NGAY">
+		                  <a href="#" class="text-decoration-none text-secondary d-block text-center">⟵ Tiếp tục mua hàng</a>
 	                </div>
-	            </div>
+                </form>
+            </div>
 	        </div>
     </div>
     <footer>
@@ -152,6 +166,91 @@
             var currentValue = parseInt(quantityInput.value);
             quantityInput.value = currentValue + 1;
         }
+        
+        
+        function updateDistricts() {
+            // Lấy phần tử select của thành phố và quận/huyện
+            const citySelect = document.getElementById("thanhpho");
+            const districtSelect = document.getElementById("quan");
+            
+            // Xóa các tùy chọn quận/huyện hiện có
+            districtSelect.innerHTML = '<option selected>Chọn Quận/huyện</option>';
+
+            // Lấy giá trị của tỉnh/thành phố được chọn
+            const city = citySelect.value;
+
+            // Tạo các danh sách quận/huyện theo từng thành phố
+            const districtsByCity = {
+           		"Hà Nội": [
+           	        { value: "Quận Ba Đình", text: "Quận Ba Đình" },
+           	        { value: "Quận Hoàn Kiếm", text: "Quận Hoàn Kiếm" },
+           	        { value: "Quận Tây Hồ", text: "Quận Tây Hồ" },
+           	        { value: "Quận Long Biên", text: "Quận Long Biên" },
+           	        { value: "Quận Cầu Giấy", text: "Quận Cầu Giấy" },
+           	        { value: "Quận Đống Đa", text: "Quận Đống Đa" },
+           	        { value: "Quận Hai Bà Trưng", text: "Quận Hai Bà Trưng" },
+           	        { value: "Quận Hoàng Mai", text: "Quận Hoàng Mai" },
+           	        { value: "Quận Thanh Xuân", text: "Quận Thanh Xuân" },
+           	        { value: "Huyện Sóc Sơn", text: "Huyện Sóc Sơn" },
+           	        { value: "Huyện Đông Anh", text: "Huyện Đông Anh" },
+           	        { value: "Huyện Gia Lâm", text: "Huyện Gia Lâm" },
+           	        { value: "Quận Nam Từ Liêm", text: "Quận Nam Từ Liêm" },
+           	        { value: "Quận Bắc Từ Liêm", text: "Quận Bắc Từ Liêm" },
+           	        { value: "Huyện Mê Linh", text: "Huyện Mê Linh" },
+           	        { value: "Quận Hà Đông", text: "Quận Hà Đông" },
+           	        { value: "Thị xã Sơn Tây", text: "Thị xã Sơn Tây" },
+           	        { value: "Huyện Ba Vì", text: "Huyện Ba Vì" },
+           	        { value: "Huyện Phúc Thọ", text: "Huyện Phúc Thọ" },
+           	        { value: "Huyện Đan Phượng", text: "Huyện Đan Phượng" },
+           	        { value: "Huyện Hoài Đức", text: "Huyện Hoài Đức" },
+           	        { value: "Huyện Quốc Oai", text: "Huyện Quốc Oai" },
+           	        { value: "Huyện Thạch Thất", text: "Huyện Thạch Thất" },
+           	        { value: "Huyện Chương Mỹ", text: "Huyện Chương Mỹ" },
+           	        { value: "Huyện Thanh Oai", text: "Huyện Thanh Oai" },
+           	        { value: "Huyện Thường Tín", text: "Huyện Thường Tín" },
+           	        { value: "Huyện Phú Xuyên", text: "Huyện Phú Xuyên" },
+           	        { value: "Huyện Ứng Hòa", text: "Huyện Ứng Hòa" },
+           	        { value: "Huyện Mỹ Đức", text: "Huyện Mỹ Đức" }
+           	      ],
+           	      "TP. Hồ Chí Minh": [
+           	        { value: "Quận 1", text: "Quận 1" },
+           	        { value: "Quận 2", text: "Quận 2" },
+           	        { value: "Quận 3", text: "Quận 3" },
+           	        { value: "Quận 4", text: "Quận 4" },
+           	        { value: "Quận 5", text: "Quận 5" },
+           	        { value: "Quận 6", text: "Quận 6" },
+           	        { value: "Quận 7", text: "Quận 7" },
+           	        { value: "Quận 8", text: "Quận 8" },
+           	        { value: "Quận 9", text: "Quận 9" },
+           	        { value: "Quận 10", text: "Quận 10" },
+           	        { value: "Quận 11", text: "Quận 11" },
+           	        { value: "Quận 12", text: "Quận 12" },
+           	        { value: "Quận Bình Thạnh", text: "Quận Bình Thạnh" },
+           	        { value: "Quận Tân Bình", text: "Quận Tân Bình" },
+           	        { value: "Quận Tân Phú", text: "Quận Tân Phú" },
+           	        { value: "Quận Phú Nhuận", text: "Quận Phú Nhuận" },
+           	        { value: "Quận Gò Vấp", text: "Quận Gò Vấp" },
+           	        { value: "Thành phố Thủ Đức", text: "Thành phố Thủ Đức" },
+           	        { value: "Quận Bình Tân", text: "Quận Bình Tân" },
+           	        { value: "Huyện Hóc Môn", text: "Huyện Hóc Môn" },
+           	        { value: "Huyện Củ Chi", text: "Huyện Củ Chi" },
+           	        { value: "Huyện Nhà Bè", text: "Huyện Nhà Bè" },
+           	        { value: "Huyện Bình Chánh", text: "Huyện Bình Chánh" },
+           	        { value: "Huyện Cần Giờ", text: "Huyện Cần Giờ" }
+		      ]
+		    };
+
+            // Lấy danh sách quận/huyện tương ứng với thành phố đã chọn
+            const districts = districtsByCity[city] || [];
+
+            // Thêm các tùy chọn quận/huyện vào select của quận/huyện
+            districts.forEach(district => {
+              const option = document.createElement("option");
+              option.value = district.value;
+              option.text = district.text;
+              districtSelect.appendChild(option);
+            });
+          }
     </script>
 </body>
 

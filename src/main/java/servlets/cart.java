@@ -34,9 +34,14 @@ public class cart extends HttpServlet {
 		if(accountDao.acc!=null) {
 			if(accountDao.acc.getRole()==1) {
 				List<cartDetail> list = cartDao.DsCartDetail(accountDao.acc.getUid());
+				int tamtinh = 0;
+				for (cartDetail item : list) {
+					tamtinh += item.getCart().getQuantity()* item.getShirt().getGia();
+				}
 				int sl = list.size();
 				request.setAttribute("list", list);
 				request.setAttribute("quantity", sl);
+				request.setAttribute("tamtinh", tamtinh);
 				request.getRequestDispatcher("views/CartPage/cart.jsp").forward(request, response);
 			}else {
 				request.getRequestDispatcher("index.jsp").forward(request, response);
