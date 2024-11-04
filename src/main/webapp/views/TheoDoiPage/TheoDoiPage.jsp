@@ -13,6 +13,7 @@
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">  
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
 <link href="./views/HomePage/HomePage.css" type="text/css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -59,42 +60,139 @@
 	        </div>
 	    </div>
 	</nav>
-
-	<div class="container d-flex gap-3 p-3" style="min-height: 1000px">
-	    <div class="bg-light">
-			<div class="container my-4">
-				<c:forEach var="item" items="${list}">
-					<div class="order-card">
-					  <div class="d-flex justify-content-between align-items-center">
-					    <div>
-					      <span class="mall-badge">Shop</span>
-					      <strong>Chính hãng</strong>
-					    </div>
-					    <span class="status-text">Hoàn thành</span>
-					  </div>
-					  <div class="d-flex mt-3">
-					    <a href="">
-					    	<img src="${item.listDetail.get(0).shirt.link}" alt="${item.listDetail.get(0).shirt.ten}" class="img-thumbnail mr-3" style="width: auto; height: 170px;">
-					    </a>
-					    <div class="mx-3">
-					      <p>${item.listDetail.get(0).shirt.ten}</p>			      
-					      <small>Size M</small>			      
-					      <p class="text-muted mt-3"><fmt:formatNumber value="${item.listDetail.get(0).gia}" type="number" pattern="#,###"/>đ x ${item.listDetail.get(0).quantity}</p>
-					      <p class="mt-3">(Và ${item.listDetail.size() - 1} sản phẩm khác)</p>
-					      <p class="total-price">Tổng số tiền (${item.listDetail.size()} sản phẩm): <fmt:formatNumber value="${item.tongTien}" type="number" pattern="#,###"/>đ</p>
-					      <p class="mt-3">Ngày thanh toán: <fmt:formatDate value="${item.ngayThanhToan}" pattern="dd/MM/yyyy" /></p>
-					    </div>
-					  </div>
-					  <div class="mt-3">
-					    <button class="btn btn-outline-secondary btn-sm">Xem đánh giá</button>
-					    <button class="btn btn-outline-danger btn-sm">Mua lại</button>
-					  </div>
-					</div>
-				</c:forEach>
-			</div>
-			</div>
-	</div>
   
+	<div class="container p-3" style="min-height: 95vh">
+		<div class="row gap-3 bg-light">
+			<!-- Cột 1 -->
+			<div class="col">
+			    <div class="container my-4">
+			        <c:forEach var="item" items="${list}">
+			            <div class="order-card">
+			                <div class="d-flex justify-content-between align-items-center">
+			                    <div>
+			                        <span class="mall-badge">Shop</span>
+			                        <strong>Chính hãng</strong>
+			                    </div>
+			                    <span class="status-text">Hoàn thành</span>
+			                </div>
+			                <div class="d-flex mt-3">
+			                    <a href="">
+			                        <img src="${item.listDetail.get(0).shirt.link}" alt="${item.listDetail.get(0).shirt.ten}" class="img-thumbnail mr-3" style="width: 170px; height: auto;">
+			                    </a>
+			                    <div class="mx-3">
+			                        <p class="mb-1">${item.listDetail.get(0).shirt.ten}</p>      
+			                        <small class="text-muted">Size M</small>      
+			                        <p class="text-muted mt-2"><fmt:formatNumber value="${item.listDetail.get(0).gia}" type="number" pattern="#,###"/>đ x ${item.listDetail.get(0).quantity}</p>
+			                        <p class="mt-2">(Và ${item.listDetail.size() - 1} sản phẩm khác)</p>
+			                        <p class="total-price">Tổng số tiền (${item.listDetail.size()} sản phẩm): <fmt:formatNumber value="${item.tongTien}" type="number" pattern="#,###"/>đ</p>
+			                        <p class="mt-2">Ngày thanh toán: <fmt:formatDate value="${item.ngayThanhToan}" pattern="dd/MM/yyyy" /></p>
+			                    </div>
+			                </div>
+			                <div class="mt-3">
+			                    <button class="btn btn-outline-secondary btn-sm">Xem đánh giá</button>
+			                    <button class="btn btn-outline-danger btn-sm">Mua lại</button>
+			                </div>
+			            </div>
+			        </c:forEach>
+			    </div>
+			</div>
+			
+			<!-- Cột 2 -->
+			<div class="col">
+				<div class="container mt-4">
+          <div class="container mt-4 p-2">
+            <div class="order-container shadow-sm">
+                <!-- Đơn hàng đã hoàn thành -->
+                <div class="order-status text-center" style="border-radius: 8px 8px 0 0;">
+                    <p style="margin-bottom: 5px;">Đơn hàng đã hoàn thành</p>
+                </div>
+    
+                <!-- Thông tin vận chuyển -->
+                <div class="row p-2">
+                    <strong class="mb-2 ms-3">Thông tin vận chuyển</strong>
+                    <div class="col-10 d-flex ms-3 rounded">
+                        <i class="bi bi-truck me-2"></i>
+                        <p class="mb-0">Nhanh - J&T Express</p>
+                    </div>
+                </div>
+    
+                <div class="divider"></div>
+    
+                <!-- Địa chỉ nhận hàng -->
+                <div class="row  p-2">
+                    <strong class="mb-2 ms-3">Địa chỉ nhận hàng</strong>
+                    <div class="col-10 d-flex ms-3 rounded">
+                        <i class="bi bi-geo-alt me-2"></i>
+                        <div>
+                            <div class="d-flex gap-2">
+                                <p class="mb-0" style="font-weight: bold;">Trần Thị Thanh Phương</p>  
+                                <p class="mb-0" style="font-style: italic; color: gray; font-size: medium;">(+84) 937 688 097</p>
+                            </div>
+                            <p class="mb-0" style="font-size: medium;">Số nhà 586, tổ dân phố 6, Thị trấn Đạ M'ri, Huyện...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-4">
+          <div class="order-summary">
+              <!-- Thông tin sản phẩm -->
+              <div class="d-flex justify-content-between align-items-center p-2">
+                <div class="d-flex">
+                    <i class="bi bi-shop me-2"></i>
+                    <p style="font-weight: bold;">Shop Của Toi</p>
+                    <a href="#" style="color: lightgray; text-decoration: none; margin-left: 8px;">></a>
+                </div>
+              </div>
+              <div class="product-card p-3 mb-3">
+                  <div class="d-flex align-items-center mb-2">
+                      <img src="product1.jpg" alt="Sản phẩm 1" class="product-img me-2">
+                      <div>
+                          <strong>Máy hút chân không và hàn miệng túi</strong><br>
+                          <small>Máy hút chân không</small>
+                      </div>
+                      <div class="ms-auto">
+                          <p class="price mb-0">₫399.000</p>
+                      </div>
+                  </div>
+                  <div class="d-flex align-items-center">
+                      <img src="product2.jpg" alt="Sản phẩm 2" class="product-img me-2">
+                      <div>
+                          <strong>Máy hút chân không và hàn miệng túi</strong><br>
+                          <small>Set 100 túi 25x30</small>
+                      </div>
+                      <div class="ms-auto">
+                          <p class="price text-decoration-line-through mb-0">₫250.000</p>
+                          <p class="discount-price mb-0">₫189.000</p>
+                      </div>
+                  </div>
+              </div>
+  
+              <div class="divider"></div>
+  
+              <!-- Tổng cộng -->
+              <div class="row mb-3">
+                  <div class="col-6"><strong>Tổng tiền hàng:</strong></div>
+                  <div class="col-6 text-end">₫588.000</div>
+                  <div class="col-6"><strong>Phí vận chuyển:</strong></div>
+                  <div class="col-6 text-end">₫86.600</div>
+                  <div class="col-6"><strong>Ưu đãi phí vận chuyển:</strong></div>
+                  <div class="col-6 text-end">-₫29.600</div>
+                  <div class="col-6"><strong>Thành tiền:</strong></div>
+                  <div class="col-6 text-end"><strong>₫645.000</strong></div>
+              </div>
+  
+              <div class="divider"></div>
+  
+              <!-- Nút mua lại -->
+              <button class="btn btn-outline-danger w-100">Mua lại</button>
+            </div>
+          </div>
+        </div>
+      </div> 
+		</div>
+	</div>
 
 	<footer>
 	    <p>&copy; 2024 Your Company. All rights reserved.</p>
