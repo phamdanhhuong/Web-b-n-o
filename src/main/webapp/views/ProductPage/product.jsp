@@ -40,12 +40,12 @@
 	                    </a>
 	                </li>
 	                <li class="nav-item">
-	                    <a class="nav-link" href="#">
+	                    <a class="nav-link" href="/WebBanAo/cart">
 	                        <i class="fas fa-shopping-cart"></i> Giỏ hàng
 	                    </a>
 	                </li>
 	                <li class="nav-item">
-	                    <a class="nav-link" href="#">
+	                    <a class="nav-link" href="/WebBanAo/theodoi">
 	                        <i class="fas fa-box"></i> Theo dõi đơn hàng
 	                    </a>
 	                </li>

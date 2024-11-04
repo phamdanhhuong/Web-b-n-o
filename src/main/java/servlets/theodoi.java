@@ -6,8 +6,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
+import beans.hoaDon;
 import dao.accountDao;
+import dao.hoadonDao;
 
 /**
  * Servlet implementation class theodoi
@@ -31,6 +34,8 @@ public class theodoi extends HttpServlet {
 		if(accountDao.acc==null) {
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}else {
+			List<hoaDon> list = hoadonDao.getListHoaDon(accountDao.acc.getUid());
+			request.setAttribute("list", list);
 			request.getRequestDispatcher("views/TheoDoiPage/TheoDoiPage.jsp").forward(request, response);
 		}
 	}

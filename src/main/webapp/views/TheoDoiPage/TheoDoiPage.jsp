@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@taglib prefix="fmt" uri="jakarta.tags.fmt"%>
+<%@page import="beans.hoaDon" %>
+<%@page import="beans.chiTietHoaDon" %>
+<%@page import="beans.shirt" %>
+<%@page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,58 +62,36 @@
 
 	<div class="container d-flex gap-3 p-3" style="min-height: 1000px">
 	    <div class="bg-light">
-
 			<div class="container my-4">
-			  <h3>Đã giao</h3>
-			  
-			  <!-- First Order Card -->
-			  <div class="order-card">
-			    <div class="d-flex justify-content-between align-items-center">
-			      <div>
-			        <span class="mall-badge">Mall</span>
-			        <strong>Brushie Chính Hãng</strong>
-			      </div>
-			      <span class="status-text">Hoàn thành</span>
-			    </div>
-			    <div class="d-flex mt-3">
-			      <img src="path/to/brushie-image.jpg" alt="Bàn chải điện Brushie" class="img-thumbnail mr-3" style="width: 100px;">
-			      <div>
-			        <p>Bàn chải điện Brushie tích hợp máy rửa mặt</p>
-			        <small>Đen Mistery (box)</small>
-			        <p class="text-muted mt-1">₫1.130.000 <del>₫696.000</del></p>
-			        <p class="total-price">Tổng số tiền (1 sản phẩm): ₫577.280</p>
-			      </div>
-			    </div>
-			    <div class="mt-3">
-			      <button class="btn btn-outline-secondary btn-sm">Xem đánh giá</button>
-			      <button class="btn btn-outline-danger btn-sm">Mua lại</button>
-			    </div>
-			  </div>
-			
-			  <!-- Second Order Card -->
-			  <div class="order-card">
-			    <div class="d-flex justify-content-between align-items-center">
-			      <div>
-			        <span class="mall-badge">Mall</span>
-			        <strong>SOUNDPEATS OFFICIAL STORE</strong>
-			      </div>
-			      <span class="status-text">Hoàn thành</span>
-			    </div>
-			    <div class="d-flex mt-3">
-			      <img src="path/to/soundpeats-image.jpg" alt="Tai nghe SOUNDPEATS" class="img-thumbnail mr-3" style="width: 100px;">
-			      <div>
-			        <p>Tai nghe True Wireless SoundPEATS Capsule3 Pro</p>
-			        <small>Đen</small>
-			        <p class="text-muted mt-1">₫1.690.000 <del>₫953.000</del></p>
-			        <p class="total-price">Tổng số tiền (1 sản phẩm): ₫778.000</p>
-			      </div>
-			    </div>
-			    <div class="mt-3">
-			      <button class="btn btn-outline-secondary btn-sm">Xem đánh giá</button>
-			      <button class="btn btn-outline-danger btn-sm">Mua lại</button>
-			    </div>
-			  </div>
-			  </div>
+				<c:forEach var="item" items="${list}">
+					<div class="order-card">
+					  <div class="d-flex justify-content-between align-items-center">
+					    <div>
+					      <span class="mall-badge">Shop</span>
+					      <strong>Chính hãng</strong>
+					    </div>
+					    <span class="status-text">Hoàn thành</span>
+					  </div>
+					  <div class="d-flex mt-3">
+					    <a href="">
+					    	<img src="${item.listDetail.get(0).shirt.link}" alt="${item.listDetail.get(0).shirt.ten}" class="img-thumbnail mr-3" style="width: auto; height: 170px;">
+					    </a>
+					    <div class="mx-3">
+					      <p>${item.listDetail.get(0).shirt.ten}</p>			      
+					      <small>Size M</small>			      
+					      <p class="text-muted mt-3"><fmt:formatNumber value="${item.listDetail.get(0).gia}" type="number" pattern="#,###"/>đ x ${item.listDetail.get(0).quantity}</p>
+					      <p class="mt-3">(Và ${item.listDetail.size() - 1} sản phẩm khác)</p>
+					      <p class="total-price">Tổng số tiền (${item.listDetail.size()} sản phẩm): <fmt:formatNumber value="${item.tongTien}" type="number" pattern="#,###"/>đ</p>
+					      <p class="mt-3">Ngày thanh toán: <fmt:formatDate value="${item.ngayThanhToan}" pattern="dd/MM/yyyy" /></p>
+					    </div>
+					  </div>
+					  <div class="mt-3">
+					    <button class="btn btn-outline-secondary btn-sm">Xem đánh giá</button>
+					    <button class="btn btn-outline-danger btn-sm">Mua lại</button>
+					  </div>
+					</div>
+				</c:forEach>
+			</div>
 			</div>
 	</div>
   
