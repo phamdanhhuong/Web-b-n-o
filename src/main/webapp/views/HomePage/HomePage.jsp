@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">    
 <link href="./views/HomePage/HomePage.css" type="text/css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -16,35 +17,48 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="home">Shop</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item me-5">
-                <form class="d-flex">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-light" type="submit">Search</button>
-                </form>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="home">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/WebBanAo/cart">Giỏ hàng</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/WebBanAo/theodoi">Theo dõi đơn hàng</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/WebBanAo">Logout</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+	    <div class="container-fluid">
+	        <a class="navbar-brand" href="home">
+	            <i class="fas fa-store"></i> Shop
+	        </a>
+	        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+	            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	            <span class="navbar-toggler-icon"></span>
+	        </button>
+	        <div class="collapse navbar-collapse" id="navbarNav">
+	            <ul class="navbar-nav ms-auto">
+	                <li class="nav-item me-5">
+	                    <form class="d-flex">
+	                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+	                        <button class="btn btn-outline-light" type="submit">
+	                            <i class="fas fa-search"></i>
+	                        </button>
+	                    </form>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link active" aria-current="page" href="home">
+	                        <i class="fas fa-home"></i> Home
+	                    </a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" href="/WebBanAo/cart">
+	                        <i class="fas fa-shopping-cart"></i> Giỏ hàng
+	                    </a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" href="/WebBanAo/theodoi">
+	                        <i class="fas fa-box"></i> Theo dõi đơn hàng
+	                    </a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" href="/WebBanAo">
+	                        <i class="fas fa-sign-out-alt"></i> Logout
+	                    </a>
+	                </li>
+	            </ul>
+	        </div>
+	    </div>
+	</nav>
 
     <div class="navbar-filter">
         <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
@@ -137,30 +151,34 @@
           </div>   
           <div class="col-12" style="height: 75vh; overflow-y: auto;">
             <div class="container d-flex flex-wrap gap-3 p-3 justify-content-center">
-              <c:forEach var="item" items="${list}">
-                  <div class="card hover-effect" style="width: 18rem;">
-                      <a href="/WebBanAo/product?id=${item.id}">
-                          <img src="${item.link}" class="card-img-top">
-                      </a>
-                      <div class="card-body text-center">
-                          <p class="card-text text-muted">${item.loai}</p>
-                          <h5 class="card-title">${item.ten}</h5>
-                          <h5 class="card-title text-info">${item.gia} VND</h5>
-                          <div class="d-flex flex-column gap-2 mt-3">
-                              <form action="">
-                                  <input type="hidden" name="id" value="${item.id}">
-                                  <input type="submit" class="btn btn-primary w-100" value="Mua ngay">
-                              </form>
-                              <form action="/WebBanAo/cart" method="post">
-                                  <input type="hidden" name="id" value="${item.id}">
-                                  <input type="hidden" value="post" name="_method">
-                                  <input type="submit" class="btn btn-warning w-100" value="Thêm vào giỏ hàng">
-                              </form>
-                          </div>
-                      </div>
-                  </div>
-              </c:forEach>
-            </div>
+			    <c:forEach var="item" items="${list}">
+			        <div class="card hover-effect" style="width: 18rem;">
+			            <a href="/WebBanAo/product?id=${item.id}">
+			                <img src="${item.link}" class="card-img-top">
+			            </a>
+			            <div class="card-body text-center">
+			                <p class="card-text text-muted">${item.loai}</p>
+			                <h5 class="card-title">${item.ten}</h5>
+			                <h5 class="card-title text-info">${item.gia} VND</h5>
+			                <div class="d-flex flex-column gap-2 mt-3">
+			                    <form action="">
+			                        <input type="hidden" name="id" value="${item.id}">
+			                        <button type="submit" class="btn btn-primary w-100">
+			                            <i class="fas fa-shopping-bag"></i> Mua ngay
+			                        </button>
+			                    </form>
+			                    <form action="/WebBanAo/cart" method="post">
+			                        <input type="hidden" name="id" value="${item.id}">
+			                        <input type="hidden" value="post" name="_method">
+			                        <button type="submit" class="btn btn-warning w-100">
+			                            <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
+			                        </button>
+			                    </form>
+			                </div>
+			            </div>
+			        </div>
+			    </c:forEach>
+			</div>
           </div>
         </div>
       </div>

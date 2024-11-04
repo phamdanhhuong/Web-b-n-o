@@ -9,42 +9,55 @@
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">    
     <link href="views/HomePage/HomePage.css" type="text/css" rel="stylesheet">
     <title>Insert title here</title>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="home">Shop</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item me-5">
-                        <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-light" type="submit">Search</button>
-                        </form>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Giỏ hàng</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Theo giỏi đơn hàng</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/WebBanAo">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+	    <div class="container-fluid">
+	        <a class="navbar-brand" href="home">
+	            <i class="fas fa-store"></i> Shop
+	        </a>
+	        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+	            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	            <span class="navbar-toggler-icon"></span>
+	        </button>
+	        <div class="collapse navbar-collapse" id="navbarNav">
+	            <ul class="navbar-nav ms-auto">
+	                <li class="nav-item me-5">
+	                    <form class="d-flex">
+	                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+	                        <button class="btn btn-outline-light" type="submit">
+	                            <i class="fas fa-search"></i>
+	                        </button>
+	                    </form>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link active" aria-current="page" href="home">
+	                        <i class="fas fa-home"></i> Home
+	                    </a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" href="#">
+	                        <i class="fas fa-shopping-cart"></i> Giỏ hàng
+	                    </a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" href="#">
+	                        <i class="fas fa-box"></i> Theo dõi đơn hàng
+	                    </a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" href="/WebBanAo">
+	                        <i class="fas fa-sign-out-alt"></i> Logout
+	                    </a>
+	                </li>
+	            </ul>
+	        </div>
+	    </div>
+	</nav>
 
     <div class="container d-flex flex-wrap gap-3 p-3 mt-5">
         <div class="d-flex">
