@@ -17,7 +17,23 @@
 <link href="./views/HomePage/HomePage.css" type="text/css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+	/* CSS cho hiệu ứng đổ xuống */
+	.slide-down {
+		animation: slideDown 0.5s ease forwards;
+	}
 
+	@keyframes slideDown {
+		0% {
+			opacity: 0;
+			transform: translateY(-20px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+</style>
 
 <title>Insert title here</title>
 </head>
@@ -190,20 +206,23 @@
 	    </ul>
 	</footer>
 	<script type="text/javascript">
-		
-		const displayDetail =(id)=>{
+		const displayDetail = (id) => {
 			const allDivs = document.querySelectorAll("[id^='hoadon']");
-	        allDivs.forEach(div => {
-	            div.style.display = 'none'; // Ẩn tất cả
-	        });
-
-			var div = document.getElementById('hoadon'+id);
-	        if (div.style.display === 'none') {
-	            div.style.display = 'block'; // Hiện div
-	        } else {
-	            div.style.display = 'none'; // Ẩn div
-	        }
-		}
+			allDivs.forEach(div => {
+				div.style.display = 'none'; // Ẩn tất cả các div
+				div.classList.remove('slide-down'); // Xóa lớp hiệu ứng đổ xuống nếu có
+			});
+	
+			const selectedDiv = document.getElementById('hoadon' + id);
+			if (selectedDiv.style.display === 'none') {
+				selectedDiv.style.display = 'block'; // Hiện div được chọn
+				selectedDiv.classList.add('slide-down'); // Thêm hiệu ứng đổ xuống
+			} else {
+				selectedDiv.style.display = 'none'; // Ẩn div nếu nó đang hiện
+			}
+		};
 	</script>
+
+
 </body>
 </html>
