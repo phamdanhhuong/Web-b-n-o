@@ -36,9 +36,11 @@ public class hoadon extends HttpServlet {
 			String quan = request.getParameter("quan");
 			String diachicuthe = request.getParameter("diachicuthe");
 			String phuongthuc = request.getParameter("phuongthuc");
+			String tenNguoiNhan = request.getParameter("tenNguoiNhan");
+			int sdt = Integer.parseInt(request.getParameter("sdt"));
 			
 			String diachi = thanhpho +", "+quan+", "+diachicuthe;
-			hoadonDao.CheckOut(accountDao.acc.getUid(), phuongthuc, diachi);
+			hoadonDao.CheckOut(accountDao.acc.getUid(), phuongthuc, diachi,tenNguoiNhan,sdt);
 			response.sendRedirect("/WebBanAo/cart");
 		}
 	}

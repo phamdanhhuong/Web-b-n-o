@@ -9,6 +9,8 @@ public class hoaDon {
 	int tongTien;
 	Date ngayThanhToan;
 	String phuongThuc;
+	String tenNguoiNhan;
+	int sdtNguoiNhan;
 	String diaChi;
 	List<chiTietHoaDon> listDetail;
 	public int getId() {
@@ -53,13 +55,27 @@ public class hoaDon {
 	public void setListDetail(List<chiTietHoaDon> listDetail) {
 		this.listDetail = listDetail;
 	}
-	public hoaDon(int id, int userId, int tongTien, Date ngayThanhToan, String phuongThuc, String diaChi,
+	public String getTenNguoiNhan() {
+		return tenNguoiNhan;
+	}
+	public void setTenNguoiNhan(String tenNguoiNhan) {
+		this.tenNguoiNhan = tenNguoiNhan;
+	}
+	public int getSdtNguoiNhan() {
+		return sdtNguoiNhan;
+	}
+	public void setSdtNguoiNhan(int sdtNguoiNhan) {
+		this.sdtNguoiNhan = sdtNguoiNhan;
+	}
+	public hoaDon(int id, int userId, int tongTien, Date ngayThanhToan, String phuongThuc, String tenNguoiNhan, int sdtNguoiNhan, String diaChi,
 			List<chiTietHoaDon> listDetail) {
 		this.id = id;
 		this.userId = userId;
 		this.tongTien = tongTien;
 		this.ngayThanhToan = ngayThanhToan;
 		this.phuongThuc = phuongThuc;
+		this.tenNguoiNhan = tenNguoiNhan;
+		this.sdtNguoiNhan = sdtNguoiNhan;
 		this.diaChi = diaChi;
 		this.listDetail = listDetail;
 	}

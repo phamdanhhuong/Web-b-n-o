@@ -13,14 +13,16 @@ import beans.shirt;
 import services.connectDB;
 
 public class hoadonDao {
-	public static boolean CheckOut(int userId, String phuongThuc, String diaChi) {
-		String sql = "{call sp_Checkout(?, ?, ?)}";
+	public static boolean CheckOut(int userId, String phuongThuc, String diaChi, String tenNguoiNhan, int sdt) {
+		String sql = "{call sp_Checkout(?, ?, ?, ?, ?)}";
 		Connection db = connectDB.DB();
 		try {
 			CallableStatement statement = db.prepareCall(sql);
 			statement.setInt(1, userId);
             statement.setString(2, phuongThuc);
             statement.setString(3, diaChi);
+            statement.setString(4, tenNguoiNhan);
+            statement.setInt(5, sdt);
             statement.execute();
             db.close();
             return true;
@@ -58,7 +60,7 @@ public class hoadonDao {
             ResultSet rs = statement.executeQuery();
             List<hoaDon> kq = new ArrayList<hoaDon>();
             while(rs.next()) {
-            	kq.add(new hoaDon(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getString(5), rs.getString(6), getListDetail(rs.getInt(1))));
+            	kq.add(new hoaDon(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getString(5), rs.getString(6),rs.getInt(7),rs.getString(8), getListDetail(rs.getInt(1))));
             }
             db.close();
             return kq;

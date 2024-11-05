@@ -134,6 +134,10 @@
 		                      <input type="text" class="form-control" placeholder="Địa chỉ cụ thể" name="diachicuthe">
 		                    </div>	            	  	
 		            	  </div>
+		            	  <h6>Tên người nhận</h6>
+		            	  <input type="text" class="form-control mb-3" name="tenNguoiNhan">
+		            	  <h6>Sđt người nhận</h6>
+		            	  <input type="text" class="form-control mb-3" name="sdt">
 		                  <h6>Phương thức thanh toán</h6>
 		            	  <div class="row mb-3">
 		            	  	<div class="col">
