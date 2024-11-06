@@ -100,7 +100,7 @@
 			                        <small class="text-muted">Size M</small>      
 			                        <p class="text-muted mt-2"><fmt:formatNumber value="${item.listDetail.get(0).gia}" type="number" pattern="#,###"/>đ x ${item.listDetail.get(0).quantity}</p>
 			                        <p class="mt-2">(Và ${item.listDetail.size() - 1} sản phẩm khác)</p>
-			                        <p class="total-price">Tổng số tiền (${item.listDetail.size()} sản phẩm): đ</p>
+			                        <p class="total-price">Tổng số tiền (${item.listDetail.size()} sản phẩm): <fmt:formatNumber value="${item.tongTien}" type="number" pattern="#,###"/>đ</p>
 			                        <p class="mt-2">Ngày thanh toán: <fmt:formatDate value="${item.ngayThanhToan}" pattern="dd/MM/yyyy" /></p>
 			                    </div>
 			                </div>
