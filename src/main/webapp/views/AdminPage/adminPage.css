@@ -1,0 +1,243 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #0d335d;
+    color: white;
+    padding: 15px;
+}
+
+.profile {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.profile p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.profile small {
+    display: block;
+    color: #ccc;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+}
+
+.menu-item:hover {
+    background-color: #1a496f;
+}
+
+.menu-item.active {
+    background-color: #ffc107;
+    color: #0d335d;
+    font-weight: bold;
+}
+
+/* Custom CSS */
+body {
+    background-color: #f8f9fa;
+}
+.sidebar {
+    background-color: #343a40;
+    color: white;
+    min-height: 100vh;
+    padding: 20px;
+}
+.sidebar .nav-link {
+    color: #adb5bd;
+}
+.sidebar .nav-link.active, .sidebar .nav-link:hover {
+    color: #ffffff;
+    background-color: #495057;
+    border-radius: 5px;
+}
+.card-custom {
+    border-left: 5px solid;
+}
+.card-custom.success {
+    border-color: #28a745;
+}
+.card-custom.info {
+    border-color: #17a2b8;
+}
+.card-custom.warning {
+    border-color: #ffc107;
+}
+.card-custom.danger {
+    border-color: #dc3545;
+}
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    border-left: 4px solid #ffc107;
+}
+.order-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+.thongke-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+.donhang-container {
+    background-color: #fff;
+    padding: 10px 10px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-left::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 100%;
+    background-color: #ffc107; /* Màu vàng */
+    margin-right: 10px;
+    border-radius: 2px;
+}
+
+.title {
+    font-weight: bold;
+    color: #003366; /* Màu xanh đậm */
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    font-size: 18px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-delete {
+    background-color: #ffcccc; /* Màu nền đỏ nhạt */
+    color: #ff0000; /* Màu biểu tượng đỏ đậm */
+}
+
+.btn-edit {
+    background-color: #ffe5b4; /* Màu nền cam nhạt */
+    color: #ff9900; /* Màu biểu tượng cam đậm */
+}
+
+.btn-delete:hover {
+    background-color: #ff9999;
+}
+
+.btn-edit:hover {
+    background-color: #ffd27f;
+}
+.row.mb-4 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.col-md-3 {
+    flex: 0 0 23%;
+    max-width: 23%;
+    margin-bottom: 1rem;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-body {
+    padding: 20px;
+    text-align: center;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #343a40;
+}
+
+.card-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff;
+}
+.status-completed {
+    border-left: #28a745 !important; /* Màu xanh lá cây */
+}
+
+.status-in-progress {
+    border-left: #17a2b8; /* Màu xanh dương nhạt */
+}
+
+.status-pending {
+    border-left: #ffc107; /* Màu vàng */
+}
+
+.status-cancelled {
+    border-left: #dc3545; /* Màu đỏ */
+}
