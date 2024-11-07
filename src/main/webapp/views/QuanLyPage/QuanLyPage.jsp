@@ -3,20 +3,14 @@
     
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <%@taglib prefix="fmt" uri="jakarta.tags.fmt"%>
-<%@page import="beans.hoaDon" %>
-<%@page import="beans.chiTietHoaDon" %>
-<%@page import="beans.shirt" %>
-<%@page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">  
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
-<link href="./views/HomePage/HomePage.css" type="text/css" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">    
+<link href="views/HomePage/HomePage.css" type="text/css" rel="stylesheet">
 <style>
 	/* CSS cho hiệu ứng đổ xuống */
 	.slide-down {
@@ -34,50 +28,29 @@
 		}
 	}
 </style>
-
 <title>Insert title here</title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	    <div class="container-fluid">
-	        <a class="navbar-brand" href="home">
-	            <i class="fas fa-store"></i> Shop
-	        </a>
-	        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-	            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-	            <span class="navbar-toggler-icon"></span>
-	        </button>
-	        <div class="collapse navbar-collapse" id="navbarNav">
-	            <ul class="navbar-nav ms-auto">
-	                <li class="nav-item me-5">
-	                    <form class="d-flex">
-	                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-	                        <button class="btn btn-outline-light" type="submit">
-	                            <i class="fas fa-search"></i>
-	                        </button>
-	                    </form>
-	                </li>
-	                <li class="nav-item">
-	                    <a class="nav-link active" aria-current="page" href="home">
-	                        <i class="fas fa-home"></i> Home
-	                    </a>
-	                </li>
-	                <li class="nav-item">
-	                    <a class="nav-link" href="/WebBanAo/cart">
-	                        <i class="fas fa-shopping-cart"></i> Giỏ hàng
-	                    </a>
-	                </li>
-	                <li class="nav-item">
-	                    <a class="nav-link" href="/WebBanAo">
-	                        <i class="fas fa-sign-out-alt"></i> Logout
-	                    </a>
-	                </li>
-	            </ul>
-	        </div>
+	  <div class="container-fluid">
+	    <a class="navbar-brand" href="home">Shop</a>
+	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarNav">
+	      <ul class="navbar-nav ms-auto">
+	        <li class="nav-item">
+	          <a class="nav-link active" aria-current="page" href="/WebBanAo/home">Home</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="/WebBanAo">Logout</a>
+	        </li>
+	      </ul>
 	    </div>
+	  </div>
 	</nav>
-  
 	<div class="container p-3" style="min-height: 95vh">
+		<div id="result" style="display: none"></div>
 		<div class="row gap-3 bg-light">
 			<!-- Cột 1 -->
 			<div class="col">
@@ -104,10 +77,6 @@
 			                        <p class="mt-2">Ngày thanh toán: <fmt:formatDate value="${item.ngayThanhToan}" pattern="dd/MM/yyyy" /></p>
 			                    </div>
 			                </div>
-			                <div class="mt-3">
-			                    <button class="btn btn-outline-secondary btn-sm">Xem đánh giá</button>
-			                    <button class="btn btn-outline-danger btn-sm">Mua lại</button>
-			                </div>
 			            </div>
 			        </c:forEach>
 			    </div>
@@ -117,40 +86,6 @@
 			<div class="col">
 				<c:forEach var="item" items="${list}">
 					<div class="container mt-4" style="display: none" id="hoadon${item.id}">
-					      <div class="container mt-4 p-2">
-					        <div class="order-container shadow-sm">
-					            <!-- Đơn hàng đã hoàn thành -->
-					        <div class="order-status text-center" style="border-radius: 8px 8px 0 0;">
-					            <p style="margin-bottom: 5px;">${item.trangThai}</p>
-					        </div>
-					
-					        <!-- Thông tin vận chuyển -->
-					        <div class="row p-2">
-					            <strong class="mb-2 ms-3">Thông tin vận chuyển</strong>
-					            <div class="col-10 d-flex ms-3 rounded">
-					                <i class="bi bi-truck me-2"></i>
-					                <p class="mb-0">Nhanh - J&T Express</p>
-					            </div>
-					        </div>
-					
-					        <div class="divider"></div>
-					
-					        <!-- Địa chỉ nhận hàng -->
-					        <div class="row p-2">
-					            <strong class="mb-2 ms-3">Địa chỉ nhận hàng</strong>
-					            <div class="col-10 d-flex ms-3 rounded">
-					                <i class="bi bi-geo-alt me-2"></i>
-					                <div>
-					                    <div class="d-flex gap-2">
-					                        <p class="mb-0" style="font-weight: bold;">${item.tenNguoiNhan}</p>  
-					                        <p class="mb-0" style="font-style: italic; color: gray; font-size: medium;">(+84) <fmt:formatNumber value="${item.sdtNguoiNhan}" type="number" pattern="###,###"/></p>
-					                    </div>
-					                    <p class="mb-0" style="font-size: medium;" id="diachi">${item.diaChi}</p>
-					                </div>
-					            </div>
-					        </div>
-					    </div>
-					</div>
 					
 					<div class="container mt-4">
 					  <div class="order-summary">
@@ -175,7 +110,20 @@
 					          </div>
 					       </c:forEach>
 					      </div>
-					
+							<!-- Địa chỉ nhận hàng -->
+					        <div class="row mb-3">
+					            <strong class="mb-2 ms-3">Địa chỉ nhận hàng</strong>
+					            <div class="col-10 d-flex ms-3 rounded">
+					                <i class="bi bi-geo-alt me-2"></i>
+					                <div>
+					                    <div class="d-flex gap-2">
+					                        <p class="mb-0" style="font-weight: bold;">${item.tenNguoiNhan}</p>  
+					                        <p class="mb-0" style="font-style: italic; color: gray; font-size: medium;">(+84) <fmt:formatNumber value="${item.sdtNguoiNhan}" type="number" pattern="###,###"/></p>
+					                    </div>
+					                    <p class="mb-0" style="font-size: medium;" id="diachi">${item.diaChi}</p>
+					                </div>
+					            </div>
+					        </div>
 					      <div class="divider"></div>
 					
 					      <!-- Tổng cộng -->
@@ -184,12 +132,18 @@
 					          <div class="col-6 text-end"><strong ><fmt:formatNumber value="${item.tongTien}" type="number" pattern="#,###"/>đ</strong></div>
 					          <div class="col-6">Phương thức thanh toán</div>
 					          <div class="col-6 text-end">${item.phuongThuc}</div>
-					      </div>
-					
+					      </div>				
 					      <div class="divider"></div>
-					
-					      <!-- Nút mua lại -->
-					      <button class="btn btn-outline-danger w-100">Mua lại</button>
+					      <form action="/WebBanAo/quanly" method="post"/>
+					      	<select class="form-select" name="trangthai">
+							    <option selected>Open this select menu</option>
+							    <option value="Đã hoàn thành" ${item.trangThai == 'Đã hoàn thành' ? 'selected' : ''}>Đã hoàn thành</option>
+							    <option value="Đang chuẩn bị hàng" ${item.trangThai == 'Đang chuẩn bị hàng' ? 'selected' : ''}>Đang chuẩn bị hàng</option>
+							    <option value="Đã hủy" ${item.trangThai == 'Đã hủy' ? 'selected' : ''}>Đã hủy</option>
+							</select>
+							<input type="hidden" name="idHoaDon" value="${item.id}">
+							<input type="submit" class="btn btn-primary mt-2 save-btn" value="Save">
+					      </form>
 					    </div>
 					  </div>
 					</div>
@@ -197,7 +151,7 @@
       		</div> 
 		</div>
 	</div>
-
+	
 	<footer>
 	    <p>&copy; 2024 Your Company. All rights reserved.</p>
 	    <ul>
@@ -205,7 +159,7 @@
 	      <li><a href="#terms">Terms of Service</a></li>
 	    </ul>
 	</footer>
-	<script type="text/javascript">
+		<script type="text/javascript">
 		const displayDetail = (id) => {
 			const allDivs = document.querySelectorAll("[id^='hoadon']");
 			allDivs.forEach(div => {
@@ -222,7 +176,7 @@
 			}
 		};
 	</script>
-
-
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>

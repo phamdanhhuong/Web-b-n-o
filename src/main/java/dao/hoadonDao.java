@@ -60,7 +60,7 @@ public class hoadonDao {
             ResultSet rs = statement.executeQuery();
             List<hoaDon> kq = new ArrayList<hoaDon>();
             while(rs.next()) {
-            	kq.add(new hoaDon(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getString(5), rs.getString(6),rs.getInt(7),rs.getString(8), getListDetail(rs.getInt(1))));
+            	kq.add(new hoaDon(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getString(5), rs.getString(6),rs.getInt(7),rs.getString(8),rs.getString(9), getListDetail(rs.getInt(1))));
             }
             db.close();
             return kq;
@@ -68,5 +68,39 @@ public class hoadonDao {
 			// TODO: handle exception
 		}
 		return null;
+	}
+	
+	public static List<hoaDon> getAllListHoaDon() {
+		String sql = "select * from HoaDon";
+		Connection db = connectDB.DB();
+		try {
+			PreparedStatement statement =db.prepareStatement(sql); 
+            ResultSet rs = statement.executeQuery();
+            List<hoaDon> kq = new ArrayList<hoaDon>();
+            while(rs.next()) {
+            	kq.add(new hoaDon(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getString(5), rs.getString(6),rs.getInt(7),rs.getString(8),rs.getString(9), getListDetail(rs.getInt(1))));
+            }
+            db.close();
+            return kq;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+	
+	public static boolean UpdateStatus(String status, int idHoaDon) {
+		String sql = "{call sp_updateStatus(?, ?)}";
+		Connection db = connectDB.DB();
+		try {
+			CallableStatement statement = db.prepareCall(sql);
+			statement.setString(1, status);
+            statement.setInt(2, idHoaDon);
+            statement.execute();
+            db.close();
+            return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return false;
 	}
 }
