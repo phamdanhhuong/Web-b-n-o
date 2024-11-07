@@ -22,7 +22,10 @@
 	    <div class="collapse navbar-collapse" id="navbarNav">
 	      <ul class="navbar-nav ms-auto">
 	        <li class="nav-item">
-	          <a class="nav-link active" aria-current="page" href="home">Home</a>
+	          <a class="nav-link active" aria-current="page" href="/WebBanAo/home">Home</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="/WebBanAo/quanly">Quản lý đơn hàng</a>
 	        </li>
 	        <li class="nav-item">
 	          <a class="nav-link" href="/WebBanAo">Logout</a>
