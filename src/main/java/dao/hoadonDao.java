@@ -103,4 +103,22 @@ public class hoadonDao {
 		}
 		return false;
 	}
+	
+	public static hoaDon getHoaDon(int idHoaDon) {
+		String sql = "select * from HoaDon Where id = "+idHoaDon;
+		Connection db = connectDB.DB();
+		try {
+			PreparedStatement statement =db.prepareStatement(sql); 
+            ResultSet rs = statement.executeQuery();
+            hoaDon kq = null;
+            while(rs.next()) {
+            	kq = new hoaDon(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getString(5), rs.getString(6),rs.getInt(7),rs.getString(8),rs.getString(9), getListDetail(rs.getInt(1)));
+            }
+            db.close();
+            return kq;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
 }

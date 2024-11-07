@@ -23,9 +23,9 @@
                     <small>Chào mừng bạn trở lại</small>
                 </div>
                 <div class="menu">
-                    <a href="/WebBanAo/AdminTrangChu" class="menu-item">Bảng điều khiển</a>
-                    <a href="/WebBanAo/AdminPage" class="menu-item">Quản lý sản phẩm</a>
-                    <a href="/WebBanAo/AdminQuanLyDonHang" class="menu-item">Quản lý đơn hàng</a>
+                    <a href="/WebBanAo/home" class="menu-item">Bảng điều khiển</a>
+                    <a href="/WebBanAo/admin" class="menu-item">Quản lý sản phẩm</a>
+                    <a href="/WebBanAo/quanly" class="menu-item">Quản lý đơn hàng</a>
                     <a href="/WebBanAo/AdminThongKe" class="menu-item">Báo cáo doanh thu</a>
                 </div>
             </div>

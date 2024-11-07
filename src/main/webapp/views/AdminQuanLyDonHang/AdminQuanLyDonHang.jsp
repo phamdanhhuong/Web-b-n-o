@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@taglib prefix="fmt" uri="jakarta.tags.fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +12,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="adminPage.css" rel="stylesheet">
+    <link href="./views/AdminPage/adminPage.css" rel="stylesheet">
     <style>
         .badge-success { background-color: #28a745; }
         .badge-info { background-color: #17a2b8; }
@@ -29,9 +31,9 @@
                     <small>Chào mừng bạn trở lại</small>
                 </div>
                 <div class="menu">
-                    <a href="/WebBanAo/AdminTrangChu" class="menu-item">Bảng điều khiển</a>
-                    <a href="/WebBanAo/AdminPage" class="menu-item">Quản lý sản phẩm</a>
-                    <a href="/WebBanAo/AdminQuanLyDonHang" class="menu-item">Quản lý đơn hàng</a>
+                    <a href="/WebBanAo/home" class="menu-item">Bảng điều khiển</a>
+                    <a href="/WebBanAo/admin" class="menu-item">Quản lý sản phẩm</a>
+                    <a href="/WebBanAo/quanly" class="menu-item">Quản lý đơn hàng</a>
                     <a href="/WebBanAo/AdminThongKe" class="menu-item">Báo cáo doanh thu</a>
                 </div>
             </div>
@@ -106,120 +108,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><input type="checkbox" name="check1" value="1"></td>
-                                <td>MD0837</td>
-                                <td>Triệu Thanh Phú</td>
-                                <td>Ghế làm việc Zuno, Bàn ăn gỗ Theresa</td>
-                                <td>2</td>
-                                <td>9.400.000 đ</td>
-                                <td><span class="badge badge-success">Hoàn thành</span></td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="btn btn-delete btn-sm trash">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                        <button class="btn btn-edit btn-sm edit">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="check1" value="1"></td>
-                                <td>MB8265</td>
-                                <td>Nguyễn Thị Ngọc Cẩm</td>
-                                <td>Ghế ăn gỗ Lucy màu trắng</td>
-                                <td>1</td>
-                                <td>3.800.000 đ</td>
-                                <td><span class="badge badge-success">Hoàn thành</span></td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="btn btn-delete btn-sm trash">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                        <button class="btn btn-edit btn-sm edit">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="check1" value="1"></td>
-                                <td>MT9835</td>
-                                <td>Đặng Hoàng Phúc</td>
-                                <td>Giường ngủ Jimmy, Bàn ăn mở rộng cao cấp Dolas, Ghế làm việc Zuno</td>
-                                <td>3</td>
-                                <td>40.650.000 đ</td>
-                                <td><span class="badge badge-success">Hoàn thành</span></td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="btn btn-delete btn-sm trash">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                        <button class="btn btn-edit btn-sm edit">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="check1" value="1"></td>
-                                <td>ER3835</td>
-                                <td>Nguyễn Thị Mỹ Yến</td>
-                                <td>Bàn ăn mở rộng Gepa</td>
-                                <td>1</td>
-                                <td>16.770.000 đ</td>
-                                <td><span class="badge badge-info">Chờ thanh toán</span></td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="btn btn-delete btn-sm trash">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                        <button class="btn btn-edit btn-sm edit">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="check1" value="1"></td>
-                                <td>AL3947</td>
-                                <td>Phạm Thị Ngọc</td>
-                                <td>Bàn ăn Vitali mặt đá, Ghế ăn gỗ Lucy màu trắng</td>
-                                <td>2</td>
-                                <td>19.770.000 đ</td>
-                                <td><span class="badge badge-warning">Đang giao hàng</span></td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="btn btn-delete btn-sm trash">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                        <button class="btn btn-edit btn-sm edit">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" name="check1" value="1"></td>
-                                <td>QY8723</td>
-                                <td>Ngô Thái An</td>
-                                <td>Giường ngủ Kara 1.6x2m</td>
-                                <td>1</td>
-                                <td>14.500.000 đ</td>
-                                <td><span class="badge badge-danger">Đã hủy</span></td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <button class="btn btn-delete btn-sm trash">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                        <button class="btn btn-edit btn-sm edit">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
+                        	<c:forEach var="item" items="${list}">
+	                            <tr>
+	                                <td><input type="checkbox" name="check1" value="1"></td>
+	                                <td>${item.id}</td>
+	                                <td>${item.tenNguoiNhan}</td>
+	                                <td>${item.listDetail.get(0).shirt.ten}</td>
+	                                <td>${item.listDetail.size()}</td>
+	                                <td><fmt:formatNumber value="${item.tongTien}" type="number" pattern="#,###"/>đ</td>
+	                                <td><span class="badge badge-success">${item.trangThai}</span></td>
+	                                <td>
+	                                    <div class="action-buttons">
+	                                        <button class="btn btn-delete btn-sm trash">
+	                                            <i class="fas fa-trash-alt"></i>
+	                                        </button>
+	                                        <a href="/WebBanAo/tuychinh?idHoaDon=${item.id}" class="btn btn-edit btn-sm edit">
+		                                            <i class="fas fa-edit"></i>
+	                                        </a>
+	                                    </div>
+	                                </td>
+	                            </tr>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </div>

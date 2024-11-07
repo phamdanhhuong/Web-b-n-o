@@ -39,10 +39,11 @@ public class quanly extends HttpServlet {
 		}else if(accountDao.acc.getRole()==0) {
 			List<hoaDon> list = hoadonDao.getAllListHoaDon();
 			request.setAttribute("list", list);
-			request.getRequestDispatcher("views/QuanLyPage/QuanLyPage.jsp").forward(request, response);
+			request.getRequestDispatcher("views/AdminQuanLyDonHang/AdminQuanLyDonHang.jsp").forward(request, response);
 		}else {
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
+		
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

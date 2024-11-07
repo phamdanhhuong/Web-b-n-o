@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@taglib prefix="fmt" uri="jakarta.tags.fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +13,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <link href="adminPage.css" rel="stylesheet">
+  <link href="./views/AdminPage/adminPage.css" rel="stylesheet">
 </head>
 <body>
   
@@ -23,10 +26,10 @@
               <small>Chào mừng bạn trở lại</small>
           </div>
           <div class="menu">
-              <a href="/WebBanAo/AdminTrangChu" class="menu-item">Bảng điều khiển</a>
-              <a href="/WebBanAo/AdminPage" class="menu-item">Quản lý sản phẩm</a>
-              <a href="/WebBanAo/AdminQuanLyDonHang" class="menu-item">Quản lý đơn hàng</a>
-              <a href="/WebBanAo/AdminThongKe" class="menu-item">Báo cáo doanh thu</a>
+             <a href="/WebBanAo/home" class="menu-item">Bảng điều khiển</a>
+             <a href="/WebBanAo/admin" class="menu-item">Quản lý sản phẩm</a>
+             <a href="/WebBanAo/quanly" class="menu-item">Quản lý đơn hàng</a>
+             <a href="/WebBanAo/AdminThongKe" class="menu-item">Báo cáo doanh thu</a>
           </div>
         </div>
       </div>
@@ -48,41 +51,29 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>71390005</td>
-                    <td>Bàn ăn gỗ Theresa</td>
-                    <td><img src="path/to/image1.jpg" alt="Bàn ăn" style="width: 50px;"></td>
-                    <td><input type="number" value="2" class="form-control" style="width: 60px;"></td>
-                    <td>5,600,000 VND</td>
-                  </tr>
-                  <tr>
-                    <td>62340003</td>
-                    <td>Bàn ăn Vitali mặt đá</td>
-                    <td><img src="path/to/image2.jpg" alt="Bàn ăn" style="width: 50px;"></td>
-                    <td><input type="number" value="3" class="form-control" style="width: 60px;"></td>
-                    <td>33,235,000 VND</td>
-                  </tr>
-                  <tr>
-                    <td>71340032</td>
-                    <td>Bàn ăn mở rộng Gepa</td>
-                    <td><img src="path/to/image3.jpg" alt="Bàn ăn" style="width: 50px;"></td>
-                    <td><input type="number" value="1" class="form-control" style="width: 60px;"></td>
-                    <td>16,770,000 VND</td>
-                  </tr>
+	                <c:forEach var="detail" items="${hoadon.listDetail}">
+	                  <tr>
+	                    <td>${detail.shirt.id}</td>
+	                    <td>${detail.shirt.ten}</td>
+	                    <td><img src="${detail.shirt.link}" alt="Bàn ăn" style="width: 50px;"></td>
+	                    <td><input type="number" value="2" class="form-control" style="width: 60px;"></td>
+	                    <td><fmt:formatNumber value="${detail.gia}" type="number" pattern="#,###"/> VND</td>
+	                  </tr>
+                  	</c:forEach>
                 </tbody>
               </table>   
               <div class="mb-3 row">
                 <div class="col-md-4">
                   <label class="form-label">Tạm tính tiền hàng:</label>
-                  <p class="fw-bold text-danger">129,397,213 VND</p>
+                  <p class="fw-bold text-danger"><fmt:formatNumber value="${hoadon.tongTien}" type="number" pattern="#,###"/> VND</p>
                 </div>
                 <div class="col-md-4">
                   <label for="discount" class="form-label">Giảm giá:</label>
-                  <p class="fw-bold text-danger">129,397,213 VND</p>
+                  <p class="fw-bold text-danger"><fmt:formatNumber value="${hoadon.tongTien}" type="number" pattern="#,###"/> VND</p>
                 </div>
                 <div class="col-md-4">
                   <label for="paymentMethod" class="form-label">Hình thức thanh toán:</label>
-                  <input type="text" class="form-control" id="customerGender" placeholder="Thanh toán chuyển khoản" readonly>
+                  <input type="text" class="form-control" id="customerGender" placeholder="${hoadon.phuongThuc}" readonly>
                 </div>
               </div>
   
@@ -92,7 +83,7 @@
               </div>
     
               <div class="mb-3">
-                <p class="fw-bold text-danger">Tổng tiền: 129,397,213 VND</p>
+                <p class="fw-bold text-danger">Tổng tiền: <fmt:formatNumber value="${hoadon.tongTien}" type="number" pattern="#,###"/> VND</p>
               </div>  
             </div>
 
@@ -100,15 +91,15 @@
             <div class="col-md-4 donhang-container">
               <h5 class="bg-primary text-white p-3">Thông tin thanh toán</h5>
               
-              <form>
+              <div>
                 <div class="mb-3">
                   <label for="customerName" class="form-label">Họ tên khách hàng</label>
-                  <input type="text" class="form-control" id="customerName" placeholder="Tìm kiếm khách hàng" readonly>
+                  <input type="text" class="form-control" id="customerName" placeholder="${hoadon.tenNguoiNhan}" readonly>
                 </div>
                 
                 <div class="mb-3">
                   <label for="customerAddress" class="form-label">Địa chỉ người mua</label>
-                  <input type="text" class="form-control" id="customerAddress" placeholder="Nhập địa chỉ người mua" readonly>
+                  <input type="text" class="form-control" id="customerAddress" placeholder="${hoadon.diaChi}" readonly>
                 </div>
       
                 <div class="mb-3 row">
@@ -118,7 +109,7 @@
                   </div>
                   <div class="col-md-6">
                     <label for="customerPhone" class="form-label">Số điện thoại</label>
-                    <input type="tel" class="form-control" id="customerPhone" placeholder="Nhập số điện thoại" readonly>
+                    <input type="tel" class="form-control" id="customerPhone" placeholder="${hoadon.sdtNguoiNhan}" readonly>
                   </div>
                 </div>
 
@@ -140,11 +131,19 @@
                   <textarea class="form-control" id="orderNotes" rows="3" placeholder="Ghi chú thêm đơn hàng" readonly></textarea>
                 </div>
                 
-      
-                <button type="button" class="btn btn-primary w-100 mb-2">Xác nhận đơn hàng</button>
-                <button type="button" class="btn btn-danger w-100 mb-2">Hủy đơn hàng</button>
-                <button type="button" class="btn btn-secondary w-100">Quay về</button>
-              </form>
+      			<form action="/WebBanAo/quanly" method="post">
+                	<input type="hidden" name="trangthai" value="Đã xác nhận chờ giao hàng">
+                	<input type="hidden" name="idHoaDon" value="${hoadon.id}">
+                	<button type="submit" class="btn btn-primary w-100 mb-2" ${hoadon.trangThai == 'Đã xác nhận chờ giao hàng' ? 'disabled' : ''}>Xác nhận đơn hàng</button>
+                </form>
+                
+                <form action="/WebBanAo/quanly" method="post">
+                	<input type="hidden" name="trangthai" value="Đã hủy">
+                	<input type="hidden" name="idHoaDon" value="${hoadon.id}">
+                	<button type="submit" class="btn btn-danger w-100 mb-2" ${hoadon.trangThai == 'Đã hủy' ? 'disabled' : ''}>Hủy đơn hàng</button>
+                </form>
+                <a type="button" href="/WebBanAo/quanly" class="btn btn-secondary w-100">Quay về</a>
+              </div>
             </div>
           </div>
           </div>

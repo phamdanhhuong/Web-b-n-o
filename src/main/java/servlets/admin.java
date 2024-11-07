@@ -6,10 +6,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 import beans.account;
+import beans.hoaDon;
 import beans.shirt;
 import dao.accountDao;
+import dao.hoadonDao;
 import dao.shirtDao;
 
 /**
@@ -30,6 +33,14 @@ public class admin extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    	if(accountDao.acc.getRole()==0) {
+			List<shirt> list = shirtDao.LayDS();
+			req.setAttribute("list", list);
+			req.getRequestDispatcher("views/AdminPage/AdminPage.jsp").forward(req, resp);
+		}
+    }
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(accountDao.acc.getRole()==0) {
 			String _method = request.getParameter("_method");
