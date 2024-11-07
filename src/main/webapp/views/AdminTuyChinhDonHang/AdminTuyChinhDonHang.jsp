@@ -56,7 +56,7 @@
 	                    <td>${detail.shirt.id}</td>
 	                    <td>${detail.shirt.ten}</td>
 	                    <td><img src="${detail.shirt.link}" alt="Bàn ăn" style="width: 50px;"></td>
-	                    <td><input type="number" value="2" class="form-control" style="width: 60px;"></td>
+	                    <td><input type="number" value="${detail.quantity}" class="form-control" style="width: 60px;"></td>
 	                    <td><fmt:formatNumber value="${detail.gia}" type="number" pattern="#,###"/> VND</td>
 	                  </tr>
                   	</c:forEach>
