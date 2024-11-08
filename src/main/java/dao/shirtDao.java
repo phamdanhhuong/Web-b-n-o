@@ -29,6 +29,25 @@ public class shirtDao {
 		return null;
 	}
 	
+	public static List<shirt> LayDSSearch(String searchText) {
+		Connection db = connectDB.DB();
+		try {
+			List<shirt> list = new ArrayList<shirt>();
+			String query = "select * from fn_TimKiemShirt(?)";
+			CallableStatement statement = db.prepareCall(query);
+			statement.setString(1, searchText);	
+			ResultSet rs = statement.executeQuery();
+			while(rs.next()) {
+				list.add(new shirt(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)));
+			}
+			db.close();
+			return list;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+	
 	public static boolean AddShirt(shirt item) {
 		String sql = "{call sp_InsertShirt(?, ?, ?, ?, ?)}";
 		Connection db = connectDB.DB();

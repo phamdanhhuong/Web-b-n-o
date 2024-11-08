@@ -80,7 +80,7 @@
 	<div class="container p-3" style="min-height: 95vh">
 		<div class="row gap-3 bg-light">
 			<!-- Cột 1 -->
-			<div class="col">
+			<div class="col" style="height: 80vh; overflow-y: auto;">
 			    <div class="container my-4">
 			        <c:forEach var="item" items="${list}">
 			            <div class="order-card">
@@ -167,7 +167,8 @@
 					          <div class="d-flex align-items-center mb-2">
 					              <img src="${detail.shirt.link}" alt="Sản phẩm 1" class="product-img me-2">
 					              <div>
-					                  <strong>${detail.shirt.ten}</strong><br>
+					                  <strong>${detail.shirt.ten}</strong>
+					                  <p class="mb-0" style="font-style: italic; color: gray; font-size: medium;">Size: ${detail.size}</p>
 					              </div>
 					              <div class="ms-auto">
 					                  <p class="price mb-0"><fmt:formatNumber value="${detail.gia}" type="number" pattern="#,###"/>đ x ${detail.quantity}</p>

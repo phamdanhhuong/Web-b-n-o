@@ -133,8 +133,9 @@
 	        <div class="collapse navbar-collapse" id="navbarNav">
 	            <ul class="navbar-nav ms-auto">
 	                <li class="nav-item me-5">
-	                    <form class="d-flex">
-	                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+	                    <form class="d-flex" action="/WebBanAo/home" method="get">
+	                        <input class="form-control me-2" type="text" name="searchText" placeholder="Search" aria-label="Search">
+	                        <input type="hidden" name="search" value="yes">
 	                        <button class="btn btn-outline-light" type="submit">
 	                            <i class="fas fa-search"></i>
 	                        </button>
@@ -299,7 +300,6 @@
 	<script type="text/javascript" src="./views/HomePage/HomePage.js"></script>
 	<script>
         function addToCart(id) {
-            
             $.ajax({
                 type: "POST",
                 url: "/WebBanAo/cart", // Đường dẫn của Servlet

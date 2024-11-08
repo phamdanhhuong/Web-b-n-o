@@ -34,9 +34,16 @@ public class HomePage extends HttpServlet {
 		if(accountDao.acc==null) {
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}else if(accountDao.acc.getRole()==1) {
-			List<shirt> list = shirtDao.LayDS();
-			request.setAttribute("list", list);
-			request.getRequestDispatcher("views/HomePage/HomePage.jsp").forward(request, response);
+			if(request.getParameter("searchText")!=null) {
+				String text = request.getParameter("searchText");
+				List<shirt> list = shirtDao.LayDSSearch(text);
+				request.setAttribute("list", list);
+				request.getRequestDispatcher("views/HomePage/HomePage.jsp").forward(request, response);
+			}else {
+				List<shirt> list = shirtDao.LayDS();
+				request.setAttribute("list", list);
+				request.getRequestDispatcher("views/HomePage/HomePage.jsp").forward(request, response);
+			}
 		}else if(accountDao.acc.getRole()==0) {
 			List<shirt> list = shirtDao.LayDS();
 			request.setAttribute("list", list);
