@@ -11,11 +11,116 @@
 <link href="./views/HomePage/HomePage.css" type="text/css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<style type="text/css">
+	#toast_ {
+  position: fixed;
+  top: 32px;
+  right: 32px;
+  z-index: 999999;
+}
 
+.toast_ {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 2px;
+  padding: 20px 0;
+  min-width: 400px;
+  max-width: 450px;
+  border-left: 4px solid;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);
+  transition: all linear 0.3s;
+}
 
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(calc(100% + 32px));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+.toast--success {
+  border-color: #47d864;
+}
+
+.toast--success .toast__icon {
+  color: #47d864;
+}
+
+.toast--info {
+  border-color: #2f86eb;
+}
+
+.toast--info .toast__icon {
+  color: #2f86eb;
+}
+
+.toast--warning {
+  border-color: #ffc021;
+}
+
+.toast--warning .toast__icon {
+  color: #ffc021;
+}
+
+.toast--error {
+  border-color: #ff623d;
+}
+
+.toast--error .toast__icon {
+  color: #ff623d;
+}
+
+.toast_ + .toast_ {
+  margin-top: 24px;
+}
+
+.toast__icon {
+  font-size: 24px;
+}
+
+.toast__icon,
+.toast__close {
+  padding: 0 16px;
+}
+
+.toast__body {
+  flex-grow: 1;
+}
+
+.toast__title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.toast__msg {
+  font-size: 14px;
+  color: #888;
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+.toast__close {
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+</style>
 <title>Insert title here</title>
 </head>
 <body>
+	<div id="toast_"></div>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	    <div class="container-fluid">
 	        <a class="navbar-brand" href="home">
@@ -161,19 +266,19 @@
 			                <h5 class="card-title">${item.ten}</h5>
 			                <h5 class="card-title text-info">${item.gia} VND</h5>
 			                <div class="d-flex flex-column gap-2 mt-3">
-			                    <form action="">
+			                    <form action="/WebBanAo/cart" method="post">
 			                        <input type="hidden" name="id" value="${item.id}">
+			                        <input type="hidden" value="post" name="_method">
+			                        <input type="hidden" value="buynow" name="phanbiet">
 			                        <button type="submit" class="btn btn-primary w-100">
 			                            <i class="fas fa-shopping-bag"></i> Mua ngay
 			                        </button>
 			                    </form>
-			                    <form action="/WebBanAo/cart" method="post">
-			                        <input type="hidden" name="id" value="${item.id}">
-			                        <input type="hidden" value="post" name="_method">
-			                        <button type="submit" class="btn btn-warning w-100">
-			                            <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
-			                        </button>
-			                    </form>
+			                    
+			                    <button type="submit" class="btn btn-warning w-100" onclick="addToCart(${item.id})">
+		                            <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
+		                        </button>
+		                        <div id="response" style="display: none"></div>
 			                </div>
 			            </div>
 			        </div>
@@ -191,6 +296,26 @@
 	      <li><a href="#terms">Terms of Service</a></li>
 	    </ul>
 	</footer>
-
+	<script type="text/javascript" src="./views/HomePage/HomePage.js"></script>
+	<script>
+        function addToCart(id) {
+            
+            $.ajax({
+                type: "POST",
+                url: "/WebBanAo/cart", // Đường dẫn của Servlet
+                data: { id: id ,
+                	_method: "post",
+                	phanbiet: "addtocart"},
+                success: function(response) {
+                	showSuccessToast(response.message);
+                    $("#response").text(response.message);
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error: " + error);
+                }
+            });
+        }
+    </script>
+	
 </body>
 </html>

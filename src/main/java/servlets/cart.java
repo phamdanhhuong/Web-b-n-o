@@ -57,9 +57,10 @@ public class cart extends HttpServlet {
 			if(accountDao.acc!=null) {
 				if(accountDao.acc.getRole()==1) {
 					int idshirt = Integer.parseInt(req.getParameter("id"));
+					String phanbiet = req.getParameter("phanbiet");
 					String size = "S";
-					if(req.getParameter("size-option")!=null) {
-						size = req.getParameter("size-option");
+					if(req.getParameter("sizeoption")!=null) {
+						size = req.getParameter("sizeoption");
 					}
 					int quantity = 1;
 					if(req.getParameter("quantity")!=null) {
@@ -67,7 +68,13 @@ public class cart extends HttpServlet {
 					}		
 					beans.cart item = new beans.cart(0, accountDao.acc.getUid(), idshirt, quantity , size);
 					boolean rs = cartDao.AddToCart(item);
-					resp.sendRedirect("/WebBanAo/cart");
+					if(phanbiet.equals("buynow")) {
+						resp.sendRedirect("/WebBanAo/cart");
+					}else if(phanbiet.equals("addtocart")){
+						resp.setContentType("application/json");
+						resp.setCharacterEncoding("UTF-8");
+						resp.getWriter().write("{\"message\": \"" + "Thêm vào giỏ hàng thành công"+ "\"}");
+					}
 				}else {
 					req.getRequestDispatcher("index.jsp").forward(req, resp);
 				}

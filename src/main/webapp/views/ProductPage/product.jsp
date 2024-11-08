@@ -11,10 +11,118 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">    
     <link href="views/HomePage/HomePage.css" type="text/css" rel="stylesheet">
+    <style type="text/css">
+		#toast_ {
+		  position: fixed;
+		  top: 32px;
+		  right: 32px;
+		  z-index: 999999;
+		}
+		
+		.toast_ {
+		  display: flex;
+		  align-items: center;
+		  background-color: #fff;
+		  border-radius: 2px;
+		  padding: 20px 0;
+		  min-width: 400px;
+		  max-width: 450px;
+		  border-left: 4px solid;
+		  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);
+		  transition: all linear 0.3s;
+		}
+		
+		@keyframes slideInLeft {
+		  from {
+		    opacity: 0;
+		    transform: translateX(calc(100% + 32px));
+		  }
+		  to {
+		    opacity: 1;
+		    transform: translateX(0);
+		  }
+		}
+		
+		@keyframes fadeOut {
+		  to {
+		    opacity: 0;
+		  }
+		}
+		
+		.toast--success {
+		  border-color: #47d864;
+		}
+		
+		.toast--success .toast__icon {
+		  color: #47d864;
+		}
+		
+		.toast--info {
+		  border-color: #2f86eb;
+		}
+		
+		.toast--info .toast__icon {
+		  color: #2f86eb;
+		}
+		
+		.toast--warning {
+		  border-color: #ffc021;
+		}
+		
+		.toast--warning .toast__icon {
+		  color: #ffc021;
+		}
+		
+		.toast--error {
+		  border-color: #ff623d;
+		}
+		
+		.toast--error .toast__icon {
+		  color: #ff623d;
+		}
+		
+		.toast_ + .toast_ {
+		  margin-top: 24px;
+		}
+		
+		.toast__icon {
+		  font-size: 24px;
+		}
+		
+		.toast__icon,
+		.toast__close {
+		  padding: 0 16px;
+		}
+		
+		.toast__body {
+		  flex-grow: 1;
+		}
+		
+		.toast__title {
+		  font-size: 16px;
+		  font-weight: 600;
+		  color: #333;
+		}
+		
+		.toast__msg {
+		  font-size: 14px;
+		  color: #888;
+		  margin-top: 6px;
+		  line-height: 1.5;
+		}
+		
+		.toast__close {
+		  font-size: 20px;
+		  color: rgba(0, 0, 0, 0.3);
+		  cursor: pointer;
+		}
+	</style>
     <title>Insert title here</title>
 </head>
 
 <body>
+	<div id="toast_"></div>
+	<div id="response" style="display: none"></div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	    <div class="container-fluid">
 	        <a class="navbar-brand" href="home">
@@ -68,17 +176,17 @@
                 <h4 class="text-primary">${item.gia} VND</h4>
                 <form class="mt-5" id="productForm" method="post">
                     <h5>Chọn size:</h5>
-                    <input type="radio" class="btn-check" name="size-option" id="size-s" value="S" autocomplete="off"
+                    <input type="radio" class="btn-check" name="sizeoption" id="size-s" value="S" autocomplete="off"
                         checked>
                     <label class="btn btn-outline-secondary fs-5 text" for="size-s">S</label>
 
-                    <input type="radio" class="btn-check" name="size-option" id="size-m" value="M" autocomplete="off">
+                    <input type="radio" class="btn-check" name="sizeoption" id="size-m" value="M" autocomplete="off">
                     <label class="btn btn-outline-secondary fs-5 text" for="size-m">M</label>
 
-                    <input type="radio" class="btn-check" name="size-option" id="size-l" value="L" autocomplete="off">
+                    <input type="radio" class="btn-check" name="sizeoption" id="size-l" value="L" autocomplete="off">
                     <label class="btn btn-outline-secondary fs-5 text" for="size-l">L</label>
 
-                    <input type="radio" class="btn-check" name="size-option" id="size-xl" value="XL" autocomplete="off">
+                    <input type="radio" class="btn-check" name="sizeoption" id="size-xl" value="XL" autocomplete="off">
                     <label class="btn btn-outline-secondary fs-5 text" for="size-xl">XL</label>
                     <h5 class="mt-5">Số lượng:</h5>
                     <div class="d-flex border border-3 rounded-pill" style="width: 150px;">
@@ -91,12 +199,14 @@
                     </div>
                     <input type="hidden" value="${item.id}" name="id">
                     <input type="hidden" value="post" name="_method">
+                    <input type="hidden" value="buynow" name="phanbiet">
                     <div class="d-flex flex-column gap-3 mt-5">
                         <input type="submit" class="btn btn-primary" onclick="setAction('buy')" value="Mua ngay">
-                        <input type="submit" class="btn btn-outline-primary" onclick="setAction('add-to-cart')"
-                            value="Thêm vào giỏ hàng">
                     </div>
                 </form>
+                <div class="d-flex flex-column mt-3">
+                	<button type="submit" class="btn btn-outline-primary" onclick="addToCart_product(${item.id})">Thêm vào giỏ hàng</button>
+                </div>
             </div>
         </div>
         <div>
@@ -113,11 +223,12 @@
             <li><a href="#terms">Terms of Service</a></li>
         </ul>
     </footer>
-    <script>
+    
+    <script>    
         function setAction(actionType) {
             var form = document.getElementById('productForm');
             if (actionType === 'buy') {
-                form.action = '';
+                form.action = '/WebBanAo/cart';
             } else if (actionType === 'add-to-cart') {
                 form.action = '/WebBanAo/cart';
             }
@@ -135,7 +246,29 @@
             var currentValue = parseInt(quantityInput.value);
             quantityInput.value = currentValue + 1;
         }
+        function addToCart_product(id) {  
+			const selectedSize = document.querySelector('input[name="sizeoption"]:checked').value;
+			var quantityInput = document.getElementById('quantity').value;
+	        $.ajax({
+	            type: "POST",
+	            url: "/WebBanAo/cart", // Đường dẫn của Servlet
+	            data: { id: id ,
+	            	_method: "post",
+	            	phanbiet: "addtocart",
+	            	sizeoption: selectedSize,
+	            	quantity: quantityInput},
+	            success: function(response) {
+	            	showSuccessToast(response.message);
+	                $("#response").text(response.message);
+	            },
+	            error: function(xhr, status, error) {
+	                console.error("Error: " + error);
+	            }
+	        });
+	    }
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="./views/HomePage/HomePage.js"></script>
 </body>
 
 </html>
