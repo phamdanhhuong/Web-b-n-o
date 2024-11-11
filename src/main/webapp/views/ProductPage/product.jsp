@@ -177,7 +177,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="d-flex">
                         <span class="rating">5.0</span>
-                        <span class="text-muted">| 1 Đánh Giá | 11 Đã Bán</span>
+                        <span class="text-muted" style="font-size: 1.2rem;">| 1 Đánh Giá | 11 Đã Bán</span>
                     </div>
                 </div>
                 <h4 class="text-primary">${item.gia} VND</h4>
@@ -198,6 +198,20 @@
                         <label class="btn btn-outline-secondary fs-5 text" for="size-xl">XL</label>
                     </div>
                     <div class="d-flex align-items-center mb-3" style="height: 5vh;">
+					    <h5 class="me-2">Chọn màu:</h5>
+					    <input type="radio" class="btn-check" name="coloroption" id="color-red" value="Red" autocomplete="off" checked>
+					    <label class="btn btn-outline-secondary fs-5 text" for="color-red">Đỏ</label>
+					
+					    <input type="radio" class="btn-check" name="coloroption" id="color-blue" value="Blue" autocomplete="off">
+					    <label class="btn btn-outline-secondary fs-5 text" for="color-blue">Xanh dương</label>
+					
+					    <input type="radio" class="btn-check" name="coloroption" id="color-green" value="Green" autocomplete="off">
+					    <label class="btn btn-outline-secondary fs-5 text" for="color-green">Xanh lá</label>
+					
+					    <input type="radio" class="btn-check" name="coloroption" id="color-black" value="Black" autocomplete="off">
+					    <label class="btn btn-outline-secondary fs-5 text" for="color-black">Đen</label>
+					</div>
+                    <div class="d-flex align-items-center mb-3" style="height: 5vh;">
                         <h5 class="me-2">Số lượng: </h5>
                         <div class="d-flex border border-3 rounded-pill" style="width: 38%;">
                             <button type="button" onclick="decrease()"
@@ -213,13 +227,13 @@
                     <input type="hidden" value="buynow" name="phanbiet">
                     <div class="d-flex gap-3">
                         <div>
-                            <input type="submit" class="btn btn-primary" onclick="setAction('buy')" value="Mua ngay">
-                        </div>
-                        <div>
-                            <button type="submit" class="btn btn-outline-primary" onclick="addToCart_product(${item.id})">Thêm vào giỏ hàng</button>
+                            <input type="submit" class="btn btn-primary" onclick="setAction('buy')" value="Mua ngay" style="width: 162px;">
                         </div>
                     </div>
                 </form>
+                 <div class="mt-3">
+                     <button type="submit" class="btn btn-outline-primary" onclick="addToCart_product(${item.id})">Thêm vào giỏ hàng</button>
+                 </div>
             </div>
         </div>
         <div class="row bg-white p-3 mt-5" style="border-radius: 10px;">
