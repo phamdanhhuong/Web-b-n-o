@@ -181,7 +181,8 @@
                     </div>
                 </div>
                 <h4 class="text-primary">${item.gia} VND</h4>
-                <form class="mt-5" id="productForm" method="post">
+				<div class="divider my-3"></div>
+                <form class="mt-2" id="productForm" method="post">
                     <div class="d-flex align-items-center mb-3" style="height: 5vh;">
                         <h5 class="me-2">Chọn size:</h5>
                         <input type="radio" class="btn-check" name="sizeoption" id="size-s" value="S" autocomplete="off"
@@ -222,6 +223,7 @@
                         </div>
                     </div>
 
+					<div class="divider my-3"></div>
                     <input type="hidden" value="${item.id}" name="id">
                     <input type="hidden" value="post" name="_method">
                     <input type="hidden" value="buynow" name="phanbiet">
@@ -296,6 +298,7 @@
 			<div class="col bg-white p-3 mt-5" style="border-radius: 10px; max-width: 73%;">
 				<div class="p-3">
 					<h3>CHI TIẾT SẢN PHẨM</h3>
+					<div class="divider my-3"></div>
 					<div class="product-info">
 						<p><strong>Danh Mục:</strong> Shopee &gt; Thời Trang Nam &gt; Áo &gt; Áo Thun</p>
 						<p><strong>Kho:</strong> 210041</p>
@@ -336,6 +339,7 @@
 								<p class="text-danger"><strong>179.000đ</strong></p>
 							</div>
 						</div>
+						<div class="divider my-3"></div>
 					</div>
 					<div class="product-item">
 						<div class="row">
@@ -347,30 +351,36 @@
 								<p class="text-danger"><strong>179.000đ</strong></p>
 							</div>
 						</div>
+						<div class="divider my-3"></div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="row bg-white p-3 mt-5" style="border-radius: 10px;">
-			<h2>ĐÁNH GIÁ SẢN PHẨM</h2>
-			<div class="row">
-				<div class="col-md-3 align-items-center ">
-					<div class="rating">5 trên 5</div>
-					<div class="text-warning">★★★★★</div>
-				</div>
-				<div class="col">
-					<!-- Filter buttons -->
-					<div class="review-filter mt-3">
-						<button class="btn btn-outline-primary">Tất Cả</button>
-						<button class="btn btn-outline-primary">5 Sao (1)</button>
-						<button class="btn btn-outline-primary">4 Sao (0)</button>
-						<button class="btn btn-outline-primary">3 Sao (0)</button>
-						<button class="btn btn-outline-primary">2 Sao (0)</button>
-						<button class="btn btn-outline-primary">1 Sao (0)</button>
+			<h2 class="mt-3">ĐÁNH GIÁ SẢN PHẨM</h2>
+			<div class="divider my-3"></div>
+			<div>
+				<div class="row ms-5 me-5" style="border-radius: 15px; border: 1px solid #f9ede5; border-radius: 10px; background-color: #fffbf8; padding: 15px; ">
+					<div class="col-md-3">
+						<div class="rating">5 trên 5</div>
+						<div class="text-warning">★★★★★</div>
 					</div>
-			</div>
+					
+					<div class="col">
+						<!-- Filter buttons -->
+						<div class="review-filter mt-3">
+							<button class="btn btn-outline-primary" style="border: 1px solid #ccc;">Tất Cả</button>
+							<button class="btn btn-outline-primary" style="border: 1px solid #ccc;">5 Sao (1)</button>
+							<button class="btn btn-outline-primary" style="border: 1px solid #ccc;">4 Sao (0)</button>
+							<button class="btn btn-outline-primary" style="border: 1px solid #ccc;">3 Sao (0)</button>
+							<button class="btn btn-outline-primary" style="border: 1px solid #ccc;">2 Sao (0)</button>
+							<button class="btn btn-outline-primary" style="border: 1px solid #ccc;">1 Sao (0)</button>
+						</div>
+					</div>
+				</div>
 			<!-- Review section -->
-			<div class="review-section mt-4">
+			<div class="divider my-3"></div>
+			<div class="review-section mt-3">
 				<div class="d-flex align-items-center p-2">
 					<img src="https://via.placeholder.com/50" class="rounded-circle me-3" alt="Avatar">
 					<div>
@@ -383,6 +393,7 @@
 						</div>
 					</div>
 				</div>
+				<div class="divider my-3"></div>
 			</div>
 
 			<!-- Pagination -->
