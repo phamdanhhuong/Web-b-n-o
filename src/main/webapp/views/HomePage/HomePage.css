@@ -311,6 +311,98 @@
     object-fit: cover;
     border-radius: 5px;
 }
+.shop-container {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+}
+.shop-logo {
+    width: 80px;
+    height: 80px;
+}
+.shop-name {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+.mall-badge {
+    background-color: #d9534f;
+    color: white;
+    padding: 2px 6px;
+    font-size: 0.8rem;
+    border-radius: 3px;
+}
+.btn-chat {
+    background-color: #d9534f;
+    color: white;
+}
+.text-highlight {
+    color: #d9534f;
+}
+.product-info {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+}
+.sidebar {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.sidebar h5 {
+    margin-bottom: 20px;
+}
+.sidebar .product-item {
+    margin-bottom: 20px;
+} 
+.rating {
+    font-size: 2rem;
+    color: #f39c12;
+}
+.review-filter button {
+    margin-right: 5px;
+}
+.review-section {
+    margin-top: 20px;
+}
+.reviewer {
+    font-weight: bold;
+}
+.review-response {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.pagination {
+    justify-content: center;
+}
+.product-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.review-section {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.review-section:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.review-response p {
+    transition: color 0.3s ease;
+}
+
+.review-section:hover .review-response p {
+    color: #0056b3; /* Màu sắc nổi bật khi di chuột vào */
+}
+
+
 footer {
   background-color: #333;
   color: white;
