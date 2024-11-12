@@ -212,11 +212,19 @@
             <div class="color mb-4">
                 <h5>Màu sắc</h5>
      
-				<div class="form-check">
-				  <input class="form-check-input" type="radio" name="color" value="" id="">
-				  <div class="color-options d-flex gap-2 mt-2">
-                    <span class="color-circle" style="background-color: #000;"></span>
-            	  </div>
+				<div class="form-check d-flex flex-column justify-content-center">
+					<div class="d-flex align-items-center gap-3" >
+				  		<input class="form-check-input" type="radio" name="color" value="${mau}" id="" checked>
+					  	<span>Tất cả</span>
+				  	</div>
+				  <c:forEach var="mau" items="${dsMau}">
+				  	<div class="d-flex align-items-center gap-3" >
+				  		<input class="form-check-input" type="radio" name="color" value="${mau}" id="">
+					  	<div class="color-options d-flex gap-2 mt-2">
+		                    <span class="color-circle" style="background-color: ${mau}";"></span>
+		            	</div>
+				  	</div>
+				  </c:forEach>
 				</div> 
             </div>
         </div>

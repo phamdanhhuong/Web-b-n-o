@@ -128,4 +128,22 @@ public class shirtDao {
 		}
 		return null;
 	}
+	
+	public static List<String> LayDSMau() {
+		Connection db = connectDB.DB();
+		try {
+			List<String> list = new ArrayList<String>();
+			String query = "select mau from shirt group by mau";
+			Statement state = db.createStatement();
+			ResultSet rs =state.executeQuery(query);
+			while(rs.next()) {
+				list.add(new String(rs.getString(1)));
+			}
+			db.close();
+			return list;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
 }

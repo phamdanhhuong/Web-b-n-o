@@ -303,7 +303,7 @@
 					<h3>CHI TIẾT SẢN PHẨM</h3>
 					<div class="divider my-3"></div>
 					<div class="product-info">
-						<p><strong>Danh Mục:</strong>${item.loai}</p>
+						<p><strong>Danh Mục: </strong>${item.loai}</p>
 						<p><strong>Kho:</strong> ${item.tonKho}</p>
 						<p><strong>Thương hiệu:</strong> ${item.thuongHieu}</p>
 						<p><strong>Xuất xứ:</strong> ${item.xuatXu}</p>

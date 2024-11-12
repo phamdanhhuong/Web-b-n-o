@@ -298,7 +298,22 @@ RETURN
 );
 GO
 
+CREATE FUNCTION fn_Loc (@SearchText NVARCHAR(100))
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT *
+    FROM shirt
+    WHERE ten LIKE '%' + @SearchText + '%' 
+       OR loai LIKE '%' + @SearchText + '%'
+);
+GO
 
+--SELECT *
+--    FROM shirt
+--    WHERE ten LIKE '%' + 'dog' + '%' 
+--       OR loai LIKE '%' + 'dog' + '%' order by ten desc
 
 
 

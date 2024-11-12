@@ -31,6 +31,8 @@ public class HomePage extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<String> mau = shirtDao.LayDSMau();
+		request.setAttribute("dsMau", mau);
 		if(accountDao.acc==null) {
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}else if(accountDao.acc.getRole()==1) {
