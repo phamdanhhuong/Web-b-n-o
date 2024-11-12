@@ -134,13 +134,10 @@
 	        <div class="collapse navbar-collapse" id="navbarNav">
 	            <ul class="navbar-nav ms-auto">
 	                <li class="nav-item me-5">
-	                    <form class="d-flex" action="/WebBanAo/home" method="get">
-	                        <input class="form-control me-2" type="text" name="searchText" placeholder="Search" aria-label="Search">
-	                        <input type="hidden" name="search" value="yes">
-	                        <button class="btn btn-outline-light" type="submit">
-	                            <i class="fas fa-search"></i>
-	                        </button>
-	                    </form>
+                        <input class="form-control me-2" type="text" name="searchText" id="searchText" placeholder="Search" aria-label="Search" value="${searchText == null ? '' : searchText}">
+                        <button class="btn btn-outline-light" onclick="document.getElementById('formLoc').submit();">
+                            <i class="fas fa-search"></i>
+                        </button>
 	                </li>
 	                <li class="nav-item">
 	                    <a class="nav-link active" aria-current="page" href="home">
@@ -187,70 +184,62 @@
 
     <div class="container d-flex gap-3 p-3">
         <div class="col-3">
-          <div class="filter p-3 bg-light border rounded">
-            <h2 class="text-center mb-4">Bộ lọc</h2>
-        
-            <div class="category mb-4">
-                <h5>Danh mục sản phẩm</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="filter-link">A-Z</a></li>
-                    <li><a href="#" class="filter-link">Z-A</a></li>
-                    <li><a href="#" class="filter-link">Giá tăng dần</a></li>
-                    <li><a href="#" class="filter-link">Giá giảm dần</a></li>
-                </ul>
-            </div>
-        
-            <div class="price-range mb-4">
-                <h5>Khoảng giá</h5>
-                <input type="range" min="0" max="3000000" value="1500000" step="10000" class="form-range">
-                <div class="price-label mt-2 d-flex justify-content-between">
-                    <span>0đ</span> 
-                    <span>3,000,000đ</span>
-                </div>
-            </div>
-        
-            <div class="color mb-4">
-                <h5>Màu sắc</h5>
-     
-				<div class="form-check d-flex flex-column justify-content-center">
-					<div class="d-flex align-items-center gap-3" >
-				  		<input class="form-check-input" type="radio" name="color" value="${mau}" id="" checked>
-					  	<span>Tất cả</span>
-				  	</div>
-				  <c:forEach var="mau" items="${dsMau}">
-				  	<div class="d-flex align-items-center gap-3" >
-				  		<input class="form-check-input" type="radio" name="color" value="${mau}" id="">
-					  	<div class="color-options d-flex gap-2 mt-2">
-		                    <span class="color-circle" style="background-color: ${mau}";"></span>
-		            	</div>
-				  	</div>
-				  </c:forEach>
-				</div> 
-            </div>
-        </div>
-        
+        	<form action="/WebBanAo/home" method="get" id="formLoc">
+	          <div class="filter p-3 bg-light border rounded">
+	            <h2 class="text-center mb-4">Bộ lọc</h2>
+	        
+	            <div class="category mb-4">
+	                <h5>Danh mục sản phẩm</h5>
+	                <ul class="list-unstyled">
+	                    <li><input class="form-check-input" type="radio" name="loc-alphabet" value="asc" id="" <c:if test="${alphabet == null || alphabet == 'asc'}">checked</c:if>> A-Z</li>
+	                    <li><input class="form-check-input" type="radio" name="loc-alphabet" value="desc" id="" <c:if test="${alphabet != null && alphabet == 'desc'}">checked</c:if>> Z-A</li>
+	                    <li><input class="form-check-input" type="radio" name="loc-price" value="asc" id="" <c:if test="${price == null || price == 'asc'}">checked</c:if>> Giá tăng dần</li>
+	                    <li><input class="form-check-input" type="radio" name="loc-price" value="desc" id="" <c:if test="${price != null && price == 'desc'}">checked</c:if>> Giá giảm dần</li>
+	                </ul>
+	            </div>
+	            <h5>Loại áo</h5>
+	        	<select class="form-select mb-3" id="combo-box" name="loc-loai" style="width: 150px;">
+	                <option value="" <c:if test="${loai == null || loai == ''}">selected</c:if>>Tất cả</option>
+	                <c:forEach var="itemLoai" items="${dsLoai}">
+	                	<option value="${itemLoai}" <c:if test="${loai != null && loai == itemLoai}">selected</c:if>>${itemLoai}</option>
+	                </c:forEach>
+	            </select>
+	            <div class="price-range mb-4">
+	                <h5>Khoảng giá</h5>
+	                <span id="priceLabel">${range==null?1500000:range}đ</span>
+	                <input type="range" min="0" max="3000000" value="${range==null?1500000:range}" step="10000" name="loc-range" class="form-range" oninput="updatePriceLabel(this.value)">
+	                <div class="price-label mt-2 d-flex justify-content-between">
+	                    <span>0đ</span> 
+	                    <span>3,000,000đ</span>
+	                </div>
+	            </div>
+	        
+	            <div class="color mb-4">
+	                <h5>Màu sắc</h5>
+	     
+					<div class="form-check d-flex flex-column justify-content-center">
+						<div class="d-flex align-items-center gap-3" >
+					  		<input class="form-check-input" type="radio" name="loc-color" value="" id="" <c:if test="${color == null || color == ''}">checked</c:if>>
+						  	<span>Tất cả</span>
+					  	</div>
+					  <c:forEach var="mau" items="${dsMau}">
+					  	<div class="d-flex align-items-center gap-3" >
+					  		<input class="form-check-input" type="radio" name="loc-color" value="${mau}" id="" <c:if test="${color != null && color == mau}">checked</c:if>>
+						  	<div class="color-options d-flex gap-2 mt-2">
+			                    <span class="color-circle" style="background-color: ${mau}";"></span>
+			            	</div>
+					  	</div>
+					  </c:forEach>
+					</div> 
+	            </div>
+	        </div>
+	        <input id="result" value="${searchText == null ? '' : searchText}" type="hidden" name="loc-searchText" >
+	        <button class="btn btn-primary mt-3" type="submit"><i class="fa-solid fa-filter"></i></button>
+       	</form>
         </div>
         <div class="col-9">
           <div class="row">
             <div class="col-12" style="height: 3vh;">
-            <!--
-              <div class="dropdown">
-                  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                      Tên: A-Z
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <li><a class="dropdown-item" href="#">Sản phẩm nổi bật</a></li>
-                      <li><a class="dropdown-item" href="#">Giá: Tăng dần</a></li>
-                      <li><a class="dropdown-item" href="#">Giá: Giảm dần</a></li>
-                      <li><a class="dropdown-item" href="#">Tên: A-Z</a></li>
-                      <li><a class="dropdown-item" href="#">Tên: Z-A</a></li>
-                      <li><a class="dropdown-item" href="#">Cũ nhất</a></li>
-                      <li><a class="dropdown-item" href="#">Mới nhất</a></li>
-                      <li><a class="dropdown-item" href="#">Bán chạy nhất</a></li>
-                      <li><a class="dropdown-item" href="#">Tồn kho giảm dần</a></li>
-                  </ul>
-              </div>
-              -->
             </div>
           </div>   
           <div class="col-12" style="height: 75vh; overflow-y: auto;">
@@ -313,6 +302,14 @@
                 }
             });
         }
+        function updatePriceLabel(value) {
+            // Định dạng giá trị với dấu phẩy và thêm "đ"
+            document.getElementById('priceLabel').textContent = new Intl.NumberFormat('vi-VN').format(value) + 'đ';
+        }
+        document.getElementById('searchText').addEventListener('input', function() {
+            // Gán giá trị của searchText vào input có id là result
+            document.getElementById('result').value = this.value;
+        });
     </script>
 	
 </body>

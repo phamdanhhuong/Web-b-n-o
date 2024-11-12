@@ -40,7 +40,7 @@ public class cartDao {
 			Statement state = db.createStatement();
 			ResultSet rs =state.executeQuery(query);
 			while(rs.next()) {
-				list.add(new cartDetail(new cart(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5)), new shirt(rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getInt(10), rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14),rs.getInt(15))));
+				list.add(new cartDetail(new cart(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5)), new shirt(rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getInt(10), rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14),rs.getString(15),rs.getInt(16))));
 			}
 			db.close();
 			return list;

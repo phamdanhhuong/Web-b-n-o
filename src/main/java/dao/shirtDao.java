@@ -48,6 +48,28 @@ public class shirtDao {
 		return null;
 	}
 	
+	public static List<shirt> LayDSLoc(String searchText,String loai, int gia, String mau, String alp, String pri) {
+		Connection db = connectDB.DB();
+		try {
+			List<shirt> list = new ArrayList<shirt>();
+			String query = "select * from fn_Loc(?, ?, ?, ?) order by gia "+pri+", ten "+alp;
+			CallableStatement statement = db.prepareCall(query);
+			statement.setString(1, searchText);	
+			statement.setString(2, loai);
+			statement.setInt(3, gia);
+			statement.setString(4, mau);	
+			ResultSet rs = statement.executeQuery();
+			while(rs.next()) {
+				list.add(new shirt(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getInt(11)));
+			}
+			db.close();
+			return list;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+	
 	public static boolean AddShirt(shirt item) {
 		String sql = "{call sp_InsertShirt(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
 		Connection db = connectDB.DB();
@@ -134,6 +156,41 @@ public class shirtDao {
 		try {
 			List<String> list = new ArrayList<String>();
 			String query = "select mau from shirt group by mau";
+			Statement state = db.createStatement();
+			ResultSet rs =state.executeQuery(query);
+			while(rs.next()) {
+				list.add(new String(rs.getString(1)));
+			}
+			db.close();
+			return list;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+	
+	public static List<String> LayDSLoai() {
+		Connection db = connectDB.DB();
+		try {
+			List<String> list = new ArrayList<String>();
+			String query = "select loai from shirt group by loai";
+			Statement state = db.createStatement();
+			ResultSet rs =state.executeQuery(query);
+			while(rs.next()) {
+				list.add(new String(rs.getString(1)));
+			}
+			db.close();
+			return list;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+	public static List<String> LayDSThuongHieu() {
+		Connection db = connectDB.DB();
+		try {
+			List<String> list = new ArrayList<String>();
+			String query = "select thuongHieu from shirt group by thuongHieu";
 			Statement state = db.createStatement();
 			ResultSet rs =state.executeQuery(query);
 			while(rs.next()) {

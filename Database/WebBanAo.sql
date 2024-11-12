@@ -298,7 +298,7 @@ RETURN
 );
 GO
 
-CREATE FUNCTION fn_Loc (@SearchText NVARCHAR(100))
+CREATE FUNCTION fn_Loc (@SearchText NVARCHAR(100), @Loai NVARCHAR(100), @Gia int, @Mau NVARCHAR(100))
 RETURNS TABLE
 AS
 RETURN
@@ -306,10 +306,13 @@ RETURN
     SELECT *
     FROM shirt
     WHERE ten LIKE '%' + @SearchText + '%' 
-       OR loai LIKE '%' + @SearchText + '%'
+		AND gia < @Gia 
+		AND (@Mau = '' OR mau = @Mau)
+		AND (@Loai = '' OR loai = @Loai) 
 );
 GO
 
+--select * from fn_Loc('','',500000,'#eeeeee') order by gia desc, ten desc
 --SELECT *
 --    FROM shirt
 --    WHERE ten LIKE '%' + 'dog' + '%' 
@@ -326,4 +329,3 @@ GO
 --select * from ChiTietHoaDon join shirt on shirtId = shirt.id
 --select * from ChiTietHoaDon join shirt on shirtId = shirt.id where idHoaDon = 3
 --update HoaDon set trangThai = N'Đang chuẩn bị hàng' where id=1
-
