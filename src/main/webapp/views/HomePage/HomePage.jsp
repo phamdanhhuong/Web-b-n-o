@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@taglib prefix="fmt" uri="jakarta.tags.fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -192,12 +193,10 @@
             <div class="category mb-4">
                 <h5>Danh mục sản phẩm</h5>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="filter-link">Sản phẩm mới</a></li>
-                    <li><a href="#" class="filter-link">Sale</a></li>
-                    <li><a href="#" class="filter-link">Áo nam</a></li>
-                    <li><a href="#" class="filter-link">Quần nam</a></li>
-                    <li><a href="#" class="filter-link">Bộ sưu tập</a></li>
-                    <li><a href="#" class="filter-link">Hệ thống cửa hàng</a></li>
+                    <li><a href="#" class="filter-link">A-Z</a></li>
+                    <li><a href="#" class="filter-link">Z-A</a></li>
+                    <li><a href="#" class="filter-link">Giá tăng dần</a></li>
+                    <li><a href="#" class="filter-link">Giá giảm dần</a></li>
                 </ul>
             </div>
         
@@ -212,24 +211,13 @@
         
             <div class="color mb-4">
                 <h5>Màu sắc</h5>
-                <!-- Add color options as needed -->
-                <div class="color-options d-flex gap-2 mt-2">
+     
+				<div class="form-check">
+				  <input class="form-check-input" type="radio" name="color" value="" id="">
+				  <div class="color-options d-flex gap-2 mt-2">
                     <span class="color-circle" style="background-color: #000;"></span>
-                    <span class="color-circle" style="background-color: #ff0000;"></span>
-                    <span class="color-circle" style="background-color: #00ff00;"></span>
-                    <span class="color-circle" style="background-color: #0000ff;"></span>
-                </div>
-            </div>
-        
-            <div class="size">
-                <h5>Size</h5>
-                <div class="btn-group mt-2" role="group">
-                    <button type="button" class="btn btn-outline-secondary">S</button>
-                    <button type="button" class="btn btn-outline-secondary">M</button>
-                    <button type="button" class="btn btn-outline-secondary">L</button>
-                    <button type="button" class="btn btn-outline-secondary">XL</button>
-                    <button type="button" class="btn btn-outline-secondary">XXL</button>
-                </div>
+            	  </div>
+				</div> 
             </div>
         </div>
         
@@ -237,6 +225,7 @@
         <div class="col-9">
           <div class="row">
             <div class="col-12" style="height: 3vh;">
+            <!--
               <div class="dropdown">
                   <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                       Tên: A-Z
@@ -253,6 +242,7 @@
                       <li><a class="dropdown-item" href="#">Tồn kho giảm dần</a></li>
                   </ul>
               </div>
+              -->
             </div>
           </div>   
           <div class="col-12" style="height: 75vh; overflow-y: auto;">
@@ -265,7 +255,7 @@
 			            <div class="card-body text-center">
 			                <p class="card-text text-muted">${item.loai}</p>
 			                <h5 class="card-title">${item.ten}</h5>
-			                <h5 class="card-title text-info">${item.gia} VND</h5>
+			                <h5 class="card-title text-info"><fmt:formatNumber value="${item.gia}" type="number" pattern="#,###"/> VND</h5>
 			                <div class="d-flex flex-column gap-2 mt-3">
 			                    <form action="/WebBanAo/cart" method="post">
 			                        <input type="hidden" name="id" value="${item.id}">

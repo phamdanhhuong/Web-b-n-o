@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@taglib prefix="fmt" uri="jakarta.tags.fmt"%>
 <!DOCTYPE html>
 <html>
 
@@ -180,7 +181,7 @@
                         <span class="text-muted" style="font-size: 1.2rem;">| 1 Đánh Giá | 11 Đã Bán</span>
                     </div>
                 </div>
-                <h4 class="text-primary">${item.gia} VND</h4>
+                <h4 class="text-primary"><fmt:formatNumber value="${item.gia}" type="number" pattern="#,###"/> VND</h4>
 				<div class="divider my-3"></div>
                 <form class="mt-2" id="productForm" method="post">
                     <div class="d-flex align-items-center mb-3" style="height: 5vh;">
@@ -198,6 +199,7 @@
                         <input type="radio" class="btn-check" name="sizeoption" id="size-xl" value="XL" autocomplete="off">
                         <label class="btn btn-outline-secondary fs-5 text" for="size-xl">XL</label>
                     </div>
+                    <!--
                     <div class="d-flex align-items-center mb-3" style="height: 5vh;">
 					    <h5 class="me-2">Chọn màu:</h5>
 					    <input type="radio" class="btn-check" name="coloroption" id="color-red" value="Red" autocomplete="off" checked>
@@ -212,6 +214,7 @@
 					    <input type="radio" class="btn-check" name="coloroption" id="color-black" value="Black" autocomplete="off">
 					    <label class="btn btn-outline-secondary fs-5 text" for="color-black">Đen</label>
 					</div>
+					-->
                     <div class="d-flex align-items-center mb-3" style="height: 5vh;">
                         <h5 class="me-2">Số lượng: </h5>
                         <div class="d-flex border border-3 rounded-pill" style="width: 38%;">
@@ -247,7 +250,7 @@
 						</div>
 						<div class="col-md-9">
 							<div>
-								<div class="shop-name"><span class="mall-badge">Shopee Mall</span>OVERCO Official Store</div>
+								<div class="shop-name"><span class="mall-badge">Chính hãng</span>Official Store</div>
 								<div class="text-muted">Online 2 Phút Trước</div>
 								<div class="col-md-2 d-flex align-items-center gap-2">
 									<button class="btn btn-chat" style="min-width: 150px;">Chat Ngay</button>
@@ -257,7 +260,7 @@
 						</div>
                     </div>
                 </div>
-                <div class="col-md-8 align-items-center">
+                <div class="col-md-8 align-items-center" style="display: none">
                     <div class="row">
                         <div class="col d-flex gap-4">
 							<div>
@@ -300,21 +303,18 @@
 					<h3>CHI TIẾT SẢN PHẨM</h3>
 					<div class="divider my-3"></div>
 					<div class="product-info">
-						<p><strong>Danh Mục:</strong> Shopee &gt; Thời Trang Nam &gt; Áo &gt; Áo Thun</p>
-						<p><strong>Kho:</strong> 210041</p>
-						<p><strong>Thương hiệu:</strong> OVERCO</p>
-						<p><strong>Xuất xứ:</strong> Việt Nam</p>
-						<p><strong>Chiều dài tay áo:</strong> Tay ngắn</p>
-						<p><strong>Cổ áo:</strong> Cổ tròn</p>
-						<p><strong>Chất liệu:</strong> Cotton</p>
-						<p><strong>Mẫu:</strong> In</p>
-						<p><strong>Gửi từ:</strong> Bình Dương</p>
+						<p><strong>Danh Mục:</strong>${item.loai}</p>
+						<p><strong>Kho:</strong> ${item.tonKho}</p>
+						<p><strong>Thương hiệu:</strong> ${item.thuongHieu}</p>
+						<p><strong>Xuất xứ:</strong> ${item.xuatXu}</p>
+						<p><strong>Chất liệu:</strong> ${item.chatLieu}</p>
 					</div>
 		
 					<h4 class="mt-3">MÔ TẢ SẢN PHẨM</h4>
 					<p class="lh-1 fs-5 text">
 						${item.mota}
 					</p>
+					<!--
 					<p>Áo Thun In Chữ NGHÈO Overco Vải Cotton Cao Cấp Mềm Mịn Thoáng Mát Không Xù Lông</p>
 					<ul>
 						<li><strong>T-SHIRT</strong> - Mẫu áo thun có form ÂU MỸ sử dụng chất liệu COTTON 100% - co giãn 2 chiều để phối đồ theo các nhu cầu sử dụng khác nhau.</li>
@@ -322,6 +322,7 @@
 						<li>Định lượng: 250 gsm. 100% cotton.</li>
 						<li>Tag logo được gắn ở tay áo.</li>
 					</ul>
+					-->
 				</div>
 			</div>
 	
@@ -329,6 +330,18 @@
 			<div class="col-md-3 bg-white p-3 mt-5 ms-auto" style="border-radius: 10px;">
 				<div class="sidebar">
 					<h5>Top Sản Phẩm Nổi Bật</h5>
+					<div class="product-item">
+						<div class="row">
+							<div class="col">
+								<img src="product1.jpg" alt="Sản phẩm 1" class="img-fluid">
+							</div>
+							<div class="col">
+								<p>Áo Thun Lương 5 Triệu Nam Nữ Overco Vải Cott...</p>
+								<p class="text-danger"><strong>179.000đ</strong></p>
+							</div>
+						</div>
+						<div class="divider my-3"></div>
+					</div>
 					<div class="product-item">
 						<div class="row">
 							<div class="col">

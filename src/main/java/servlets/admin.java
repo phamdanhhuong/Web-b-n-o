@@ -54,10 +54,14 @@ public class admin extends HttpServlet {
 				int gia = Integer.parseInt(request.getParameter("gia"));
 				String loai = request.getParameter("loai");
 				String mota = request.getParameter("mota");	
-				shirt item = new shirt(1, ten, link, mota, gia, loai);
+				String thuongHieu = request.getParameter("thuongHieu");	
+				String xuatXu = request.getParameter("xuatXu");	
+				String chatLieu = request.getParameter("chatLieu");	
+				String mau = request.getParameter("mau");	
+				int tonKho = Integer.parseInt(request.getParameter("tonKho"));
+				shirt item = new shirt(1, ten, link, mota, gia, loai,thuongHieu,xuatXu,chatLieu,mau,tonKho);
 				boolean rs = shirtDao.AddShirt(item);
-				System.out.println(rs);
-				response.sendRedirect("/WebBanAo/home");
+				response.sendRedirect("/WebBanAo/admin");
 			}
 		}else {
 			response.sendRedirect("/WebBanAo/home");
@@ -72,10 +76,15 @@ public class admin extends HttpServlet {
 		int gia = Integer.parseInt(req.getParameter("gia"));
 		String loai = req.getParameter("loai");
 		String mota = req.getParameter("mota");	
-		shirt item = new shirt(id, ten, link, mota, gia, loai);
+		String thuongHieu = req.getParameter("thuongHieu");	
+		String xuatXu = req.getParameter("xuatXu");	
+		String chatLieu = req.getParameter("chatLieu");	
+		String mau = req.getParameter("mau");	
+		int tonKho = Integer.parseInt(req.getParameter("tonKho"));
+		shirt item = new shirt(id, ten, link, mota, gia, loai,thuongHieu,xuatXu,chatLieu,mau,tonKho);
 		boolean rs = shirtDao.UpdateShirt(item);
 		System.out.println(rs);
-		resp.sendRedirect("/WebBanAo/home");
+		resp.sendRedirect("/WebBanAo/admin");
 	}
 	
 	@Override
@@ -83,7 +92,7 @@ public class admin extends HttpServlet {
 		int id = Integer.parseInt(req.getParameter("id"));
 		boolean rs = shirtDao.DeleteShirt(id);
 		System.out.println(rs);
-		resp.sendRedirect("/WebBanAo/home");
+		resp.sendRedirect("/WebBanAo/admin");
 	}
 
 }

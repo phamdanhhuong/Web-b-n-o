@@ -21,7 +21,12 @@ create table shirt
 	linkAnh ntext,
 	moTa ntext,
 	gia int,
-	loai nvarchar(255)
+	loai nvarchar(255),
+	thuongHieu nvarchar(255),
+	xuatXu nvarchar(255),
+	chatLieu nvarchar(255),
+	mau nvarchar(255),
+	tonKho int
 )
 GO
 
@@ -72,40 +77,40 @@ values
 GO
 
 
-insert into shirt(ten,linkAnh,moTa,gia,loai)
+insert into shirt(ten,linkAnh,moTa,gia,loai,thuongHieu,xuatXu,chatLieu,mau,tonKho)
 values 
 (N'Áo Thun Nam Họa Tiết In The Baseball Dog Form Regular',
 'https://product.hstatic.net/1000360022/product/ao-thun-nam-hoa-tiet-in-the-baseball-dog-form-regular__4__115aaa76b9de455eb8ea199a5c61ba85_1024x1024.jpg',
 N'Áo thun nam form regular, in họa tiết chú chó chơi bóng chày đầy năng động. Chất vải thoáng mát, phù hợp cho phong cách casual, trẻ trung.',
-300000,'T-shirt'),
+300000,'T-shirt',N'Adidas',N'Việt Nam',N'Cotton','#d6d2c3',20000),
 (N'Áo Thun Nam Họa Tiết In Thêu Đắp Team Dog Max Form Regular',
 'https://product.hstatic.net/1000360022/product/ao-thun-nam-hoa-tiet-in-theu-dap-team-dog-max-form-regular__5__8c6400765c7549218fb6536b852bc5ab_1024x1024.jpg',
 N'Áo thun nam form regular, họa tiết in thêu độc đáo hình chú chó với phong cách mạnh mẽ. Sản phẩm mang lại cảm giác thoải mái và thời trang cho mọi hoạt động.',
-250000,'T-shirt'),
+250000,'T-shirt',N'Nikke',N'Mĩ',N'Cotton','#191f32',21000),
 (N'Áo Thun Nam Họa Tiết Thêu Typo Hand-Draw Form Regular',
 'https://product.hstatic.net/1000360022/product/ao-thun-nam-hoa-tiet-theu-typo-hand-draw-form-regular__7__ffc61cf5371d4596a16aa747b13db182_1024x1024.jpg',
 N'Áo thun nam form regular với họa tiết thêu tay hình chữ nghệ thuật. Thiết kế tối giản nhưng tinh tế, tạo điểm nhấn cá tính cho người mặc.',
-370000,'T-shirt'),
+370000,'T-shirt',N'Gucci',N'Hàn Quốc',N'Cotton','#eeeeee',1000),
 (N'Áo Thun Nam Họa Tiết Thêu Móc Xích Typo OG Form Regular',
 'https://product.hstatic.net/1000360022/product/ao-thun-nam-hoa-tiet-theu-moc-xich-typo-og-form-regular__6__9718ebc493f944a799593d743e1d6ede_1024x1024.jpg',
 N'Áo thun nam form regular, thiết kế thêu chữ với chi tiết móc xích đầy phong cách. Sản phẩm thích hợp cho những ai yêu thích sự độc đáo và cá tính.',
-400000,'T-shirt'),
+400000,'T-shirt',N'Crocodie',N'Trung Quốc',N'Cotton','#eeeeee',9000),
 (N'Áo Thun Nam Họa Tiết Pop Art Loyal Companion Form Regular',
 'https://product.hstatic.net/1000360022/product/ao-thun-nam-hoa-tiet-pop-art-loyal-companion-form-regular__6__8ef72caaab3547da9a2b594cd6220889_1024x1024.jpg',
 N'Áo thun nam form regular với họa tiết Pop Art đầy màu sắc về chú chó trung thành. Thiết kế nghệ thuật, nổi bật, phù hợp với phong cách năng động, sáng tạo.',
-399000,'Áo Polo'),
+399000,'Áo Polo',N'Luxury',N'Đức',N'Cotton','#077c57',5000),
 (N'Áo Thun Nam Họa Tiết Thêu Negative Space Teddy Form Regular',
 'https://product.hstatic.net/1000360022/product/ao-thun-nam-hoa-tiet-theu-negative-space-teddy-form-regular__4__cad418fcb8804206b5fa985da9712d73_1024x1024.jpg',
 N'Áo thun nam form regular với họa tiết thêu hình gấu Teddy sử dụng kỹ thuật negative space độc đáo. Sản phẩm mang phong cách tối giản nhưng vẫn ấn tượng.',
-599000,N'Áo nỉ'),	
+599000,N'Áo nỉ',N'Gucci',N'Nhật',N'Cotton','#3f3f3f',6000),	
 (N'Áo Thun Nam Trơn Strength Contour Form Regular',
 'https://product.hstatic.net/1000360022/product/ao-thun-nam-tron-strength-contour-form-regular__7__8cd274b91d6b4fcd9193c92ee2ff4930_1024x1024.jpg',
 N'Áo thun nam trơn form regular, thiết kế đơn giản nhưng tinh tế, nhấn mạnh đường nét mạnh mẽ của cơ thể. Phù hợp cho mọi hoạt động thường ngày.',
-299000,N'Áo unisex'),
+299000,N'Áo unisex',N'Crocodie',N'Việt Nam',N'Cotton','#877661',2000),
 (N'Áo Thun Nam Phim Điện Ảnh Cám Hoạ Tiết In The Goby Form Regular',
 'https://product.hstatic.net/1000360022/product/ao-thun-nam-phim-dien-anh-cam-hoa-tiet-in-the-goby-form-regular__6__0344cd260c8445d1931cc23a39729eb2_1024x1024.jpg',
 N'Áo thun nam form regular in họa tiết theo phong cách phim điện ảnh, với hình ảnh chú cá Goby. Thiết kế đậm chất điện ảnh, mang đến sự trẻ trung và sáng tạo cho người mặc.',
-299000,N'Áo Polo')
+299000,N'Áo Polo',N'Adidas',N'Việt Nam',N'Cotton','#171719',12000)
 GO
 
 
@@ -120,16 +125,22 @@ BEGIN
 END;
 GO
 
+
 CREATE PROCEDURE sp_InsertShirt
     @ten NVARCHAR(255),
     @linkAnh NTEXT,
     @moTa NTEXT,
     @gia INT,
-    @loai NVARCHAR(255)
+    @loai NVARCHAR(255),
+	@thuongHieu nvarchar(255),
+	@xuatXu nvarchar(255),
+	@chatLieu nvarchar(255),
+	@mau nvarchar(255),
+	@tonKho int
 AS
 BEGIN
-    INSERT INTO shirt (ten, linkAnh, moTa, gia, loai)
-    VALUES (@ten, @linkAnh, @moTa, @gia, @loai);
+    INSERT INTO shirt (ten, linkAnh, moTa, gia, loai, thuongHieu, xuatXu, chatLieu, mau, tonKho)
+    VALUES (@ten, @linkAnh, @moTa, @gia, @loai, @thuongHieu, @xuatXu, @chatLieu, @mau, @tonKho);
     
     -- Thông báo thành công
     PRINT 'Dữ liệu đã được thêm thành công';
@@ -142,7 +153,12 @@ CREATE PROCEDURE sp_UpdateShirt
     @linkAnh NTEXT,
     @moTa NTEXT,
     @gia INT,
-    @loai NVARCHAR(255)
+    @loai NVARCHAR(255),
+	@thuongHieu nvarchar(255),
+	@xuatXu nvarchar(255),
+	@chatLieu nvarchar(255),
+	@mau nvarchar(255),
+	@tonKho int
 AS
 BEGIN
     UPDATE shirt
@@ -151,7 +167,12 @@ BEGIN
         linkAnh = @linkAnh,
         moTa = @moTa,
         gia = @gia,
-        loai = @loai
+        loai = @loai,
+		thuongHieu = @thuongHieu, 
+		xuatXu = @xuatXu, 
+		chatLieu = @chatLieu, 
+		mau = @mau, 
+		tonKho = @tonKho
     WHERE id = @id;
     
     -- Thông báo cập nhật thành công
@@ -285,7 +306,7 @@ GO
 
 --select * from Cart join shirt on shirtId = shirt.id where userId=2
 --select * from shirt where id=1
-
+--select mau from shirt group by mau 
 --select * from HoaDon
 --select * from ChiTietHoaDon join shirt on shirtId = shirt.id
 --select * from ChiTietHoaDon join shirt on shirtId = shirt.id where idHoaDon = 3

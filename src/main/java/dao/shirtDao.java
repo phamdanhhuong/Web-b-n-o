@@ -19,7 +19,7 @@ public class shirtDao {
 			Statement state = db.createStatement();
 			ResultSet rs =state.executeQuery(query);
 			while(rs.next()) {
-				list.add(new shirt(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)));
+				list.add(new shirt(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getInt(11)));
 			}
 			db.close();
 			return list;
@@ -38,7 +38,7 @@ public class shirtDao {
 			statement.setString(1, searchText);	
 			ResultSet rs = statement.executeQuery();
 			while(rs.next()) {
-				list.add(new shirt(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6)));
+				list.add(new shirt(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getInt(11)));
 			}
 			db.close();
 			return list;
@@ -49,7 +49,7 @@ public class shirtDao {
 	}
 	
 	public static boolean AddShirt(shirt item) {
-		String sql = "{call sp_InsertShirt(?, ?, ?, ?, ?)}";
+		String sql = "{call sp_InsertShirt(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
 		Connection db = connectDB.DB();
 		try {
 			CallableStatement statement = db.prepareCall(sql);
@@ -58,6 +58,11 @@ public class shirtDao {
             statement.setString(3, item.getMota());
             statement.setInt(4, item.getGia());
             statement.setString(5, item.getLoai());
+            statement.setString(6, item.getThuongHieu());
+            statement.setString(7, item.getXuatXu());
+            statement.setString(8, item.getChatLieu());
+            statement.setString(9, item.getMau());
+            statement.setInt(10, item.getTonKho());
             statement.execute();
             db.close();
             return true;
@@ -68,7 +73,7 @@ public class shirtDao {
 	}
 	
 	public static boolean UpdateShirt(shirt item) {
-		String sql = "{call sp_UpdateShirt(?, ?, ?, ?, ?, ?)}";
+		String sql = "{call sp_UpdateShirt(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
 		Connection db = connectDB.DB();
 		try {
 			CallableStatement statement = db.prepareCall(sql);
@@ -78,6 +83,11 @@ public class shirtDao {
             statement.setString(4, item.getMota());
             statement.setInt(5, item.getGia());
             statement.setString(6, item.getLoai());
+            statement.setString(7, item.getThuongHieu());
+            statement.setString(8, item.getXuatXu());
+            statement.setString(9, item.getChatLieu());
+            statement.setString(10, item.getMau());
+            statement.setInt(11, item.getTonKho());
             statement.execute();
             db.close();
             return true;
@@ -109,7 +119,7 @@ public class shirtDao {
 			Statement state = db.createStatement();
 			ResultSet rs =state.executeQuery(query);
 			if(rs.next()) {
-				item = new shirt(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6));
+				item = new shirt(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getInt(11));
 			}
 			db.close();
 			return item;

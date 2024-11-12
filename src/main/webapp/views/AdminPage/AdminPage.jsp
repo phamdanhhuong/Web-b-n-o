@@ -66,7 +66,12 @@
 			          data-link="${item.link}"
 			          data-gia="${item.gia}"
 			          data-loai="${item.loai}"
-			          data-mota="${item.mota}">
+			          data-mota="${item.mota}"
+			          data-thuonghieu="${item.thuongHieu}"
+			          data-xuatxu="${item.xuatXu}"
+			          data-chatlieu="${item.chatLieu}"
+			          data-mau="${item.mau}"
+			          data-tonkho="${item.tonKho}">
 					    Sửa
 					</button>
 			      </td>
@@ -116,6 +121,26 @@
 				  <input type="text" name="loai" class="form-control" id="edit-loai">
 				</div>
 				<div class="mb-3">
+				  <label for="edit-thuongHieu" class="form-label">Thương hiệu</label>
+				  <input type="text" name="thuongHieu" class="form-control" id="edit-thuongHieu">
+				</div>
+				<div class="mb-3">
+				  <label for="edit-xuatXu" class="form-label">Xuất xứ</label>
+				  <input type="text" name="xuatXu" class="form-control" id="edit-xuatXu">
+				</div>
+				<div class="mb-3">
+				  <label for="edit-chatLieu" class="form-label">Chất liệu</label>
+				  <input type="text" name="chatLieu" class="form-control" id="edit-chatLieu">
+				</div>
+				<div class="mb-3">
+				  <label for="edit-mau" class="form-label">Màu</label>
+				  <input type="text" name="mau" class="form-control" id="edit-mau">
+				</div>
+				<div class="mb-3">
+				  <label for="edit-tonKho" class="form-label">Tồn kho</label>
+				  <input type="number" name="tonKho" class="form-control" id="edit-tonKho">
+				</div>
+				<div class="mb-3">
 				  <label for="edit-mota" class="form-label">Mô tả</label>
 				  <textarea name="mota" class="form-control" id="edit-mota"></textarea>
 				</div>
@@ -157,6 +182,26 @@
 				  <input type="text" name="loai" class="form-control" >
 				</div>
 				<div class="mb-3">
+				  <label  class="form-label">Thương hiệu</label>
+				  <input type="text" name="thuongHieu" class="form-control" >
+				</div>
+				<div class="mb-3">
+				  <label  class="form-label">Xuất sứ</label>
+				  <input type="text" name="xuatXu" class="form-control" >
+				</div>
+				<div class="mb-3">
+				  <label  class="form-label">Chất liệu</label>
+				  <input type="text" name="chatLieu" class="form-control" >
+				</div>
+				<div class="mb-3">
+				  <label  class="form-label">Màu (mã HEX)</label>
+				  <input type="text" name="mau" class="form-control" >
+				</div>
+				<div class="mb-3">
+				  <label class="form-label">Tồn kho</label>
+				  <input type="number" name="tonKho" class="form-control" >
+				</div>
+				<div class="mb-3">
 				  <label class="form-label">Mô tả</label>
 				  <textarea name="mota" class="form-control" ></textarea>
 				</div>
@@ -193,7 +238,11 @@
 	    var gia = button.data('gia');
 	    var loai = button.data('loai');
 	    var mota = button.data('mota');
-	    
+	    var thuongHieu = button.data('thuonghieu');
+	    var xuatXu = button.data('xuatxu');
+	    var chatLieu = button.data('chatlieu');
+	    var mau = button.data('mau');
+	    var tonKho = button.data('tonkho');
 	    // Lấy modal
 	    var modal = $(this);
 	
@@ -204,6 +253,11 @@
 	    modal.find('#edit-gia').val(gia);
 	    modal.find('#edit-loai').val(loai);
 	    modal.find('#edit-mota').val(mota);
+	    modal.find('#edit-thuongHieu').val(thuongHieu);
+	    modal.find('#edit-xuatXu').val(xuatXu);
+	    modal.find('#edit-chatLieu').val(chatLieu);
+	    modal.find('#edit-mau').val(mau);
+	    modal.find('#edit-tonKho').val(tonKho);
 	  });
 	</script>
 </body>

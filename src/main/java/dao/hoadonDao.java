@@ -41,7 +41,7 @@ public class hoadonDao {
             ResultSet rs = statement.executeQuery();
             List<chiTietHoaDon> kq = new ArrayList<chiTietHoaDon>();
             while(rs.next()) {
-            	kq.add(new chiTietHoaDon(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getInt(6), new shirt(rs.getInt(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getInt(11), rs.getString(12))));
+            	kq.add(new chiTietHoaDon(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getInt(6), new shirt(rs.getInt(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getInt(11), rs.getString(12),rs.getString(13),rs.getString(14),rs.getString(15),rs.getString(16),rs.getInt(17))));
             }
             db.close();
             return kq;
