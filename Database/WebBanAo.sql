@@ -312,6 +312,17 @@ RETURN
 );
 GO
 
+CREATE FUNCTION fn_SPLienQuan (@Loai NVARCHAR(100), @ThuongHieu NVARCHAR(100), @idShirt INT)
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT TOP 3 *
+    FROM shirt
+    WHERE (loai = @Loai OR thuongHieu = @ThuongHieu) AND id <> @idShirt
+);
+GO
+
 --select * from fn_Loc('','',500000,'#eeeeee') order by gia desc, ten desc
 --SELECT *
 --    FROM shirt

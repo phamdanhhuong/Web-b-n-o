@@ -134,10 +134,12 @@
 	        <div class="collapse navbar-collapse" id="navbarNav">
 	            <ul class="navbar-nav ms-auto">
 	                <li class="nav-item me-5">
-                        <input class="form-control me-2" type="text" name="searchText" id="searchText" placeholder="Search" aria-label="Search" value="${searchText == null ? '' : searchText}">
-                        <button class="btn btn-outline-light" onclick="document.getElementById('formLoc').submit();">
-                            <i class="fas fa-search"></i>
-                        </button>
+	                	<div class="d-flex">
+	                        <input class="form-control me-2" type="text" name="searchText" id="searchText" placeholder="Search" aria-label="Search" value="${searchText == null ? '' : searchText}">
+	                        <button class="btn btn-outline-light" onclick="document.getElementById('formLoc').submit();">
+	                            <i class="fas fa-search"></i>
+	                        </button>
+                        </div>
 	                </li>
 	                <li class="nav-item">
 	                    <a class="nav-link active" aria-current="page" href="home">

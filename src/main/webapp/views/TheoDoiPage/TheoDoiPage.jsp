@@ -49,14 +49,7 @@
 	        </button>
 	        <div class="collapse navbar-collapse" id="navbarNav">
 	            <ul class="navbar-nav ms-auto">
-	                <li class="nav-item me-5">
-	                    <form class="d-flex">
-	                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-	                        <button class="btn btn-outline-light" type="submit">
-	                            <i class="fas fa-search"></i>
-	                        </button>
-	                    </form>
-	                </li>
+
 	                <li class="nav-item">
 	                    <a class="nav-link active" aria-current="page" href="home">
 	                        <i class="fas fa-home"></i> Home
