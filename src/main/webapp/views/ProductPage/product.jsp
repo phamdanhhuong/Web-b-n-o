@@ -329,43 +329,23 @@
 			<!-- Sản phẩm nổi bật -->
 			<div class="col-md-3 bg-white p-3 mt-5 ms-auto" style="border-radius: 10px;">
 				<div class="sidebar">
-					<h5>Top Sản Phẩm Nổi Bật</h5>
-					<div class="product-item">
-						<div class="row">
-							<div class="col">
-								<img src="product1.jpg" alt="Sản phẩm 1" class="img-fluid">
+					<h5>Sản Phẩm Liên Quan</h5>
+					<c:forEach var="item" items="${list3sp}">
+						<div class="product-item">
+							<div class="row">
+								<div class="col">
+									<a href="/WebBanAo/product?id=${item.id}">
+										<img src="${item.link}" alt="Sản phẩm" class="img-fluid">
+									</a>
+								</div>
+								<div class="col">
+									<p>${item.ten}</p>
+									<p class="text-danger"><strong><fmt:formatNumber value="${item.gia}" type="number" pattern="#,###"/>đ</strong></p>
+								</div>
 							</div>
-							<div class="col">
-								<p>Áo Thun Lương 5 Triệu Nam Nữ Overco Vải Cott...</p>
-								<p class="text-danger"><strong>179.000đ</strong></p>
-							</div>
+							<div class="divider my-3"></div>
 						</div>
-						<div class="divider my-3"></div>
-					</div>
-					<div class="product-item">
-						<div class="row">
-							<div class="col">
-								<img src="product1.jpg" alt="Sản phẩm 1" class="img-fluid">
-							</div>
-							<div class="col">
-								<p>Áo Thun Lương 5 Triệu Nam Nữ Overco Vải Cott...</p>
-								<p class="text-danger"><strong>179.000đ</strong></p>
-							</div>
-						</div>
-						<div class="divider my-3"></div>
-					</div>
-					<div class="product-item">
-						<div class="row">
-							<div class="col">
-								<img src="product1.jpg" alt="Sản phẩm 1" class="img-fluid">
-							</div>
-							<div class="col">
-								<p>Áo Thun Lương 5 Triệu Nam Nữ Overco Vải Cott...</p>
-								<p class="text-danger"><strong>179.000đ</strong></p>
-							</div>
-						</div>
-						<div class="divider my-3"></div>
-					</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>

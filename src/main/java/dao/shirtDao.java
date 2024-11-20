@@ -48,6 +48,27 @@ public class shirtDao {
 		return null;
 	}
 	
+	public static List<shirt> Lay3SPLienQuan(shirt item) {
+		Connection db = connectDB.DB();
+		try {
+			List<shirt> list = new ArrayList<shirt>();
+			String query = "select * from fn_SPLienQuan(?,?,?)";
+			CallableStatement statement = db.prepareCall(query);
+			statement.setString(1, item.getLoai());	
+			statement.setString(2, item.getThuongHieu());
+			statement.setInt(3, item.getId());	
+			ResultSet rs = statement.executeQuery();
+			while(rs.next()) {
+				list.add(new shirt(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getString(10),rs.getInt(11)));
+			}
+			db.close();
+			return list;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+	
 	public static List<shirt> LayDSLoc(String searchText,String loai, int gia, String mau, String alp, String pri) {
 		Connection db = connectDB.DB();
 		try {

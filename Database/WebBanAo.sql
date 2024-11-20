@@ -73,7 +73,8 @@ GO
 insert into account(uname,pw, role)
 values 
 ('admin','1',0),
-('user1','1',1)
+('user1','1',1),
+('user2','1',1)
 GO
 
 

@@ -8,6 +8,7 @@
     <title>Trang Quản Lý Đơn Hàng</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link href="./views/AdminPage/adminPage.css" rel="stylesheet">
 </head>
@@ -18,7 +19,7 @@
         <div class="col-md-2">
             <div class="sidebar">
                 <div class="profile">
-                    <img src="path/to/profile-image.png" alt="Profile Image">
+                    <i class="fas fa-store"></i> 
                     <p>Danh Hưởng</p>
                     <small>Chào mừng bạn trở lại</small>
                 </div>
@@ -26,7 +27,7 @@
                     <a href="/WebBanAo/home" class="menu-item">Bảng điều khiển</a>
                     <a href="/WebBanAo/admin" class="menu-item">Quản lý sản phẩm</a>
                     <a href="/WebBanAo/quanly" class="menu-item">Quản lý đơn hàng</a>
-                    <a href="/WebBanAo/AdminThongKe" class="menu-item">Báo cáo doanh thu</a>
+                    <a href="/WebBanAo" class="menu-item">Logout</a>
                 </div>
             </div>
         </div>
