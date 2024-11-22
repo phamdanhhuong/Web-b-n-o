@@ -35,11 +35,13 @@ public class admin extends HttpServlet {
 	 */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    	if(accountDao.acc.getRole()==0) {
-			List<shirt> list = shirtDao.LayDS();
-			req.setAttribute("list", list);
-			req.getRequestDispatcher("views/AdminPage/AdminPage.jsp").forward(req, resp);
-		}
+    	if(accountDao.acc!=null) {
+    		if(accountDao.acc.getRole()==0) {
+    			List<shirt> list = shirtDao.LayDS();
+    			req.setAttribute("list", list);
+    			req.getRequestDispatcher("views/AdminPage/AdminPage.jsp").forward(req, resp);
+    		}
+    	}
     }
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(accountDao.acc.getRole()==0) {

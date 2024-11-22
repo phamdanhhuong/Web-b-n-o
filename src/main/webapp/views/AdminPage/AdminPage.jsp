@@ -76,7 +76,7 @@
 					</button>
 			      </td>
 			      <td>
-			      	<form action="/WebBanAo/admin" method="post">
+			      	<form action="/WebBanAo/admin" method="post" onsubmit="return confirmDelete()">
 	              		<input type="hidden" name="id" value="${item.id}">
 	              		<input type="hidden" name="_method" value="delete">
 	              		<input type="submit" class="btn btn-danger" value="Xóa">
@@ -259,6 +259,10 @@
 	    modal.find('#edit-mau').val(mau);
 	    modal.find('#edit-tonKho').val(tonKho);
 	  });
+	  
+	  function confirmDelete(){
+		  return confirm('Bạn có chắc muốn xóa sản phẩm này?')
+	  }
 	</script>
 </body>
 </html>
