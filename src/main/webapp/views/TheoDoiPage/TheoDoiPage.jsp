@@ -72,9 +72,25 @@
   
 	<div class="container p-3" style="min-height: 95vh">
 		<div class="row gap-3 bg-light">
+		    <c:if test="${empty list}">
+			    <div class="alert alert-warning text-center p-4 rounded shadow">
+			        <i class="bi bi-exclamation-triangle-fill text-danger fs-1"></i>
+			        <p class="fw-bold fs-4 mt-3 text-danger">Không có đơn hàng nào!</p>
+			        <p class="text-muted">Chúng tôi không tìm thấy bất kỳ đơn hàng nào trong tài khoản của bạn. Vui lòng quay lại sau.</p>
+			    </div>
+			</c:if>
+			<div class="col-12 text-center mb-4">
+			    <p class="text-primary fw-bold fs-5">
+			        <span class="badge bg-info text-white p-2" style="font-size: 1.2rem;">
+			            Nhấn vào <span class="text-decoration-underline" style="cursor: pointer; font-weight: bold; transition: color 0.3s;">Hóa đơn</span> để xem chi tiết đơn hàng.
+			        </span>
+			    </p>
+			</div>
+
 			<!-- Cột 1 -->
 			<div class="col" style="height: 80vh; overflow-y: auto;">
 			    <div class="container my-4">
+
 			        <c:forEach var="item" items="${list}">
 			            <div class="order-card">
 			                <div class="d-flex justify-content-between align-items-center">
@@ -108,6 +124,7 @@
 			
 			<!-- Cột 2 -->
 			<div class="col">
+
 				<c:forEach var="item" items="${list}">
 					<div class="container mt-4" style="display: none" id="hoadon${item.id}">
 					      <div class="container mt-4 p-2">

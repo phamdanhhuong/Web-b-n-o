@@ -186,64 +186,87 @@
 
     <div class="container d-flex gap-3 p-3">
         <div class="col-3">
-        	<form action="/WebBanAo/home" method="get" id="formLoc">
-	          <div class="filter p-3 bg-light border rounded">
-	            <h2 class="text-center mb-4">Bộ lọc</h2>
-	        
-	            <div class="category mb-4">
-	                <h5>Danh mục sản phẩm</h5>
-	                <ul class="list-unstyled">
-	                    <li><input class="form-check-input" type="radio" name="loc-alphabet" value="asc" id="" <c:if test="${alphabet == null || alphabet == 'asc'}">checked</c:if>> A-Z</li>
-	                    <li><input class="form-check-input" type="radio" name="loc-alphabet" value="desc" id="" <c:if test="${alphabet != null && alphabet == 'desc'}">checked</c:if>> Z-A</li>
-	                    <li><input class="form-check-input" type="radio" name="loc-price" value="asc" id="" <c:if test="${price == null || price == 'asc'}">checked</c:if>> Giá tăng dần</li>
-	                    <li><input class="form-check-input" type="radio" name="loc-price" value="desc" id="" <c:if test="${price != null && price == 'desc'}">checked</c:if>> Giá giảm dần</li>
-	                </ul>
-	            </div>
-	            <h5>Loại áo</h5>
-	        	<select class="form-select mb-3" id="combo-box" name="loc-loai" style="width: 150px;">
-	                <option value="" <c:if test="${loai == null || loai == ''}">selected</c:if>>Tất cả</option>
-	                <c:forEach var="itemLoai" items="${dsLoai}">
-	                	<option value="${itemLoai}" <c:if test="${loai != null && loai == itemLoai}">selected</c:if>>${itemLoai}</option>
-	                </c:forEach>
-	            </select>
-	            <div class="price-range mb-4">
-	                <h5>Khoảng giá</h5>
-	                <span id="priceLabel">${range==null?1500000:range}đ</span>
-	                <input type="range" min="0" max="3000000" value="${range==null?1500000:range}" step="10000" name="loc-range" class="form-range" oninput="updatePriceLabel(this.value)">
-	                <div class="price-label mt-2 d-flex justify-content-between">
-	                    <span>0đ</span> 
-	                    <span>3,000,000đ</span>
-	                </div>
-	            </div>
-	        
-	            <div class="color mb-4">
-	                <h5>Màu sắc</h5>
-	     
-					<div class="form-check d-flex flex-column justify-content-center">
-						<div class="d-flex align-items-center gap-3" >
-					  		<input class="form-check-input" type="radio" name="loc-color" value="" id="" <c:if test="${color == null || color == ''}">checked</c:if>>
-						  	<span>Tất cả</span>
-					  	</div>
-					  <c:forEach var="mau" items="${dsMau}">
-					  	<div class="d-flex align-items-center gap-3" >
-					  		<input class="form-check-input" type="radio" name="loc-color" value="${mau}" id="" <c:if test="${color != null && color == mau}">checked</c:if>>
-						  	<div class="color-options d-flex gap-2 mt-2">
-			                    <span class="color-circle" style="background-color: ${mau}";"></span>
-			            	</div>
-					  	</div>
-					  </c:forEach>
-					</div> 
-	            </div>
-	        </div>
-	        <input id="result" value="${searchText == null ? '' : searchText}" type="hidden" name="loc-searchText" >
-	        <button class="btn btn-primary mt-3" type="submit"><i class="fa-solid fa-filter"></i></button>
-       	</form>
+    <form action="/WebBanAo/home" method="get" id="formLoc">
+        <div class="filter p-4 bg-light border rounded shadow-sm">
+            <h2 class="text-center mb-4 font-weight-bold">Bộ lọc</h2>
+
+            <div class="category mb-4">
+                <h5 class="mb-3">Danh mục sản phẩm</h5>
+                <ul class="list-unstyled">
+                    <li><input class="form-check-input" type="radio" name="loc-alphabet" value="asc" id="" <c:if test="${alphabet == null || alphabet == 'asc'}">checked</c:if>> A-Z</li>
+                    <li><input class="form-check-input" type="radio" name="loc-alphabet" value="desc" id="" <c:if test="${alphabet != null && alphabet == 'desc'}">checked</c:if>> Z-A</li>
+                    <li><input class="form-check-input" type="radio" name="loc-price" value="asc" id="" <c:if test="${price == null || price == 'asc'}">checked</c:if>> Giá tăng dần</li>
+                    <li><input class="form-check-input" type="radio" name="loc-price" value="desc" id="" <c:if test="${price != null && price == 'desc'}">checked</c:if>> Giá giảm dần</li>
+                </ul>
+            </div>
+
+            <h5 class="mb-3">Loại áo</h5>
+            <select class="form-select mb-4" id="combo-box" name="loc-loai" style="width: 100%; padding: 10px; border-radius: 8px;">
+                <option value="" <c:if test="${loai == null || loai == ''}">selected</c:if>>Tất cả</option>
+                <c:forEach var="itemLoai" items="${dsLoai}">
+                    <option value="${itemLoai}" <c:if test="${loai != null && loai == itemLoai}">selected</c:if>>${itemLoai}</option>
+                </c:forEach>
+            </select>
+
+            <div class="price-range mb-4">
+                <h5 class="mb-3">Khoảng giá</h5>
+                <span id="priceLabel">${range == null ? 1500000 : range}đ</span>
+                <input type="range" min="0" max="3000000" value="${range == null ? 1500000 : range}" step="10000" name="loc-range" class="form-range" oninput="updatePriceLabel(this.value)" style="width: 100%;">
+                <div class="price-label mt-2 d-flex justify-content-between">
+                    <span>0đ</span>
+                    <span>3,000,000đ</span>
+                </div>
+            </div>
+
+            <div class="color mb-4">
+                <h5 class="mb-3">Màu sắc</h5>
+                <div class="form-check d-flex flex-column">
+                    <div class="d-flex align-items-center gap-3 mb-2">
+                        <input class="form-check-input" type="radio" name="loc-color" value="" id="" <c:if test="${color == null || color == ''}">checked</c:if>>
+                        <span>Tất cả</span>
+                    </div>
+                    <div class="d-flex gap-5 flex-wrap">
+					    <c:forEach var="mau" items="${dsMau}">
+					        <div class="d-flex align-items-center gap-3 mb-2">
+					            <input class="form-check-input" type="radio" name="loc-color" value="${mau}" id="" <c:if test="${color != null && color == mau}">checked</c:if>>
+					            <div class="color-options d-flex gap-2">
+					                <span class="color-circle" style="background-color: ${mau}; width: 20px; height: 20px; border-radius: 50%;"></span>
+					            </div>
+					        </div>
+					    </c:forEach>
+					</div>
+
+                </div>
+            </div>
+
+            <input id="result" value="${searchText == null ? '' : searchText}" type="hidden" name="loc-searchText">
+            <button class="btn btn-primary mt-3 w-100" type="submit"><i class="fa-solid fa-filter"></i> Lọc</button>
         </div>
+    </form>
+</div>
+
         <div class="col-9">
           <div class="row">
             <div class="col-12" style="height: 3vh;">
             </div>
           </div>   
+          <c:if test="${empty list}">
+		    <div class="alert alert-info text-center p-5 rounded shadow" 
+		         style="font-family: 'Avenir', sans-serif; height: 75vh; background-color: #f0f8ff; 
+		                display: flex; align-items: center; justify-content: center;">
+		        <div class="text-center">
+		            <div class="d-flex justify-content-center">
+		                <i class="bi bi-cart-x text-warning fs-1" style="animation: shake 0.5s infinite;"></i>
+		            </div>
+		            <p class="fw-bold fs-4 mt-3 text-primary" style="font-size: 1.8rem;">Không có sản phẩm nào trong cửa hàng! <span class="text-danger">🛒</span></p>
+		            <p class="text-muted" style="font-size: 1.2rem;">
+		                Chúng tôi không tìm thấy bất kỳ sản phẩm nào. Vui lòng quay lại sau.
+		                <i class="bi bi-bag-check-fill text-info"></i>
+		            </p>
+		        </div>
+		    </div>
+		</c:if>
+
           <div class="col-12" style="height: 75vh; overflow-y: auto;">
             <div class="container d-flex flex-wrap gap-3 p-3 justify-content-center">
 			    <c:forEach var="item" items="${list}">

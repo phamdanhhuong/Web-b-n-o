@@ -54,7 +54,29 @@
 			        <span class="fs-4 fw-bold">Giỏ hàng:</span>
 			        <span class="fs-5">Số sản phẩm: ${quantity}</span>
 			    </div>
-			
+				<c:if test="${empty list}">
+				    <div class="alert alert-info text-center p-4 rounded shadow" style="font-family: 'Avenir', sans-serif;">
+				        <!-- Shopping Cart Icon -->
+				        <i class="bi bi-cart-x text-warning fs-1"></i>
+				        
+				        <!-- Title with emoji and icon -->
+				        <p class="fw-bold fs-4 mt-3 text-primary">Không có đơn hàng nào trong giỏ hàng! <span class="text-danger">🛒</span></p>
+				        
+				        <!-- Descriptive text with a shopping bag icon -->
+				        <p class="text-muted">
+				            Giỏ hàng của bạn đang trống. <span class="text-success">Hãy thêm các sản phẩm yêu thích vào giỏ hàng để tiếp tục mua sắm.</span>
+				            <i class="bi bi-bag-check-fill text-info"></i>
+				        </p>
+				
+				
+				        <!-- Optional button with an arrow icon -->
+				        <a href="home" class="btn btn-primary mt-3" style="font-family: 'Avenir', sans-serif;">
+				            Tiếp tục mua sắm <i class="bi bi-arrow-right-circle"></i>
+				        </a>
+				    </div>
+				</c:if>
+
+
 			    <c:forEach var="item" items="${list}">
 			        <div class="cart-item d-flex mt-4 p-3 border rounded shadow-sm">
 			            <img src="${item.shirt.link}" class="img-fluid" style="width: auto; height: 200px;">
