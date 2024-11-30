@@ -56,40 +56,42 @@
                 </div>
                 <div class="row thongke-container p-3 mb-4">
                     
-                    <h4 class="mb-4 mt-3"><b>Số lượng đơn hàng: 40</b></h4>
-                    <div class="row mb-4">
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-body card-custom success ">
-                                    <h5 class="card-title">Hoàn thành</h5>
-                                    <p class="card-text">3</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-body card-custom info">
-                                    <h5 class="card-title">Chờ thanh toán</h5>
-                                    <p class="card-text">1</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-body card-custom warning">
-                                    <h5 class="card-title">Đang giao hàng</h5>
-                                    <p class="card-text">1</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card">
-                                <div class="card-body card-custom danger">
-                                    <h5 class="card-title">Đã hủy</h5>
-                                    <p class="card-text">1</p>
-                                </div>
-                            </div>
-                        </div>
+                    <h4 class="mb-4 mt-3"><b>Số lượng đơn hàng: ${totalOrders}</b></h4>
+					<div class="row mb-4">
+					    <div class="col-md-3">
+					        <div class="card">
+					            <div class="card-body card-custom success">
+					                <h5 class="card-title">Hoàn thành</h5>
+					                <p class="card-text">${completedOrders}</p>
+					            </div>
+					        </div>
+					    </div>
+					    <div class="col-md-3">
+					        <div class="card">
+					            <div class="card-body card-custom info">
+					                <h5 class="card-title">Đã xác nhận</h5>
+					                <p class="card-text">${waitingOrders}</p>
+					            </div>
+					        </div>
+					    </div>
+					    <div class="col-md-3">
+					        <div class="card">
+					            <div class="card-body card-custom warning">
+					                <h5 class="card-title">Chờ xác nhận</h5>
+					                <p class="card-text">${shippingOrders}</p>
+					            </div>
+					        </div>
+					    </div>
+					    <div class="col-md-3">
+					        <div class="card">
+					            <div class="card-body card-custom danger">
+					                <h5 class="card-title">Đã hủy</h5>
+					                <p class="card-text">${canceledOrders}</p>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+
                     </div>
                 </div>
                 

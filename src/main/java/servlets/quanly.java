@@ -38,6 +38,37 @@ public class quanly extends HttpServlet {
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}else if(accountDao.acc.getRole()==0) {
 			List<hoaDon> list = hoadonDao.getAllListHoaDon();
+			// Tính toán số lượng đơn hàng theo trạng thái
+	        int completedOrders = 0;
+	        int waitingOrders = 0;
+	        int shippingOrders = 0;
+	        int canceledOrders = 0;
+	        
+	        for (hoaDon hd : list) {
+	            switch (hd.getTrangThai()) {
+	                case "Hoàn thành":
+	                    completedOrders++;
+	                    break;
+	                case "Đã xác nhận chờ giao hàng":
+	                    waitingOrders++;
+	                    break;
+	                case "Chờ xác nhận":
+	                    shippingOrders++;
+	                    break;
+	                case "Đã hủy":
+	                    canceledOrders++;
+	                    break;
+	                default:
+	                    break;
+	            }
+	        }
+	        
+	        // Truyền các giá trị vào request để sử dụng trong JSP
+	        request.setAttribute("completedOrders", completedOrders);
+	        request.setAttribute("waitingOrders", waitingOrders);
+	        request.setAttribute("shippingOrders", shippingOrders);
+	        request.setAttribute("canceledOrders", canceledOrders);
+	        request.setAttribute("totalOrders", list.size()); // Tổng số đơn hàng
 			request.setAttribute("list", list);
 			request.getRequestDispatcher("views/AdminQuanLyDonHang/AdminQuanLyDonHang.jsp").forward(request, response);
 		}else {
