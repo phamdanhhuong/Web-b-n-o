@@ -74,7 +74,28 @@ insert into account(uname,pw, role)
 values 
 ('admin','1',0),
 ('user1','1',1),
-('user2','1',1)
+('user2','1',1),
+('user3', 'password3', 1),
+('user4', 'password4', 1),
+('user5', 'password5', 1),
+('user6', 'password6', 1),
+('user7', 'password7', 1),
+('user8', 'password8', 1),
+('user9', 'password9', 1),
+('user10', 'password10', 1),
+('user11', 'password11', 1),
+('user12', 'password12', 1),
+('user13', 'password13', 1),
+('user14', 'password14', 1),
+('user15', 'password15', 1),
+('user16', 'password16', 1),
+('user17', 'password17', 1),
+('user18', 'password18', 1),
+('user19', 'password19', 1),
+('user20', 'password20', 1),
+('user21', 'password21', 1),
+('user22', 'password22', 1);
+GO
 GO
 
 
@@ -341,3 +362,116 @@ GO
 --select * from ChiTietHoaDon join shirt on shirtId = shirt.id
 --select * from ChiTietHoaDon join shirt on shirtId = shirt.id where idHoaDon = 3
 --update HoaDon set trangThai = N'Đang chuẩn bị hàng' where id=1
+-- Thêm 20 người dùng mới
+-- Thêm 20 người dùng mới
+
+DECLARE @i INT = 1;
+DECLARE @userId INT;
+DECLARE @tongTien INT;
+DECLARE @ngayThanhToan DATETIME;
+DECLARE @phuongThuc NVARCHAR(50);
+DECLARE @tenNguoiNhan NVARCHAR(255);
+DECLARE @sdtNguoiNhan INT;
+DECLARE @diaChi NVARCHAR(255);
+DECLARE @trangThai NVARCHAR(255);
+DECLARE @idHoaDon INT;
+DECLARE @shirtId INT;
+DECLARE @quantity INT;
+DECLARE @gia INT;
+DECLARE @size NVARCHAR(5);
+
+-- Danh sách họ và tên phổ biến
+DECLARE @ho NVARCHAR(50), @tenDem NVARCHAR(50), @ten NVARCHAR(50);
+
+WHILE @i <= 50
+BEGIN
+    -- Chọn ngẫu nhiên userId từ bảng account (giả định có userId từ 1 đến 20)
+    SET @userId = FLOOR(RAND() * 23) + 1;
+
+    -- Chọn ngẫu nhiên ngày thanh toán từ tháng 1 đến tháng 11 năm 2024
+    SET @ngayThanhToan = DATEADD(DAY, FLOOR(RAND() * 330), '2024-01-01');
+
+    -- Chọn phương thức thanh toán
+    SET @phuongThuc = CASE FLOOR(RAND() * 2)
+        WHEN 0 THEN N'Tiền mặt'
+        ELSE N'Thẻ tín dụng'
+    END;
+
+    -- Tạo họ, tên đệm, và tên ngẫu nhiên
+    SET @ho = CASE FLOOR(RAND() * 5)
+        WHEN 0 THEN N'Nguyễn'
+        WHEN 1 THEN N'Trần'
+        WHEN 2 THEN N'Lê'
+        WHEN 3 THEN N'Phạm'
+        ELSE N'Huỳnh'
+    END;
+
+    SET @tenDem = CASE FLOOR(RAND() * 5)
+        WHEN 0 THEN N'Văn'
+        WHEN 1 THEN N'Thị'
+        WHEN 2 THEN N'Hữu'
+        WHEN 3 THEN N'Hoàng'
+        ELSE N'Minh'
+    END;
+
+    SET @ten = CASE FLOOR(RAND() * 5)
+        WHEN 0 THEN N'Anh'
+        WHEN 1 THEN N'Tuấn'
+        WHEN 2 THEN N'Hoa'
+        WHEN 3 THEN N'Long'
+        ELSE N'Lan'
+    END;
+
+    SET @tenNguoiNhan = @ho + N' ' + @tenDem + N' ' + @ten;
+
+    -- Tạo thông tin người nhận khác
+    SET @sdtNguoiNhan = 1000000000 + FLOOR(RAND() * 899999999); -- Số điện thoại 10 chữ số
+    SET @diaChi = N'Địa chỉ ' + CAST(@i AS NVARCHAR);
+    SET @trangThai = CASE FLOOR(RAND() * 3)
+        WHEN 0 THEN N'Đã xác nhận chờ giao hàng'
+        WHEN 1 THEN N'Chờ xác nhận'
+        ELSE N'Đã hủy'
+    END;
+
+    -- Thêm hóa đơn vào bảng HoaDon
+    INSERT INTO HoaDon (userId, tongTien, ngayThanhToan, phuongThuc, tenNguoiNhan, sdtNguoiNhan, diaChi, trangThai)
+    VALUES (@userId, 0, @ngayThanhToan, @phuongThuc, @tenNguoiNhan, @sdtNguoiNhan, @diaChi, @trangThai);
+
+    -- Lấy id hóa đơn vừa thêm
+    SET @idHoaDon = SCOPE_IDENTITY();
+
+    -- Tạo từ 1 đến 3 sản phẩm cho mỗi hóa đơn
+    DECLARE @j INT = 1;
+    WHILE @j <= FLOOR(RAND() * 3) + 1
+    BEGIN
+        -- Chọn sản phẩm ngẫu nhiên từ bảng shirt (giả định id từ 1 đến 8)
+        SET @shirtId = FLOOR(RAND() * 8) + 1;
+
+        -- Số lượng sản phẩm ngẫu nhiên (1-5)
+        SET @quantity = FLOOR(RAND() * 5) + 1;
+
+        -- Chọn kích cỡ ngẫu nhiên
+        SET @size = CASE FLOOR(RAND() * 4)
+            WHEN 0 THEN N'S'
+            WHEN 1 THEN N'M'
+            WHEN 2 THEN N'L'
+            ELSE N'XL'
+        END;
+
+        -- Lấy giá sản phẩm từ bảng shirt
+        SELECT TOP 1 @gia = gia FROM shirt WHERE id = @shirtId;
+
+        -- Thêm chi tiết hóa đơn vào bảng ChiTietHoaDon
+        INSERT INTO ChiTietHoaDon (idHoaDon, shirtId, quantity, size, gia)
+        VALUES (@idHoaDon, @shirtId, @quantity, @size, @gia);
+
+        -- Cập nhật tổng tiền của hóa đơn
+        UPDATE HoaDon
+        SET tongTien = tongTien + (@gia * @quantity)
+        WHERE id = @idHoaDon;
+
+        SET @j = @j + 1;
+    END;
+
+    SET @i = @i + 1;
+END;

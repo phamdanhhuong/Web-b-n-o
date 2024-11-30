@@ -105,7 +105,7 @@
                     </div>
                 </div>
                 
-                <div class="row order-container p-3">
+                <div class="row order-container p-3" style="max-height: 50vh; overflow-y: auto;">
         
                     <table class="table table-bordered">
                         <thead class="table-light">
