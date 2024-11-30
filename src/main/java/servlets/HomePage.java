@@ -8,8 +8,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import beans.hoaDon;
 import beans.shirt;
@@ -67,7 +69,41 @@ public class HomePage extends HttpServlet {
 		}else if(accountDao.acc.getRole()==0) {
 			List<hoaDon> list = hoadonDao.getAllListHoaDon();
 	        request.setAttribute("list", list);
-	        
+	        Set<Integer> uniqueCustomers = new HashSet<>();
+	        for (hoaDon hd : list) {
+	            uniqueCustomers.add(hd.getUserId());
+	        }
+	        request.setAttribute("totalCustomers", uniqueCustomers.size());
+
+	        // Tính tổng số sản phẩm đã bán
+	        int totalProducts = 0;
+	        for (hoaDon hd : list) {
+	            totalProducts += hd.getListDetail().size();
+	        }
+	        request.setAttribute("totalProducts", totalProducts);
+
+	        // Tính tổng số đơn hàng
+	        int totalOrders = list.size();
+	        request.setAttribute("totalOrders", totalOrders);
+
+	        // Tính số sản phẩm sắp hết hàng (giả sử bạn có thông tin này trong chiTietHoaDon)
+	        List<shirt> shirts = shirtDao.LayDS();
+
+		     // Đặt ngưỡng tồn kho để xem sản phẩm nào "sắp hết hàng"
+		     int threshold = 100; // Ngưỡng tồn kho dưới 10 là sắp hết hàng
+	
+		     // Biến để đếm số sản phẩm sắp hết hàng
+		     int totalLowStockProducts = 0;
+	
+		     // Duyệt qua danh sách sản phẩm và đếm sản phẩm sắp hết hàng
+		     for (shirt sp : shirts) {
+		         if (sp.getTonKho() < threshold) {
+		             totalLowStockProducts++; // Tăng số lượng sản phẩm sắp hết hàng
+		         }
+		     }
+	
+		     // Truyền giá trị này vào request để sử dụng trong JSP
+		     request.setAttribute("totalLowStockProducts", totalLowStockProducts);
 	        // Tính doanh thu theo tháng
 	        Map<String, Integer> revenueByMonth = calculateRevenueByMonth(list);
 	        

@@ -41,41 +41,45 @@
                 <div class="row mb-3 thongke-admin-container">
 	                
 	                    <div class="col-md-3">
-                            <div class="card">
-		                        <div class="card-body card-custom success p-3">
-                                    <h5 class="card-title">Tổng Khách Hàng</h5>
-                                    <h5 class="card-title">Trong Năm</h5>
-                                    <p class="card-text">156</p>
-		                        </div>
-	                        </div>
-	                    </div>
-	                    <div class="col-md-3">
-                            <div class="card">
-		                        <div class="card-body card-custom info p-3">
-                                    <h5 class="card-title">Tổng Sản Phẩm</h5>
-                                    <h5 class="card-title">Trong Năm</h5>
-                                    <p class="card-text">11850</p>
-		                        </div>
-	                        </div>
-	                    </div>                
-	                    <div class="col-md-3">
-                            <div class="card">
-		                        <div class="card-body card-custom warning p-3">
-                                    <h5 class="card-title">Tổng Đơn Hàng</h5>
-                                    <h5 class="card-title">Trong Năm</h5>
-                                    <p class="card-text">2471</p>
-		                        </div>
-	                        </div>
-	                    </div>
-	                    <div class="col-md-3">
-                            <div class="card">
-		                        <div class="card-body card-custom danger p-3">
-                                    <h5 class="card-title">Số Sản Phẩm</h5>
-                                    <h5 class="card-title">Sắp Hết Hàng</h5>
-                                    <p class="card-text">34</p>
-		                        </div>
-	                        </div>
-	                    </div>
+						    <div class="card">
+						        <div class="card-body card-custom success p-3">
+						            <h5 class="card-title">Tổng Khách Hàng</h5>
+						            <h5 class="card-title">Trong Năm</h5>
+						            <p class="card-text">${totalCustomers}</p> <!-- Hiển thị tổng số khách hàng -->
+						        </div>
+						    </div>
+						</div>
+						
+						<div class="col-md-3">
+						    <div class="card">
+						        <div class="card-body card-custom info p-3">
+						            <h5 class="card-title">Tổng Sản Phẩm</h5>
+						            <h5 class="card-title">Trong Năm</h5>
+						            <p class="card-text">${totalProducts}</p> <!-- Hiển thị tổng số sản phẩm -->
+						        </div>
+						    </div>
+						</div>
+						
+						<div class="col-md-3">
+						    <div class="card">
+						        <div class="card-body card-custom warning p-3">
+						            <h5 class="card-title">Tổng Đơn Hàng</h5>
+						            <h5 class="card-title">Trong Năm</h5>
+						            <p class="card-text">${totalOrders}</p> <!-- Hiển thị tổng số đơn hàng -->
+						        </div>
+						    </div>
+						</div>
+						
+						<div class="col-md-3">
+						    <div class="card">
+						        <div class="card-body card-custom danger p-3">
+						            <h5 class="card-title">Số Sản Phẩm</h5>
+						            <h5 class="card-title">Sắp Hết Hàng</h5>
+						            <p class="card-text">${totalLowStockProducts}</p> <!-- Hiển thị số sản phẩm sắp hết hàng -->
+						        </div>
+						    </div>
+						</div>
+
                 </div>
                 <div class="row">
                 
