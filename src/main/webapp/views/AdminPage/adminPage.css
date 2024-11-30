@@ -79,6 +79,12 @@ body {
 }
 .card-custom {
     border-left: 5px solid;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}.card-custom:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 .card-custom.success {
     border-color: #28a745;
@@ -121,6 +127,15 @@ body {
     padding: 10px 20px;
     border-radius: 5px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+.thongke-admin-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    padding: 10px 20px;
+    border: none;
     font-family: Arial, sans-serif;
 }
 .donhang-container {
@@ -196,7 +211,6 @@ body {
     max-width: 23%;
     margin-bottom: 1rem;
 }
-
 .card {
     border: none;
     border-radius: 10px;

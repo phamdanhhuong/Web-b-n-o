@@ -1,15 +1,20 @@
 package servlets;
-
+import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import beans.hoaDon;
 import beans.shirt;
 import dao.accountDao;
+import dao.hoadonDao;
 import dao.shirtDao;
 
 /**
@@ -60,10 +65,50 @@ public class HomePage extends HttpServlet {
 				request.getRequestDispatcher("views/HomePage/HomePage.jsp").forward(request, response);
 			}
 		}else if(accountDao.acc.getRole()==0) {
-			List<shirt> list = shirtDao.LayDS();
-			request.setAttribute("list", list);
-			request.getRequestDispatcher("views/AdminTrangChu/AdminTrangChu.jsp").forward(request, response);
+			List<hoaDon> list = hoadonDao.getAllListHoaDon();
+	        request.setAttribute("list", list);
+	        
+	        // Tính doanh thu theo tháng
+	        Map<String, Integer> revenueByMonth = calculateRevenueByMonth(list);
+	        
+	        // Chuyển đổi Map thành JSON
+	        Gson gson = new Gson();
+	        String revenueByMonthJson = gson.toJson(revenueByMonth);
+	        
+	        // Đưa JSON vào request
+	        request.setAttribute("revenueByMonthJson", revenueByMonthJson);
+	        
+	        request.getRequestDispatcher("views/AdminTrangChu/AdminTrangChu.jsp").forward(request, response);
 		}
 	}
+	private Map<String, Integer> calculateRevenueByMonth(List<hoaDon> hoaDons) {
+	    Map<String, Integer> revenueByMonth = new HashMap<>();
+	    SimpleDateFormat monthFormat = new SimpleDateFormat("MM-yyyy");
+
+	    // Log danh sách hóa đơn ban đầu
+	    System.out.println("Bắt đầu tính toán doanh thu theo tháng. Tổng số hóa đơn: " + hoaDons.size());
+
+	    for (hoaDon hd : hoaDons) {
+	        String month = monthFormat.format(hd.getNgayThanhToan()); // Chuyển ngày sang định dạng "MM-yyyy"
+	        int previousRevenue = revenueByMonth.getOrDefault(month, 0);
+	        int updatedRevenue = previousRevenue + hd.getTongTien();
+
+	        // Log thông tin từng hóa đơn
+	        System.out.println("Hóa đơn ID: " + hd.getId() +
+	                           ", Ngày thanh toán: " + hd.getNgayThanhToan() +
+	                           ", Tổng tiền: " + hd.getTongTien() +
+	                           ", Doanh thu trước: " + previousRevenue +
+	                           ", Doanh thu cập nhật: " + updatedRevenue);
+
+	        // Cập nhật doanh thu vào map
+	        revenueByMonth.put(month, updatedRevenue);
+	    }
+
+	    // Log kết quả cuối cùng
+	    System.out.println("Tính toán hoàn thành. Doanh thu theo tháng: " + revenueByMonth);
+
+	    return revenueByMonth;
+	}
+
 
 }

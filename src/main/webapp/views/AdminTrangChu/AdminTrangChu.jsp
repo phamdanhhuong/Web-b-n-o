@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@taglib prefix="fmt" uri="jakarta.tags.fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,133 +38,181 @@
         <main class="col-md-10">
             <div class="container my-4">
                 <h2>Bảng Điều Khiển</h2>
-                
-                <!-- Thẻ thống kê -->
-                <div class="row g-4 my-4">
-                    <div class="col-md-3">
-                        <div class="card card-custom success p-3">
-                            <h5>Tổng Khách Hàng</h5>
-                            <p>56 khách hàng</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card card-custom info p-3">
-                            <h5>Tổng Sản Phẩm</h5>
-                            <p>1850 sản phẩm</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card card-custom warning p-3">
-                            <h5>Tổng Đơn Hàng</h5>
-                            <p>247 đơn hàng</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card card-custom danger p-3">
-                            <h5>Sắp Hết Hàng</h5>
-                            <p>34 sản phẩm</p>
-                        </div>
-                    </div>
+                <div class="row mb-3 thongke-admin-container">
+	                
+	                    <div class="col-md-3">
+                            <div class="card">
+		                        <div class="card-body card-custom success p-3">
+                                    <h5 class="card-title">Tổng Khách Hàng</h5>
+                                    <h5 class="card-title">Trong Năm</h5>
+                                    <p class="card-text">156</p>
+		                        </div>
+	                        </div>
+	                    </div>
+	                    <div class="col-md-3">
+                            <div class="card">
+		                        <div class="card-body card-custom info p-3">
+                                    <h5 class="card-title">Tổng Sản Phẩm</h5>
+                                    <h5 class="card-title">Trong Năm</h5>
+                                    <p class="card-text">11850</p>
+		                        </div>
+	                        </div>
+	                    </div>                
+	                    <div class="col-md-3">
+                            <div class="card">
+		                        <div class="card-body card-custom warning p-3">
+                                    <h5 class="card-title">Tổng Đơn Hàng</h5>
+                                    <h5 class="card-title">Trong Năm</h5>
+                                    <p class="card-text">2471</p>
+		                        </div>
+	                        </div>
+	                    </div>
+	                    <div class="col-md-3">
+                            <div class="card">
+		                        <div class="card-body card-custom danger p-3">
+                                    <h5 class="card-title">Số Sản Phẩm</h5>
+                                    <h5 class="card-title">Sắp Hết Hàng</h5>
+                                    <p class="card-text">34</p>
+		                        </div>
+	                        </div>
+	                    </div>
                 </div>
-
-                <!-- Tình trạng đơn hàng -->
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h5>Tình trạng đơn hàng</h5>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>ID đơn hàng</th>
-                                    <th>Tên khách hàng</th>
-                                    <th>Tổng tiền</th>
-                                    <th>Trạng thái</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>AL3947</td>
-                                    <td>Phạm Thị Ngọc</td>
-                                    <td>10,770,000 đ</td>
-                                    <td><span class="badge bg-primary">Chờ xử lý</span></td>
-                                </tr>
-                                <tr>
-                                    <td>ER3853</td>
-                                    <td>Nguyễn Thị Mỹ Yến</td>
-                                    <td>16,770,000 đ</td>
-                                    <td><span class="badge bg-warning text-dark">Đang vận chuyển</span></td>
-                                </tr>
-                                <tr>
-                                    <td>MD0837</td>
-                                    <td>Trần Thanh Phú</td>
-                                    <td>12,500,000 đ</td>
-                                    <td><span class="badge bg-success">Hoàn thành</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Khách hàng mới -->
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h5>Khách hàng mới</h5>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Tên khách hàng</th>
-                                    <th>Ngày sinh</th>
-                                    <th>Điện thoại</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>#183</td>
-                                    <td>Hữu Võ Tuấn</td>
-                                    <td>21/07/1996</td>
-                                    <td>090-123-4567</td>
-                                </tr>
-                                <tr>
-                                    <td>#184</td>
-                                    <td>Nguyễn Văn Bảo</td>
-                                    <td>12/04/1998</td>
-                                    <td>091-234-5678</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                
-                <!-- Placeholder for charts (Add your charts library here) -->
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5>Dữ liệu 6 tháng đầu vào</h5>
-                            </div>
-                            <div class="card-body">
-                                <p>Biểu đồ ở đây</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5>Thống kê 6 tháng doanh thu</h5>
-                            </div>
-                            <div class="card-body">
-                                <p>Biểu đồ ở đây</p>
-                            </div>
-                        </div>
-                    </div>
+                
+				    <div class="col-md-6">
+		                <!-- Tình trạng đơn hàng -->
+		                <div class="row mb-4">
+						    <div class="col-md-12">
+						        <div class="card">
+				                    <div class="card-header">
+				                        <h5>Tình trạng đơn hàng</h5>
+				                    </div>
+				                    <div class="card-body">
+				                        <table class="table table-bordered">
+				                            <thead class="table-light">
+					                            <tr>
+					                                <th>ID đơn hàng</th>
+				                                    <th>Tên khách hàng</th>
+				                                    <th>Tổng tiền</th>
+				                                    <th>Trạng thái</th>
+					                            </tr>
+					                        </thead>
+					                        <tbody>
+					                        	<c:forEach var="item" items="${list}">
+						                            <tr>
+						                                <td>${item.id}</td>
+						                                <td>${item.tenNguoiNhan}</td>
+						                                <td><fmt:formatNumber value="${item.tongTien}" type="number" pattern="#,###"/>đ</td>
+						                                <td>${item.trangThai}</td>
+						                            </tr>
+					                            </c:forEach>
+					                        </tbody>
+				                        </table>
+				                    </div>
+			                    </div>
+		                    </div>
+		                </div>
+		
+		                <!-- Khách hàng mới -->
+		                <div class="row mb-4">
+						    <div class="col-md-12">
+						        <div class="card">
+				                    <div class="card-header">
+				                        <h5>Khách hàng mới</h5>
+				                    </div>
+				                    <div class="card-body">
+				                        <table class="table table-bordered">
+				                            <thead>
+				                                <tr>
+				                                    <th>Tên khách hàng</th>
+				                                    <th>Địa chỉ</th>
+				                                    <th>Điện thoại</th>
+				                                </tr>
+				                            </thead>
+				                            <tbody>
+				                                <c:forEach var="item" items="${list}">
+						                            <tr>
+						                                <td>${item.tenNguoiNhan}</td>
+						                                <td>${item.diaChi}</td>
+						                                <td>${item.sdtNguoiNhan}</td>
+						                            </tr>
+					                            </c:forEach>
+				                            </tbody>
+				                        </table>
+				                    </div>
+				                </div>
+			                </div>
+		                </div>
+	                
+	                </div>
+                	
+				    
+				    <div class="col-md-6">
+				        <div class="card">
+				            <div class="card-header">
+				                <h5>Thống kê 6 tháng doanh thu</h5>
+				            </div>
+				            <div class="card-body">
+				                <canvas id="revenueChart"></canvas>
+				            </div>
+				        </div>
+				    </div>
+
                 </div>
             </div>
         </main>
     </div>
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Chuyển đổi chuỗi JSON thành đối tượng
+    const revenueByMonth = JSON.parse('${revenueByMonthJson}');
+    console.log("Dữ liệu doanh thu theo tháng:", revenueByMonth); // Log dữ liệu doanh thu theo tháng
+
+    const labels = Object.keys(revenueByMonth); // Danh sách các tháng: "MM-yyyy"
+    const data = Object.values(revenueByMonth); // Tổng doanh thu theo tháng
+
+    console.log("Danh sách tháng:", labels); // Log các tháng
+    console.log("Tổng doanh thu theo tháng:", data); // Log tổng doanh thu của từng tháng
+
+    const revenueData = {
+        labels: labels.slice(-6), // Lấy 6 tháng gần nhất
+        datasets: [{
+            label: 'Doanh thu theo tháng',
+            data: data.slice(-6), // Doanh thu của 6 tháng gần nhất
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+        }]
+    };
+
+    console.log("Dữ liệu biểu đồ doanh thu 6 tháng gần nhất:", revenueData); // Log dữ liệu biểu đồ
+
+    const ctx = document.getElementById('revenueChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: revenueData,
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Doanh thu (VND)'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Tháng'
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+
 </html>

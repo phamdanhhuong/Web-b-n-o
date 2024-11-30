@@ -4,4 +4,14 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>thongke</display-name>
+    <servlet-name>thongke</servlet-name>
+    <servlet-class>servlets.thongke</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>thongke</servlet-name>
+    <url-pattern>/thongke</url-pattern>
+  </servlet-mapping>
 </web-app>
