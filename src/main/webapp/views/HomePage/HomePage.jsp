@@ -210,12 +210,16 @@
 
             <div class="price-range mb-4">
                 <h5 class="mb-3">Khoảng giá</h5>
-                <span id="priceLabel">${range == null ? 1500000 : range}đ</span>
+				<div style="display: flex; justify-content: space-between; width: 100%;">
+				    <span>Từ </span>
+				    <span style="font-weight: bold;">0đ</span> <!-- Nổi bật 0 -->
+				    <span> đến </span>
+				    <span id="priceLabel" style="font-weight: bold;">${range == null ? 1500000 : range}đ</span>
+				</div>
+
+
+
                 <input type="range" min="0" max="3000000" value="${range == null ? 1500000 : range}" step="10000" name="loc-range" class="form-range" oninput="updatePriceLabel(this.value)" style="width: 100%;">
-                <div class="price-label mt-2 d-flex justify-content-between">
-                    <span>0đ</span>
-                    <span>3,000,000đ</span>
-                </div>
             </div>
 
             <div class="color mb-4">
@@ -252,7 +256,7 @@
           </div>   
           <c:if test="${empty list}">
 		    <div class="alert alert-info text-center p-5 rounded shadow" 
-		         style="font-family: 'Avenir', sans-serif; height: 75vh; background-color: #f0f8ff; 
+		         style="font-family: 'Avenir', sans-serif; height: 80vh; background-color: #f0f8ff; 
 		                display: flex; align-items: center; justify-content: center;">
 		        <div class="text-center">
 		            <div class="d-flex justify-content-center">
@@ -267,7 +271,7 @@
 		    </div>
 		</c:if>
 
-          <div class="col-12" style="height: 75vh; overflow-y: auto;">
+          <div class="col-12" style="height: 80vh; overflow-y: auto;">
             <div class="container d-flex flex-wrap gap-3 p-3 justify-content-center">
 			    <c:forEach var="item" items="${list}">
 			        <div class="card hover-effect" style="width: 18rem;">

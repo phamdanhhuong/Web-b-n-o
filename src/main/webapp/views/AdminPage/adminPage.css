@@ -351,4 +351,7 @@ body {
   border-color: #6c757d;
 }
 
-
+#revenueChart {
+    width: 100%;
+    height: 100%;
+}

@@ -19,26 +19,35 @@
     <div class="row">
         <!-- Sidebar -->
         <div class="col-md-2">
-            <div class="sidebar">
-                <div class="profile">
-                    <i class="fas fa-store"></i> 
-                    <p>Danh Hưởng</p>
-                    <small>Chào mừng bạn trở lại</small>
-                </div>
-                <div class="menu">
-                    <a href="/WebBanAo/home" class="menu-item">Bảng điều khiển</a>
-                    <a href="/WebBanAo/admin" class="menu-item">Quản lý sản phẩm</a>
-                    <a href="/WebBanAo/quanly" class="menu-item">Quản lý đơn hàng</a>
-                    <a href="/WebBanAo" class="menu-item">Logout</a>
-                </div>
-            </div>
-        </div>
+		    <div class="sidebar">
+		        <div class="profile">
+		            <i class="fas fa-store me-2"></i> 
+		            <p>Danh Hưởng</p>
+		            <small>Chào mừng bạn trở lại</small>
+		        </div>
+		        <div class="menu">
+		            <a href="/WebBanAo/home" class="menu-item">
+		                <i class="fas fa-tachometer-alt me-2"></i> Bảng điều khiển
+		            </a>
+		            <a href="/WebBanAo/admin" class="menu-item">
+		                <i class="fas fa-box me-2"></i> Quản lý sản phẩm
+		            </a>
+		            <a href="/WebBanAo/quanly" class="menu-item">
+		                <i class="fas fa-clipboard-list me-2"></i> Quản lý đơn hàng
+		            </a>
+		            <a href="/WebBanAo" class="menu-item">
+		                <i class="fas fa-sign-out-alt me-2"></i> Logout
+		            </a>
+		        </div>
+		    </div>
+		</div>
+
 
         <!-- Main Content -->
         <main class="col-md-10">
             <div class="container my-4">
                 <h2>Bảng Điều Khiển</h2>
-                <div class="row mb-3 thongke-admin-container">
+                <div class="row mb-1 thongke-admin-container">
 	                
 	                    <div class="col-md-3">
 						    <div class="card">
@@ -79,19 +88,17 @@
 						        </div>
 						    </div>
 						</div>
-
                 </div>
                 <div class="row">
-                
-				    <div class="col-md-6">
+				    <div class="col-md-12">
 		                <!-- Tình trạng đơn hàng -->
 		                <div class="row mb-4">
-						    <div class="col-md-12">
+						    <div class="col-md-6">
 						        <div class="card">
 				                    <div class="card-header">
 				                        <h5>Tình trạng đơn hàng</h5>
 				                    </div>
-				                    <div class="card-body">
+				                    <div class="card-body" style="max-height: 36vh; overflow-y: auto;">
 				                        <table class="table table-bordered">
 				                            <thead class="table-light">
 					                            <tr>
@@ -115,16 +122,26 @@
 				                    </div>
 			                    </div>
 		                    </div>
+						    <div class="col-md-6">
+						        <div class="card">
+						            <div class="card-header">
+						                <h5>Thống kê 6 tháng doanh thu</h5>
+						            </div>
+						            <div class="card-body">
+						                <canvas id="revenueChart"></canvas>
+						            </div>
+						        </div>
+						    </div>
 		                </div>
-		
-		                <!-- Khách hàng mới -->
-		                <div class="row mb-4">
+	                </div>
+                </div>
+                <div class="row mb-4">
 						    <div class="col-md-12">
 						        <div class="card">
 				                    <div class="card-header">
 				                        <h5>Khách hàng mới</h5>
 				                    </div>
-				                    <div class="card-body">
+				                    <div class="card-body" style="max-height: 23vh; overflow-y: auto; width: 100%">
 				                        <table class="table table-bordered">
 				                            <thead>
 				                                <tr>
@@ -147,22 +164,6 @@
 				                </div>
 			                </div>
 		                </div>
-	                
-	                </div>
-                	
-				    
-				    <div class="col-md-6">
-				        <div class="card">
-				            <div class="card-header">
-				                <h5>Thống kê 6 tháng doanh thu</h5>
-				            </div>
-				            <div class="card-body">
-				                <canvas id="revenueChart"></canvas>
-				            </div>
-				        </div>
-				    </div>
-
-                </div>
             </div>
         </main>
     </div>
@@ -194,6 +195,7 @@
     console.log("Dữ liệu biểu đồ doanh thu 6 tháng gần nhất:", revenueData); // Log dữ liệu biểu đồ
 
     const ctx = document.getElementById('revenueChart').getContext('2d');
+    
     new Chart(ctx, {
         type: 'line',
         data: revenueData,

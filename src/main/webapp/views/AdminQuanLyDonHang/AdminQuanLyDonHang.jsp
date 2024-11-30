@@ -25,20 +25,30 @@
 <body>
     <div class="row">
         <div class="col-md-2">
-            <div class="sidebar">
-                <div class="profile">
-                    <i class="fas fa-store"></i> 
-                    <p>Danh Hưởng</p>
-                    <small>Chào mừng bạn trở lại</small>
-                </div>
-                <div class="menu">
-                    <a href="/WebBanAo/home" class="menu-item">Bảng điều khiển</a>
-                    <a href="/WebBanAo/admin" class="menu-item">Quản lý sản phẩm</a>
-                    <a href="/WebBanAo/quanly" class="menu-item">Quản lý đơn hàng</a>
-                    <a href="/WebBanAo" class="menu-item">Logout</a>
-                </div>
-            </div>
-        </div>
+		    <div class="sidebar">
+		        <div class="profile">
+		            <i class="fas fa-store me-2"></i> 
+		            <p>Danh Hưởng</p>
+		            <small>Chào mừng bạn trở lại</small>
+		        </div>
+		        <div class="menu">
+		            <a href="/WebBanAo/home" class="menu-item">
+		                <i class="fas fa-tachometer-alt me-2"></i> Bảng điều khiển
+		            </a>
+		            <a href="/WebBanAo/admin" class="menu-item">
+		                <i class="fas fa-box me-2"></i> Quản lý sản phẩm
+		            </a>
+		            <a href="/WebBanAo/quanly" class="menu-item">
+		                <i class="fas fa-clipboard-list me-2"></i> Quản lý đơn hàng
+		            </a>
+		            <a href="/WebBanAo" class="menu-item">
+		                <i class="fas fa-sign-out-alt me-2"></i> Logout
+		            </a>
+		        </div>
+		    </div>
+		</div>
+
+
         <div class="col-md-10">
 
             <div class="container mt-5">
