@@ -186,68 +186,67 @@
 
     <div class="container d-flex gap-3 p-3">
         <div class="col-3">
-    <form action="/WebBanAo/home" method="get" id="formLoc">
-        <div class="filter p-4 bg-light border rounded shadow-sm">
-            <h2 class="text-center mb-4 font-weight-bold">Bộ lọc</h2>
-
-            <div class="category mb-4">
-                <h5 class="mb-3">Danh mục sản phẩm</h5>
-                <ul class="list-unstyled">
-                    <li><input class="form-check-input" type="radio" name="loc-alphabet" value="asc" id="" <c:if test="${alphabet == null || alphabet == 'asc'}">checked</c:if>> A-Z</li>
-                    <li><input class="form-check-input" type="radio" name="loc-alphabet" value="desc" id="" <c:if test="${alphabet != null && alphabet == 'desc'}">checked</c:if>> Z-A</li>
-                    <li><input class="form-check-input" type="radio" name="loc-price" value="asc" id="" <c:if test="${price == null || price == 'asc'}">checked</c:if>> Giá tăng dần</li>
-                    <li><input class="form-check-input" type="radio" name="loc-price" value="desc" id="" <c:if test="${price != null && price == 'desc'}">checked</c:if>> Giá giảm dần</li>
-                </ul>
-            </div>
-
-            <h5 class="mb-3">Loại áo</h5>
-            <select class="form-select mb-4" id="combo-box" name="loc-loai" style="width: 100%; padding: 10px; border-radius: 8px;">
-                <option value="" <c:if test="${loai == null || loai == ''}">selected</c:if>>Tất cả</option>
-                <c:forEach var="itemLoai" items="${dsLoai}">
-                    <option value="${itemLoai}" <c:if test="${loai != null && loai == itemLoai}">selected</c:if>>${itemLoai}</option>
-                </c:forEach>
-            </select>
-
-            <div class="price-range mb-4">
-                <h5 class="mb-3">Khoảng giá</h5>
-				<div style="display: flex; justify-content: space-between; width: 100%;">
-				    <span>Từ </span>
-				    <span style="font-weight: bold;">0đ</span> <!-- Nổi bật 0 -->
-				    <span> đến </span>
-				    <span id="priceLabel" style="font-weight: bold;">${range == null ? 1500000 : range}đ</span>
-				</div>
-
-
-
-                <input type="range" min="0" max="3000000" value="${range == null ? 1500000 : range}" step="10000" name="loc-range" class="form-range" oninput="updatePriceLabel(this.value)" style="width: 100%;">
-            </div>
-
-            <div class="color mb-4">
-                <h5 class="mb-3">Màu sắc</h5>
-                <div class="form-check d-flex flex-column">
-                    <div class="d-flex align-items-center gap-3 mb-2">
-                        <input class="form-check-input" type="radio" name="loc-color" value="" id="" <c:if test="${color == null || color == ''}">checked</c:if>>
-                        <span>Tất cả</span>
-                    </div>
-                    <div class="d-flex gap-5 flex-wrap">
-					    <c:forEach var="mau" items="${dsMau}">
-					        <div class="d-flex align-items-center gap-3 mb-2">
-					            <input class="form-check-input" type="radio" name="loc-color" value="${mau}" id="" <c:if test="${color != null && color == mau}">checked</c:if>>
-					            <div class="color-options d-flex gap-2">
-					                <span class="color-circle" style="background-color: ${mau}; width: 20px; height: 20px; border-radius: 50%;"></span>
-					            </div>
-					        </div>
-					    </c:forEach>
-					</div>
-
-                </div>
-            </div>
-
-            <input id="result" value="${searchText == null ? '' : searchText}" type="hidden" name="loc-searchText">
-            <button class="btn btn-primary mt-3 w-100" type="submit"><i class="fa-solid fa-filter"></i> Lọc</button>
-        </div>
-    </form>
-</div>
+		    <form action="/WebBanAo/home" method="get" id="formLoc">
+		        <div class="filter p-4 bg-light border rounded shadow-sm">
+		            <h2 class="text-center mb-4 font-weight-bold">Bộ lọc</h2>
+		
+		            <div class="category mb-4">
+		                <h5 class="mb-3">Danh mục sản phẩm</h5>
+		                <ul class="list-unstyled">
+		                    <li><input class="form-check-input" type="radio" name="loc-alphabet" value="asc" id="" <c:if test="${alphabet == null || alphabet == 'asc'}">checked</c:if>> A-Z</li>
+		                    <li><input class="form-check-input" type="radio" name="loc-alphabet" value="desc" id="" <c:if test="${alphabet != null && alphabet == 'desc'}">checked</c:if>> Z-A</li>
+		                    <li><input class="form-check-input" type="radio" name="loc-price" value="asc" id="" <c:if test="${price == null || price == 'asc'}">checked</c:if>> Giá tăng dần</li>
+		                    <li><input class="form-check-input" type="radio" name="loc-price" value="desc" id="" <c:if test="${price != null && price == 'desc'}">checked</c:if>> Giá giảm dần</li>
+		                </ul>
+		            </div>
+		
+		            <h5 class="mb-3">Loại áo</h5>
+		            <select class="form-select mb-4" id="combo-box" name="loc-loai" style="width: 100%; padding: 10px; border-radius: 8px;">
+		                <option value="" <c:if test="${loai == null || loai == ''}">selected</c:if>>Tất cả</option>
+		                <c:forEach var="itemLoai" items="${dsLoai}">
+		                    <option value="${itemLoai}" <c:if test="${loai != null && loai == itemLoai}">selected</c:if>>${itemLoai}</option>
+		                </c:forEach>
+		            </select>
+		
+		            <div class="price-range mb-4">
+		                <h5 class="mb-3">Khoảng giá</h5>
+						<div style="display: flex; justify-content: space-between; width: 100%;">
+						    <span>Từ </span>
+						    <span style="font-weight: bold;">0đ</span> <!-- Nổi bật 0 -->
+						    <span> đến </span>
+						    <span id="priceLabel" style="font-weight: bold;">${range == null ? 1500000 : range}đ</span>
+						</div>
+		
+		
+		
+		                <input type="range" min="0" max="3000000" value="${range == null ? 1500000 : range}" step="10000" name="loc-range" class="form-range" oninput="updatePriceLabel(this.value)" style="width: 100%;">
+		            </div>
+		
+		            <div class="color mb-4">
+		                <h5 class="mb-3">Màu sắc</h5>
+		                <div class="form-check d-flex flex-column">
+		                    <div class="d-flex align-items-center gap-3 mb-2">
+		                        <input class="form-check-input" type="radio" name="loc-color" value="" id="" <c:if test="${color == null || color == ''}">checked</c:if>>
+		                        <span>Tất cả</span>
+		                    </div>
+		                    <div class="d-flex gap-5 flex-wrap">
+							    <c:forEach var="mau" items="${dsMau}">
+							        <div class="d-flex align-items-center gap-3 mb-2">
+							            <input class="form-check-input" type="radio" name="loc-color" value="${mau}" id="" <c:if test="${color != null && color == mau}">checked</c:if>>
+							            <div class="color-options d-flex gap-2">
+							                <span class="color-circle" style="background-color: ${mau}; width: 20px; height: 20px; border-radius: 50%;"></span>
+							            </div>
+							        </div>
+							    </c:forEach>
+							</div>
+		                </div>
+		            </div>
+		
+		            <input id="result" value="${searchText == null ? '' : searchText}" type="hidden" name="loc-searchText">
+		            <button class="btn btn-primary mt-3 w-100" type="submit"><i class="fa-solid fa-filter"></i> Lọc</button>
+		        </div>
+		    </form>
+		</div>
 
         <div class="col-9">
           <div class="row">

@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">  
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
 <link href="./views/HomePage/HomePage.css" type="text/css" rel="stylesheet">
+<link href="./views/AdminPage/AdminPage.css" type="text/css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
@@ -32,6 +33,56 @@
 			opacity: 1;
 			transform: translateY(0);
 		}
+	}
+	.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+	}
+	
+	.card:hover {
+	    transform: translateY(-5px);
+	    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+	}
+	
+	.card-body {
+	    padding: 20px;
+	    text-align: center;
+	}
+	
+	.card-title {
+	    font-size: 18px;
+	    font-weight: bold;
+	    margin-bottom: 10px;
+	    color: #343a40;
+	}
+	
+	.card-text {
+	    font-size: 24px;
+	    font-weight: bold;
+	    color: #007bff;
+	}
+	.card-custom {
+	    border-left: 5px solid;
+	    border-radius: 10px;
+	    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	    transition: transform 0.3s, box-shadow 0.3s;
+	}.card-custom:hover {
+	    transform: translateY(-5px);
+	    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+	}
+	.card-custom.success {
+	    border-color: #28a745;
+	}
+	.card-custom.info {
+	    border-color: #17a2b8;
+	}
+	.card-custom.warning {
+	    border-color: #ffc107;
+	}
+	.card-custom.danger {
+	    border-color: #dc3545;
 	}
 </style>
 
@@ -79,75 +130,146 @@
 			        <p class="text-muted">Chúng tôi không tìm thấy bất kỳ đơn hàng nào trong tài khoản của bạn. Vui lòng quay lại sau.</p>
 			    </div>
 			</c:if>
-			<div class="col-12 text-center mb-4">
-			    <p class="text-primary fw-bold fs-5">
-			        <span class="badge bg-info text-white p-2" style="font-size: 1.2rem;">
-			            Nhấn vào <span class="text-decoration-underline" style="cursor: pointer; font-weight: bold; transition: color 0.3s;">Hóa đơn</span> để xem chi tiết đơn hàng.
-			        </span>
-			    </p>
-			</div>
-
+			<!-- Đếm số hóa đơn theo từng trạng thái -->
+	        <div class="col-12 text-center">
+	            <div class="row thongke-container p-3">
+				    <h4 class="mb-2 mt-3"><b>Số lượng đơn hàng: ${totalOrders}</b></h4>
+				    <div class="row">
+				        <!-- Đếm số hóa đơn theo từng trạng thái -->
+				        <c:set var="totalOrders" value="0" />
+				        <c:set var="completedOrders" value="0" />
+				        <c:set var="waitingOrders" value="0" />
+				        <c:set var="shippingOrders" value="0" />
+				        <c:set var="canceledOrders" value="0" />
+				        
+				        <c:forEach var="item" items="${list}">
+				            <c:set var="totalOrders" value="${totalOrders + 1}" />
+				            <c:if test="${item.trangThai == 'Hoàn thành'}">
+				                <c:set var="completedOrders" value="${completedOrders + 1}" />
+				            </c:if>
+				            <c:if test="${item.trangThai == 'Đã xác nhận'}">
+				                <c:set var="waitingOrders" value="${waitingOrders + 1}" />
+				            </c:if>
+				            <c:if test="${item.trangThai == 'Chờ xác nhận'}">
+				                <c:set var="shippingOrders" value="${shippingOrders + 1}" />
+				            </c:if>
+				            <c:if test="${item.trangThai == 'Đã hủy'}">
+				                <c:set var="canceledOrders" value="${canceledOrders + 1}" />
+				            </c:if>
+				        </c:forEach>
+				
+				        <!-- Card thống kê -->
+				        <div class="col-md-3">
+				            <div class="card">
+				                <div class="card-body card-custom success">
+				                    <h5 class="card-title">Hoàn thành</h5>
+				                    <p class="card-text">${completedOrders}</p>
+				                </div>
+				            </div>
+				        </div>
+				        <div class="col-md-3">
+				            <div class="card">
+				                <div class="card-body card-custom info">
+				                    <h5 class="card-title">Đã xác nhận</h5>
+				                    <p class="card-text">${waitingOrders}</p>
+				                </div>
+				            </div>
+				        </div>
+				        <div class="col-md-3">
+				            <div class="card">
+				                <div class="card-body card-custom warning">
+				                    <h5 class="card-title">Chờ xác nhận</h5>
+				                    <p class="card-text">${shippingOrders}</p>
+				                </div>
+				            </div>
+				        </div>
+				        <div class="col-md-3">
+				            <div class="card">
+				                <div class="card-body card-custom danger">
+				                    <h5 class="card-title">Đã hủy</h5>
+				                    <p class="card-text">${canceledOrders}</p>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+	        </div>
 			<!-- Cột 1 -->
-			<div class="col" style="height: 80vh; overflow-y: auto;">
-			    <div class="container my-4">
-
+			<div class="col  ms-4" style="height: 69vh; overflow-y: auto; border-radius: 15px; background-color: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+			    <div class="container p-3">
 			        <c:forEach var="item" items="${list}">
-			            <div class="order-card">
-			                <div class="d-flex justify-content-between align-items-center">
-			                    <div>
-			                        <span class="mall-badge">Shop</span>
-			                        <strong>Chính hãng</strong>
+			            <div class="order-card p-4 mb-4 border rounded shadow-sm bg-white" style="border-radius: 15px;">
+			                <!-- Thông tin trên cùng -->
+			                <div class="d-flex justify-content-between align-items-center mb-3">
+			                    <div class="d-flex align-items-center">
+			                        <span class="mall-badge text-white px-2 py-1 rounded" style="background-color: #007bff; font-size: 0.9rem;">Shop</span>
+			                        <strong class="ms-2 text-secondary">Chính hãng</strong>
 			                    </div>
-			                    <span class="status-text">${item.trangThai}</span>
+			                    <span class="badge ${item.trangThai == 'Chờ xác nhận' ? 'bg-success' : 'bg-warning'} text-white p-2">
+			                        ${item.trangThai}
+			                    </span>
 			                </div>
-			                <div class="d-flex mt-3">
-			                    <a onclick="displayDetail(${item.id})">
-			                        <img src="${item.listDetail.get(0).shirt.link}" alt="${item.listDetail.get(0).shirt.ten}" class="img-thumbnail mr-3" style="width: 170px; height: auto;">
+			
+			                <!-- Thông tin sản phẩm -->
+			                <div class="d-flex">
+			                    <a onclick="displayDetail(${item.id})" class="text-decoration-none">
+			                        <img src="${item.listDetail.get(0).shirt.link}" alt="${item.listDetail.get(0).shirt.ten}" 
+			                             class="img-thumbnail rounded" style="width: 170px; height: auto; object-fit: cover;">
 			                    </a>
-			                    <div class="mx-3">
-			                        <p class="mb-1">${item.listDetail.get(0).shirt.ten}</p>      
-			                        <small class="text-muted">Size M</small>      
-			                        <p class="text-muted mt-2"><fmt:formatNumber value="${item.listDetail.get(0).gia}" type="number" pattern="#,###"/>đ x ${item.listDetail.get(0).quantity}</p>
-			                        <p class="mt-2">(Và ${item.listDetail.size() - 1} sản phẩm khác)</p>
-			                        <p class="total-price">Tổng số tiền (${item.listDetail.size()} sản phẩm): <fmt:formatNumber value="${item.tongTien}" type="number" pattern="#,###"/>đ</p>
-			                        <p class="mt-2">Ngày thanh toán: <fmt:formatDate value="${item.ngayThanhToan}" pattern="dd/MM/yyyy" /></p>
+			                    <div class="ms-3 flex-grow-1">
+			                        <p class="fw-bold text-dark mb-2" style="font-size: 1.1rem;">${item.listDetail.get(0).shirt.ten}</p>
+			                        <small class="text-muted d-block">Size: M</small>
+			                        <p class="text-muted mt-2 mb-2">
+			                            <fmt:formatNumber value="${item.listDetail.get(0).gia}" type="number" pattern="#,###"/>đ x ${item.listDetail.get(0).quantity}
+			                        </p>
+			                        <p class="text-muted">(Và ${item.listDetail.size() - 1} sản phẩm khác)</p>
+			                        <p class="fw-bold text-success mt-3" style="font-size: 1rem;">
+			                            Tổng số tiền (${item.listDetail.size()} sản phẩm): 
+			                            <fmt:formatNumber value="${item.tongTien}" type="number" pattern="#,###"/>đ
+			                        </p>
+			                        <p class="text-muted mt-2">Ngày thanh toán: 
+			                            <fmt:formatDate value="${item.ngayThanhToan}" pattern="dd/MM/yyyy" />
+			                        </p>
 			                    </div>
 			                </div>
-			                <div class="mt-3">
-			                    <button class="btn btn-outline-secondary btn-sm">Xem đánh giá</button>
-			                    <button class="btn btn-outline-danger btn-sm">Mua lại</button>
+			
+			                <!-- Nút hành động -->
+			                <div class="mt-3 d-flex">
+			                    <button class="btn btn-outline-secondary btn-sm me-2">
+			                        <i class="fas fa-star"></i> Xem đánh giá
+			                    </button>
+			                    <button class="btn btn-outline-danger btn-sm">
+			                        <i class="fas fa-shopping-cart"></i> Mua lại
+			                    </button>
 			                </div>
 			            </div>
 			        </c:forEach>
 			    </div>
 			</div>
+
 			
 			<!-- Cột 2 -->
 			<div class="col">
-
 				<c:forEach var="item" items="${list}">
-					<div class="container mt-4" style="display: none" id="hoadon${item.id}">
-					      <div class="container mt-4 p-2">
-					        <div class="order-container shadow-sm">
+					<div class="container" style="display: none" id="hoadon${item.id}">
+				      <div class="container p-2">
+					        <div class="order-container shadow-sm rounded p-3 bg-white">
 					            <!-- Đơn hàng đã hoàn thành -->
 					        <div class="order-status text-center" style="border-radius: 8px 8px 0 0;">
 					            <p style="margin-bottom: 5px;">${item.trangThai}</p>
 					        </div>
-					
 					        <!-- Thông tin vận chuyển -->
 					        <div class="row p-2">
-					            <strong class="mb-2 ms-3">Thông tin vận chuyển</strong>
+					            <strong class="ms-3">Thông tin vận chuyển</strong>
 					            <div class="col-10 d-flex ms-3 rounded">
 					                <i class="bi bi-truck me-2"></i>
 					                <p class="mb-0">Nhanh - J&T Express</p>
 					            </div>
 					        </div>
-					
 					        <div class="divider"></div>
-					
 					        <!-- Địa chỉ nhận hàng -->
-					        <div class="row p-2">
-					            <strong class="mb-2 ms-3">Địa chỉ nhận hàng</strong>
+					        <div class="row">
+					            <strong class="ms-3">Địa chỉ nhận hàng</strong>
 					            <div class="col-10 d-flex ms-3 rounded">
 					                <i class="bi bi-geo-alt me-2"></i>
 					                <div>
@@ -162,7 +284,7 @@
 					    </div>
 					</div>
 					
-					<div class="container mt-4">
+					<div class="container">
 					  <div class="order-summary">
 					      <!-- Thông tin sản phẩm -->
 					      <div class="d-flex justify-content-between align-items-center p-2">
@@ -172,7 +294,7 @@
 					            <a href="#" style="color: lightgray; text-decoration: none; margin-left: 8px;">></a>
 					        </div>
 					      </div>
-					      <div class="product-card p-3 mb-3">
+					      <div class="product-card p-3 mb-3" style="height: 20vh; overflow-y: auto;">
 					      	<c:forEach var="detail" items="${item.listDetail}">
 					          <div class="d-flex align-items-center mb-2">
 					              <img src="${detail.shirt.link}" alt="Sản phẩm 1" class="product-img me-2">
@@ -186,9 +308,7 @@
 					          </div>
 					       </c:forEach>
 					      </div>
-					
 					      <div class="divider"></div>
-					
 					      <!-- Tổng cộng -->
 					      <div class="row mb-3">
 					          <div class="col-6"><strong>Thành tiền:</strong></div>
@@ -196,9 +316,7 @@
 					          <div class="col-6">Phương thức thanh toán</div>
 					          <div class="col-6 text-end">${item.phuongThuc}</div>
 					      </div>
-					
 					      <div class="divider"></div>
-					
 					      <!-- Nút mua lại -->
 					      <button class="btn btn-outline-danger w-100">Mua lại</button>
 					    </div>

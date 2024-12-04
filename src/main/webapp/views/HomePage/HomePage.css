@@ -105,19 +105,6 @@
     font-weight: 500;
 }
 
-/* Vòng tròn màu sắc */
-.color-options .color-circle {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    border: 1px solid #ddd;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.color-options .color-circle:hover {
-    transform: scale(1.1);
-}
 
 /* Hiệu ứng hover cho nút size */
 .btn-outline-secondary {
