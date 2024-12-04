@@ -206,12 +206,35 @@ CREATE PROCEDURE sp_DeleteShirt
     @id INT
 AS
 BEGIN
-    -- Xóa bản ghi có id tương ứng
-    DELETE FROM shirt
-    WHERE id = @id;
-    
-    -- Thông báo xóa thành công
-    PRINT 'Bản ghi đã được xóa thành công';
+    BEGIN TRANSACTION; -- Bắt đầu giao dịch để đảm bảo tính toàn vẹn dữ liệu
+
+    BEGIN TRY
+        -- Xóa dữ liệu liên quan trong bảng Cart
+        DELETE FROM Cart
+        WHERE shirtId = @id;
+
+        -- Xóa dữ liệu liên quan trong bảng ChiTietHoaDon
+        DELETE FROM ChiTietHoaDon
+        WHERE shirtId = @id;
+
+        -- Xóa bản ghi trong bảng shirt
+        DELETE FROM shirt
+        WHERE id = @id;
+
+        -- Commit giao dịch
+        COMMIT TRANSACTION;
+
+        -- Thông báo xóa thành công
+        PRINT 'Bản ghi đã được xóa thành công';
+    END TRY
+    BEGIN CATCH
+        -- Rollback giao dịch nếu có lỗi
+        ROLLBACK TRANSACTION;
+
+        -- Trả về thông báo lỗi
+        PRINT 'Lỗi xảy ra khi xóa bản ghi';
+        THROW;
+    END CATCH
 END;
 GO
 
