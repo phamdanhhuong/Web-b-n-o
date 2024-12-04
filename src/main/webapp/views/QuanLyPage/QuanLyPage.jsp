@@ -7,10 +7,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">    
-<link href="views/HomePage/HomePage.css" type="text/css" rel="stylesheet">
+<link href="./views/HomePage/HomePage.css" type="text/css" rel="stylesheet">
+<link href="./views/ShopPage/ShopPage.css" type="text/css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">  
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+
+<title>Shop Clothing</title>
 <style>
 	/* CSS cho hiệu ứng đổ xuống */
 	.slide-down {
@@ -31,25 +39,82 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	  <div class="container-fluid">
-	    <a class="navbar-brand" href="home">Shop</a>
-	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-	      <span class="navbar-toggler-icon"></span>
-	    </button>
-	    <div class="collapse navbar-collapse" id="navbarNav">
-	      <ul class="navbar-nav ms-auto">
-	        <li class="nav-item">
-	          <a class="nav-link active" aria-current="page" href="/WebBanAo/home">Home</a>
-	        </li>
-	        <li class="nav-item">
-	          <a class="nav-link" href="/WebBanAo">Logout</a>
-	        </li>
-	      </ul>
-	    </div>
-	  </div>
-	</nav>
-	<div class="container p-3" style="min-height: 95vh">
+	<div class=" fixed-header">
+	    <div class="container-fluid">
+		    <div class="row align-items-center bg-white shadow py-3 px-xl-5 d-none d-lg-flex">
+		        <!-- Logo -->
+		        <div class="col-lg-4">
+		            <a href="home" class="text-decoration-none">
+		                <span class="h1 text-uppercase text-primary bg-dark px-2 rounded">Clothing</span>
+		                <span class="h1 text-uppercase text-dark bg-primary px-2 rounded ml-n1">Shop</span>
+		            </a>
+		        </div>
+		
+		        <!-- Search Bar -->
+		        <div class="col-lg-4 text-center">
+		            <form action="/WebBanAo/home" method="get" id="formLoc">
+		                <div class="input-group">
+		                    <input class="form-control border-primary shadow-sm rounded-start" 
+		                           type="text" 
+		                           name="searchText" 
+		                           id="searchText" 
+		                           placeholder="Tìm kiếm sản phẩm..." 
+		                           aria-label="Search" 
+		                           value="${searchText == null ? '' : searchText}">
+		                    <button class="btn btn-primary shadow-sm rounded-end" 
+		                            type="button" 
+		                            onclick="document.getElementById('formLoc').submit();">
+		                        <i class="fas fa-search"></i>
+		                    </button>
+		                </div>
+		            </form>
+		        </div>
+		    </div>
+		</div>
+	    <div class="container-fluid bg-dark mb-30">
+		    <div class="row px-xl-5">
+		        <div class="col-lg-3 d-none d-lg-block">
+				    <div class="btn d-flex align-items-center justify-content-between bg-primary w-100" style="height: 100%; padding: 0 30px; background: #343a40 !important;" data-bs-toggle="collapse" data-bs-target="#navbar-vertical">
+				        
+				        <span class="text-white ml-2">Danh mục sản phẩm</span>
+				        <i class="fa fa-bars text-white"></i>
+				    </div>
+				    <nav class="collapse position-absolute navbar navbar-vertical navbar-dark align-items-start p-0 bg-dark" id="navbar-vertical" style="width: 20%; z-index: 999; border-radius: 8px;">
+				        <div class="navbar-nav w-100">
+				            <!-- Other Categories -->
+				            <a href="#t-shirt" class="nav-item nav-link" style="border-radius: 8px; transition: background-color 0.3s ease;">T-Shirts</a>
+	            			<a href="#polo" class="nav-item nav-link" style="border-radius: 8px; transition: background-color 0.3s ease;">Polo</a>
+				        </div>
+				    </nav>
+				</div>
+		        <div class="col-lg-9">
+		            <nav class="navbar navbar-expand-lg navbar-dark py-lg-0 px-0">
+		                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+		                    <span class="navbar-toggler-icon"></span>
+		                </button>
+		
+		                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+		                    <div class="navbar-nav mr-auto"></div>
+		                    <div class="navbar-nav ml-auto d-none d-lg-block">
+		                        <div class="text-right d-flex gap-3">
+		                            <a class="nav-link active" aria-current="page" href="home">
+				                        <i class="fas fa-home"></i> Home
+				                    </a>
+		                            <a class="nav-link" href="/WebBanAo/cart">
+		                                <i class="fas fa-shopping-cart"></i> Giỏ hàng
+		                            </a>
+		                            <a class="nav-link" href="/WebBanAo">
+				                        <i class="fas fa-sign-out-alt"></i> Logout
+				                    </a>
+		                        </div>
+		                    </div>
+		                </div>
+		            </nav>
+		        </div>
+		    </div>
+		</div>
+	</div>
+	<div class="container p-3" style="min-height: 85vh;margin-top: 150px !important;">
 		<div id="result" style="display: none"></div>
 		<div class="row gap-3 bg-light">
 			<!-- Cột 1 -->

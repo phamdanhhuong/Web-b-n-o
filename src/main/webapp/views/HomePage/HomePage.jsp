@@ -10,8 +10,15 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">    
 <link href="./views/HomePage/HomePage.css" type="text/css" rel="stylesheet">
+<link href="./views/ShopPage/ShopPage.css" type="text/css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">  
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+
+<title>Shop Clothing</title>
 <style type="text/css">
 	#toast_ {
   position: fixed;
@@ -118,141 +125,170 @@
   cursor: pointer;
 }
 </style>
-<title>Insert title here</title>
 </head>
 <body>
 	<div id="toast_"></div>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	
+
+    <div class=" fixed-header">
 	    <div class="container-fluid">
-	        <a class="navbar-brand" href="home">
-	            <i class="fas fa-store"></i> Shop
-	        </a>
-	        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-	            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-	            <span class="navbar-toggler-icon"></span>
-	        </button>
-	        <div class="collapse navbar-collapse" id="navbarNav">
-	            <ul class="navbar-nav ms-auto">
-	                <li class="nav-item me-5">
-	                	<div class="d-flex">
-	                        <input class="form-control me-2" type="text" name="searchText" id="searchText" placeholder="Search" aria-label="Search" value="${searchText == null ? '' : searchText}">
-	                        <button class="btn btn-outline-light" onclick="document.getElementById('formLoc').submit();">
-	                            <i class="fas fa-search"></i>
-	                        </button>
-                        </div>
-	                </li>
-	                <li class="nav-item">
-	                    <a class="nav-link active" aria-current="page" href="home">
-	                        <i class="fas fa-home"></i> Home
-	                    </a>
-	                </li>
-	                <li class="nav-item">
-	                    <a class="nav-link" href="/WebBanAo/cart">
-	                        <i class="fas fa-shopping-cart"></i> Giỏ hàng
-	                    </a>
-	                </li>
-	                <li class="nav-item">
-	                    <a class="nav-link" href="/WebBanAo/theodoi">
-	                        <i class="fas fa-box"></i> Theo dõi đơn hàng
-	                    </a>
-	                </li>
-	                <li class="nav-item">
-	                    <a class="nav-link" href="/WebBanAo">
-	                        <i class="fas fa-sign-out-alt"></i> Logout
-	                    </a>
-	                </li>
-	            </ul>
-	        </div>
-	    </div>
-	</nav>
-
-    <div class="navbar-filter">
-        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
-            <div class="container">
-                <div class="collapse navbar-collapse">
-                    <ul class="navbar-nav mx-auto">
-                      <li class="nav-item"><a class="nav-link" href="#">Sản Phẩm Mới <span class="text-danger">New</span></a></li>
-                      <li class="nav-item"><a class="nav-link" href="#">SALE</a></li>
-                      <li class="nav-item"><a class="nav-link" href="#">Thời Trang</a></li>
-                      <li class="nav-item"><a class="nav-link" href="#">Công Sở</a></li>
-                      <li class="nav-item"><a class="nav-link" href="#">Áo Khoác</a></li>
-                      <li class="nav-item"><a class="nav-link" href="#">Thể Thao</a></li>
-                      <li class="nav-item"><a class="nav-link" href="#">Bộ Sưu Tập</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
-
-    <div class="container d-flex gap-3 p-3">
-        <div class="col-3">
-		    <form action="/WebBanAo/home" method="get" id="formLoc">
-		        <div class="filter p-4 bg-light border rounded shadow-sm">
-		            <h2 class="text-center mb-4 font-weight-bold">Bộ lọc</h2>
+		    <div class="row align-items-center bg-white shadow py-3 px-xl-5 d-none d-lg-flex">
+		        <!-- Logo -->
+		        <div class="col-lg-4">
+		            <a href="home" class="text-decoration-none">
+		                <span class="h1 text-uppercase text-primary bg-dark px-2 rounded">Clothing</span>
+		                <span class="h1 text-uppercase text-dark bg-primary px-2 rounded ml-n1">Shop</span>
+		            </a>
+		        </div>
 		
+		        <!-- Search Bar -->
+		        <div class="col-lg-4 text-center">
+		            <form action="/WebBanAo/home" method="get" id="formLoc">
+		                <div class="input-group">
+		                    <input class="form-control border-primary shadow-sm rounded-start" 
+		                           type="text" 
+		                           name="searchText" 
+		                           id="searchText" 
+		                           placeholder="Tìm kiếm sản phẩm..." 
+		                           aria-label="Search" 
+		                           value="${searchText == null ? '' : searchText}">
+		                    <button class="btn btn-primary shadow-sm rounded-end" 
+		                            type="button" 
+		                            onclick="document.getElementById('formLoc').submit();">
+		                        <i class="fas fa-search"></i>
+		                    </button>
+		                </div>
+		            </form>
+		        </div>
+		    </div>
+		</div>
+	    <div class="container-fluid bg-dark mb-30">
+		    <div class="row px-xl-5">
+		        <div class="col-lg-3 d-none d-lg-block">
+				    <div class="btn d-flex align-items-center justify-content-between bg-primary w-100" style="height: 100%; padding: 0 30px; background: #343a40 !important;" data-bs-toggle="collapse" data-bs-target="#navbar-vertical">
+				        
+				        <span class="text-white ml-2">Danh mục sản phẩm</span>
+				        <i class="fa fa-bars text-white"></i>
+				    </div>
+				    <nav class="collapse position-absolute navbar navbar-vertical navbar-dark align-items-start p-0 bg-dark" id="navbar-vertical" style="width: 20%; z-index: 999; border-radius: 8px;">
+				        <div class="navbar-nav w-100">
+				            <!-- Other Categories -->
+				            <a href="#t-shirt" class="nav-item nav-link" style="border-radius: 8px; transition: background-color 0.3s ease;">T-Shirts</a>
+	            			<a href="#polo" class="nav-item nav-link" style="border-radius: 8px; transition: background-color 0.3s ease;">Polo</a>
+				        </div>
+				    </nav>
+				</div>
+		        <div class="col-lg-9">
+		            <nav class="navbar navbar-expand-lg navbar-dark py-lg-0 px-0">
+		                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+		                    <span class="navbar-toggler-icon"></span>
+		                </button>
+		
+		                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+		                    <div class="navbar-nav mr-auto"></div>
+		                    <div class="navbar-nav ml-auto d-none d-lg-block">
+		                        <div class="text-right d-flex gap-3">
+		                            <a class="nav-link active" aria-current="page" href="home">
+				                        <i class="fas fa-home"></i> Trang Chủ
+				                    </a>
+		                            <a class="nav-link" href="/WebBanAo/cart">
+		                                <i class="fas fa-shopping-cart"></i> Giỏ hàng
+		                            </a>
+		                            <a class="nav-link" href="/WebBanAo/theodoi">
+		                                <i class="fas fa-box"></i> Theo dõi đơn hàng
+		                            </a>
+		                            <a class="nav-link" href="/WebBanAo">
+				                        <i class="fas fa-sign-out-alt"></i> Logout
+				                    </a>
+		                        </div>
+		                    </div>
+		                </div>
+		            </nav>
+		        </div>
+		    </div>
+		</div>
+	</div>
+
+    <div class="container-fluid d-flex gap-3 p-3" style="margin-top: 150px !important;">
+        <div class="col-3 ms-2" style="width: 450px !important">
+		    <form action="/WebBanAo/home" method="get" id="formLoc">
+		        <div class="filter p-4 bg-white border rounded shadow-lg">
+		            <h2 class="text-center mb-4 font-weight-bold text-primary">Bộ Lọc</h2>
+		
+		            <!-- Danh mục sản phẩm -->
 		            <div class="category mb-4">
-		                <h5 class="mb-3">Danh mục sản phẩm</h5>
+		                <h5 class="mb-3 text-secondary">Danh mục sản phẩm</h5>
 		                <ul class="list-unstyled">
-		                    <li><input class="form-check-input" type="radio" name="loc-alphabet" value="asc" id="" <c:if test="${alphabet == null || alphabet == 'asc'}">checked</c:if>> A-Z</li>
-		                    <li><input class="form-check-input" type="radio" name="loc-alphabet" value="desc" id="" <c:if test="${alphabet != null && alphabet == 'desc'}">checked</c:if>> Z-A</li>
-		                    <li><input class="form-check-input" type="radio" name="loc-price" value="asc" id="" <c:if test="${price == null || price == 'asc'}">checked</c:if>> Giá tăng dần</li>
-		                    <li><input class="form-check-input" type="radio" name="loc-price" value="desc" id="" <c:if test="${price != null && price == 'desc'}">checked</c:if>> Giá giảm dần</li>
+		                    <li class="mb-2">
+		                        <input class="form-check-input" type="radio" name="loc-alphabet" value="asc" id="a-z"
+		                            <c:if test="${alphabet == null || alphabet == 'asc'}">checked</c:if>> 
+		                        <label for="a-z" class="ml-2">A-Z</label>
+		                    </li>
+		                    <li class="mb-2">
+		                        <input class="form-check-input" type="radio" name="loc-alphabet" value="desc" id="z-a"
+		                            <c:if test="${alphabet != null && alphabet == 'desc'}">checked</c:if>> 
+		                        <label for="z-a" class="ml-2">Z-A</label>
+		                    </li>
+		                    <li class="mb-2">
+		                        <input class="form-check-input" type="radio" name="loc-price" value="asc" id="price-asc"
+		                            <c:if test="${price == null || price == 'asc'}">checked</c:if>> 
+		                        <label for="price-asc" class="ml-2">Giá tăng dần</label>
+		                    </li>
+		                    <li class="mb-2">
+		                        <input class="form-check-input" type="radio" name="loc-price" value="desc" id="price-desc"
+		                            <c:if test="${price != null && price == 'desc'}">checked</c:if>> 
+		                        <label for="price-desc" class="ml-2">Giá giảm dần</label>
+		                    </li>
 		                </ul>
 		            </div>
 		
-		            <h5 class="mb-3">Loại áo</h5>
-		            <select class="form-select mb-4" id="combo-box" name="loc-loai" style="width: 100%; padding: 10px; border-radius: 8px;">
+		            <!-- Loại áo -->
+		            <h5 class="mb-3 text-secondary">Loại áo</h5>
+		            <select class="form-select mb-4 border border-primary rounded" id="combo-box" name="loc-loai">
 		                <option value="" <c:if test="${loai == null || loai == ''}">selected</c:if>>Tất cả</option>
 		                <c:forEach var="itemLoai" items="${dsLoai}">
 		                    <option value="${itemLoai}" <c:if test="${loai != null && loai == itemLoai}">selected</c:if>>${itemLoai}</option>
 		                </c:forEach>
 		            </select>
 		
+		            <!-- Khoảng giá -->
 		            <div class="price-range mb-4">
-		                <h5 class="mb-3">Khoảng giá</h5>
-						<div style="display: flex; justify-content: space-between; width: 100%;">
-						    <span>Từ </span>
-						    <span style="font-weight: bold;">0đ</span> <!-- Nổi bật 0 -->
-						    <span> đến </span>
-						    <span id="priceLabel" style="font-weight: bold;">${range == null ? 1500000 : range}đ</span>
-						</div>
-		
-		
-		
-		                <input type="range" min="0" max="3000000" value="${range == null ? 1500000 : range}" step="10000" name="loc-range" class="form-range" oninput="updatePriceLabel(this.value)" style="width: 100%;">
+		                <h5 class="mb-3 text-secondary">Khoảng giá</h5>
+		                <div class="d-flex justify-content-between text-secondary">
+		                    <span>Từ <b>0đ</b></span>
+		                    <span>đến <b id="priceLabel">${range == null ? 1500000 : range}đ</b></span>
+		                </div>
+		                <input type="range" min="0" max="3000000" value="${range == null ? 1500000 : range}" step="10000" name="loc-range" class="form-range border-primary mt-2" oninput="updatePriceLabel(this.value)">
 		            </div>
 		
+		            <!-- Màu sắc -->
 		            <div class="color mb-4">
-		                <h5 class="mb-3">Màu sắc</h5>
-		                <div class="form-check d-flex flex-column">
-		                    <div class="d-flex align-items-center gap-3 mb-2">
-		                        <input class="form-check-input" type="radio" name="loc-color" value="" id="" <c:if test="${color == null || color == ''}">checked</c:if>>
-		                        <span>Tất cả</span>
+		                <h5 class="mb-3 text-secondary">Màu sắc</h5>
+		                <div class="form-check d-flex flex-wrap gap-2">
+		                    <div>
+		                        <input class="form-check-input" type="radio" name="loc-color" value="" id="all-color"
+		                            <c:if test="${color == null || color == ''}">checked</c:if>> 
+		                        <label for="all-color">Tất cả</label>
 		                    </div>
-		                    <div class="d-flex gap-5 flex-wrap">
-							    <c:forEach var="mau" items="${dsMau}">
-							        <div class="d-flex align-items-center gap-3 mb-2">
-							            <input class="form-check-input" type="radio" name="loc-color" value="${mau}" id="" <c:if test="${color != null && color == mau}">checked</c:if>>
-							            <div class="color-options d-flex gap-2">
-							                <span class="color-circle" style="background-color: ${mau}; width: 20px; height: 20px; border-radius: 50%;"></span>
-							            </div>
-							        </div>
-							    </c:forEach>
-							</div>
+		                    <c:forEach var="mau" items="${dsMau}">
+		                        <div class="d-flex align-items-center gap-3 mb-2">
+		                            <input class="form-check-input" type="radio" name="loc-color" value="${mau}" id="color-${mau}" 
+		                                <c:if test="${color != null && color == mau}">checked</c:if>>
+		                            <span class="color-circle" style="background-color: ${mau}; width: 20px; height: 20px; border-radius: 50%;"></span>
+		                        </div>
+		                    </c:forEach>
 		                </div>
 		            </div>
 		
+		            <!-- Nút lọc -->
 		            <input id="result" value="${searchText == null ? '' : searchText}" type="hidden" name="loc-searchText">
-		            <button class="btn btn-primary mt-3 w-100" type="submit"><i class="fa-solid fa-filter"></i> Lọc</button>
+		            <button class="btn btn-primary mt-3 w-100 shadow-sm" type="submit"><i class="fa-solid fa-filter"></i> Lọc</button>
 		        </div>
 		    </form>
 		</div>
 
-        <div class="col-9">
-          <div class="row">
-            <div class="col-12" style="height: 3vh;">
-            </div>
-          </div>   
+
+        <div class="col-9">  
           <c:if test="${empty list}">
 		    <div class="alert alert-info text-center p-5 rounded shadow" 
 		         style="font-family: 'Avenir', sans-serif; height: 80vh; background-color: #f0f8ff; 

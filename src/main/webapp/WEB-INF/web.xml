@@ -14,4 +14,14 @@
     <servlet-name>thongke</servlet-name>
     <url-pattern>/thongke</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>trangchu</display-name>
+    <servlet-name>trangchu</servlet-name>
+    <servlet-class>servlets.trangchu</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>trangchu</servlet-name>
+    <url-pattern>/trangchu</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -64,7 +64,7 @@ public class HomePage extends HttpServlet {
 			}else{
 				List<shirt> list = shirtDao.LayDS();
 				request.setAttribute("list", list);
-				request.getRequestDispatcher("views/HomePage/HomePage.jsp").forward(request, response);
+				request.getRequestDispatcher("views/ShopPage/ShopPage.jsp").forward(request, response);
 			}
 		}else if(accountDao.acc.getRole()==0) {
 			List<hoaDon> list = hoadonDao.getAllListHoaDon();
