@@ -147,6 +147,36 @@ BEGIN
 END;
 GO
 
+CREATE PROCEDURE sp_CreateAccount
+    @uname NVARCHAR(255),
+    @pw NVARCHAR(255)
+AS
+BEGIN
+    BEGIN TRY
+        -- Kiểm tra xem tên người dùng đã tồn tại hay chưa
+        IF EXISTS (
+            SELECT 1
+            FROM account
+            WHERE uname = @uname
+        )
+        BEGIN
+            RAISERROR ('Tên người dùng đã tồn tại.', 16, 1);
+            RETURN;
+        END
+
+        -- Thêm tài khoản mới
+        INSERT INTO account (uname, pw, role)
+        VALUES (@uname, @pw, 1);
+
+        PRINT 'Tài khoản đã được tạo thành công.';
+    END TRY
+    BEGIN CATCH
+        -- Bắt lỗi nếu có vấn đề xảy ra
+        PRINT 'Lỗi xảy ra trong quá trình tạo tài khoản.';
+        THROW;
+    END CATCH
+END;
+GO
 
 CREATE PROCEDURE sp_InsertShirt
     @ten NVARCHAR(255),

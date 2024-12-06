@@ -128,7 +128,7 @@
             </div>
         </form>
         <div class="text-center mt-3">
-            <a href="#" class="text-decoration-none">Don't have an account? Register</a>
+            <a href="register" class="text-decoration-none">Don't have an account? Register</a>
         </div>
     </div>
 
