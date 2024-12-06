@@ -217,6 +217,23 @@ BEGIN
         DELETE FROM ChiTietHoaDon
         WHERE shirtId = @id;
 
+		-- Cập nhật tổng tiền trong hóa đơn
+        UPDATE HoaDon
+        SET tongTien = (
+            SELECT COALESCE(SUM(quantity * gia), 0)
+            FROM ChiTietHoaDon
+            WHERE ChiTietHoaDon.idHoaDon = HoaDon.id)
+		WHERE HoaDon.id IN (
+			SELECT DISTINCT idHoaDon
+            FROM ChiTietHoaDon)
+
+		-- Xóa hóa đơn không còn chi tiết
+        DELETE FROM HoaDon
+        WHERE id NOT IN (
+            SELECT DISTINCT idHoaDon
+            FROM ChiTietHoaDon
+        );
+
         -- Xóa bản ghi trong bảng shirt
         DELETE FROM shirt
         WHERE id = @id;
