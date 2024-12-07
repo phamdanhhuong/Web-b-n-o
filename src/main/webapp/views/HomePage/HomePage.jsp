@@ -143,7 +143,7 @@
 		
 		        <!-- Search Bar -->
 		        <div class="col-lg-4 text-center">
-		            <form action="/WebBanAo/home" method="get" id="formLoc">
+		            <form onsubmit="handleFormSubmit(event)">
 		                <div class="input-group">
 		                    <input class="form-control border-primary shadow-sm rounded-start" 
 		                           type="text" 
@@ -153,8 +153,7 @@
 		                           aria-label="Search" 
 		                           value="${searchText == null ? '' : searchText}">
 		                    <button class="btn btn-primary shadow-sm rounded-end" 
-		                            type="button" 
-		                            onclick="document.getElementById('formLoc').submit();">
+		                            type="button">
 		                        <i class="fas fa-search"></i>
 		                    </button>
 		                </div>
@@ -350,6 +349,10 @@
 	</footer>
 	<script type="text/javascript" src="./views/HomePage/HomePage.js"></script>
 	<script>
+		function handleFormSubmit(event) {
+	        event.preventDefault(); // Ngăn form gửi đi
+	        document.getElementById('formLoc').submit();
+	    }
         function addToCart(id) {
             $.ajax({
                 type: "POST",
